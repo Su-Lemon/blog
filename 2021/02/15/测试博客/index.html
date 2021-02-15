@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   
-  <link rel="stylesheet" href="/blog/css/style.css?v=1613378215184">
+  <link rel="stylesheet" href="/blog/css/style.css?v=1613379299242">
 <meta name="generator" content="Hexo 5.3.0"></head>
 
 <body class="mdui-drawer-body-left">
@@ -141,6 +141,17 @@
 </div>
 
   <div class="nexmoe-post-right">
+    
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                
+                
+                  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#VPG%E4%B8%8EAC%E7%9A%84%E6%80%9D%E6%83%B3%E4%B8%8E%E6%8E%A8%E5%AF%BC"><span class="toc-number">1.</span> <span class="toc-text">VPG与AC的思想与推导</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80-RL%E5%AD%A6%E4%B9%A0%E4%BB%80%E4%B9%88"><span class="toc-number">2.</span> <span class="toc-text">一 RL学习什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C-Vanilla-Policy-Gradient%EF%BC%88VPG%EF%BC%89"><span class="toc-number">3.</span> <span class="toc-text">二 Vanilla Policy Gradient（VPG）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E7%AD%96%E7%95%A5%E7%BD%91%E7%BB%9C%E7%9A%84%E6%9E%84%E9%80%A0"><span class="toc-number">3.1.</span> <span class="toc-text">2.1 策略网络的构造</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E6%8E%A8%E5%AF%BC%E6%9C%80%E5%9F%BA%E6%9C%AC%E7%9A%84%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6"><span class="toc-number">3.2.</span> <span class="toc-text">2.2 推导最基本的策略梯度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-VPG%E7%AE%97%E6%B3%95"><span class="toc-number">3.3.</span> <span class="toc-text">2.3 VPG算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89-Actor-Critic"><span class="toc-number">4.</span> <span class="toc-text">三 Actor-Critic</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-AC%E7%9A%84%E5%87%BA%E5%8F%91%E7%82%B9"><span class="toc-number">4.1.</span> <span class="toc-text">3.1 AC的出发点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E5%AF%B9%E7%AD%96%E7%95%A5%E6%A2%AF%E5%BA%A6%E7%9A%84%E4%BC%98%E5%8C%96"><span class="toc-number">4.2.</span> <span class="toc-text">3.2 对策略梯度的优化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-%E4%B8%8D%E8%A6%81%E5%8F%97%E8%BF%87%E5%8E%BB%E7%9A%84%E5%BD%B1%E5%93%8D%EF%BC%88Don%E2%80%99t-Let-the-Past-Distract-You%EF%BC%89"><span class="toc-number">4.2.1.</span> <span class="toc-text">3.2.1 不要受过去的影响（Don’t Let the Past Distract You）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-hat-Q-s-t-a-t-%E7%9A%84Baseline"><span class="toc-number">4.2.2.</span> <span class="toc-text">3.2.2 $\hat{Q}(s_t,a_t)$ 的Baseline</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3-Value-net%E6%80%8E%E4%B9%88%E6%9B%B4%E6%96%B0"><span class="toc-number">4.2.3.</span> <span class="toc-text">3.3.3 Value net怎么更新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-Actor-Critic%E7%AE%97%E6%B3%95"><span class="toc-number">4.3.</span> <span class="toc-text">3.3 Actor-Critic算法</span></a></li></ol></li></ol>
+                
+            </div>
+        </div>
+      </div>
     
   </div>
 
@@ -315,6 +326,12 @@
 </div>
         <div class="nexmoe-post-right">
           
+            <div class="nexmoe-fixed">
+              <div class="nexmoe-tool">
+                <a href="#"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+              </div>
+            </div>
+          
         </div>
     </div>
   </div>
@@ -328,7 +345,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
- <script src="/blog/js/app.js?v=1613378215186"></script>
+ <script src="/blog/js/app.js?v=1613379299243"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
