@@ -1113,11 +1113,9 @@ font.douyin {
   bottom: 20px;
   left: 20px;
 }
-.nexmoe-post-right .nexmoe-tool {
-  color: #444;
-}
 .nexmoe-post-right .nexmoe-tool .mdui-fab {
   background: #fff;
+  color: #444;
 }
 @media screen and (max-width: 1024px) {
   .nexmoe-post-right {
