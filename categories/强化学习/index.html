@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   
-  <link rel="stylesheet" href="/blog/css/style.css?v=1613553919137">
+  <link rel="stylesheet" href="/blog/css/style.css?v=1613571577979">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -166,7 +166,7 @@
     <div class="nexmoe-post">
         <a href="/blog/2021/02/17/%E7%8A%B6%E6%80%81%E7%A9%BA%E9%97%B4/">
             
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 17.36111111111111%;"> 
+                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 50%;"> 
                     <img data-src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210217172343.jpg" data-sizes="auto" alt="状态空间" class="lazyload">
                     <h1>状态空间</h1>
                 </div>
@@ -189,7 +189,7 @@
     <div class="nexmoe-post">
         <a href="/blog/2021/02/17/VPG%E4%B8%8EAC%E7%9A%84%E6%80%9D%E6%83%B3%E5%92%8C%E6%8E%A8%E5%AF%BC/">
             
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 17.36111111111111%;"> 
+                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 50%;"> 
                     <img data-src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210217172343.jpg" data-sizes="auto" alt="VPG与AC的思想和推导" class="lazyload">
                     <h1>VPG与AC的思想和推导</h1>
                 </div>
@@ -232,7 +232,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
- <script src="/blog/js/app.js?v=1613553919137"></script>
+ <script src="/blog/js/app.js?v=1613571577979"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
@@ -251,3 +251,11 @@
 </body>
 
 </html>
+
+<!--鼠标点击烟花爆炸效果，需要引入jQuery-->
+
+  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
+  <script type="text/javascript" src="/lib/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
+  <script type="text/javascript" src="/js/firework.js"></script>
+
