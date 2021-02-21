@@ -20,11 +20,12 @@ const getRealPath = (pathname, desc = false) => {
   }
   return "/";
 };
+
 let links = document.querySelectorAll(".nexmoe-list-item");
-let rootRealPath = getRealPath(window.location.pathname, true);
+let rootRealPath = getRealPath(location.pathname, false);
 for (let link of links) {
   let linkPath = link.getAttribute("href");
-  if (linkPath && getRealPath(linkPath, true) === rootRealPath) {
+  if (linkPath && (getRealPath(linkPath, false) === rootRealPath)) {
     link.className = "active nexmoe-list-item mdui-list-item mdui-ripple";
   }
 }

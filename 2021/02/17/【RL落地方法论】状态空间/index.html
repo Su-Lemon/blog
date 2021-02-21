@@ -19,33 +19,26 @@
 <meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
 <meta property="og:description" content="DRL的状态信息代表了agent所感知到的环境信息，以及因自身的action带来的变化。状态信息是agent制定决策和评估其长期收益的依据，而状态设计的好坏直接决定了DRL算法能否收敛、收敛速度以及最终性能，兹事体大，不可不察。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://pic1.zhimg.com/80/v2-94ea1fe821c9890ad627415775f849f4_1440w.jpg">
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-01caa34cfa02775aea2338356345965f_1440w.png">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=-%5Calpha%5Ccdot%5Cmax%5Cleft+%28D-d_%7Bmin%7D+%5Cright+%29">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=D">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_%7Bmin%7D">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=D">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_%7Bmin%7D">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=d_%7Bmin%7D">
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-693ce767b89268e291f373e7f1baa443_1440w.jpg">
-<meta property="og:image" content="https://pic4.zhimg.com/80/v2-fa3a033dff16b034e7f970b3fbfbdda3_1440w.jpg">
-<meta property="og:image" content="https://pic4.zhimg.com/80/v2-4b729223214006aae1d49726f163b60f_1440w.jpg">
-<meta property="og:image" content="https://pic2.zhimg.com/80/v2-28c728fbe04116e0f19cf6ebccb91849_1440w.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210221220441.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210221220745.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210221220554.png">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B0%7D%2Cy_%7B0%7D%5Cright%29">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B1%7D%2Cy_%7B1%7D%5Cright%29">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B1%7D-x_%7B0%7D%2Cy_%7B1%7D-y_%7B0%7D%5Cright%29">
-<meta property="og:image" content="https://pic2.zhimg.com/80/v2-ea1bd46280cfd0ff9ce42eac0ba4d4e5_1440w.jpg">
+<meta property="og:image" content="https://su-lemon.github.io/Documents/1img/blog/%E6%88%AA%E5%B1%8F2021-02-21%20%E4%B8%8B%E5%8D%8810.08.12.png">
 <meta property="article:published_time" content="2021-02-17T06:47:10.000Z">
-<meta property="article:modified_time" content="2021-02-21T08:26:20.341Z">
+<meta property="article:modified_time" content="2021-02-21T14:09:52.487Z">
 <meta property="article:author" content="SuSu">
 <meta property="article:tag" content="RL">
 <meta property="article:tag" content="RL落地方法论">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://pic1.zhimg.com/80/v2-94ea1fe821c9890ad627415775f849f4_1440w.jpg">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-01caa34cfa02775aea2338356345965f_1440w.png">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   
-  <link rel="stylesheet" href="/blog/css/style.css?v=1613901838317">
+  <link rel="stylesheet" href="/blog/css/style.css?v=1613916610635">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -199,7 +192,7 @@
         <div class="nexmoe-post">
   
       <div class="nexmoe-post-cover" style="padding-bottom: 50%;"> 
-          <img data-src="https://pic2.zhimg.com/80/v2-28c728fbe04116e0f19cf6ebccb91849_1440w.jpg" data-sizes="auto" alt="【RL落地方法论】状态空间" class="lazyload">
+          <img data-src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210221220441.png" data-sizes="auto" alt="【RL落地方法论】状态空间" class="lazyload">
           <h1>【RL落地方法论】状态空间</h1>
       </div>
   
@@ -207,7 +200,7 @@
   <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2021年02月17日</a>
     <a><i class="nexmoefont icon-areachart"></i>4.2k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 16 分钟</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 17 分钟</a>
 </div>
 
   <div class="nexmoe-post-right">
@@ -236,25 +229,20 @@
 <h3 id="任务分析">任务分析</h3>
 <p>任务分析是状态设计的灵魂，好的状态信息建立在对任务逻辑的深入理解之上。客户提出最终目标，优秀的算法工程师需要把这个目标进一步分解，研究该目标的本质是什么，要实现它涉及到哪些重要环节，每个环节有哪些影响因素，每个因素又由哪些信息体现。对任务逻辑的深入分析也有助于我们设计优秀的回报函数（reward），并反哺状态空间的设计。对一个复杂任务的理解，除非天赋异禀或者相关经验丰富，一般都是要经过一段时间的摸爬滚打后才会深入到一定程度，期间还可能不断推翻之前的错误认知，更伴随瞬间顿悟的喜悦，因此要保持足够的耐心。</p>
 <figure>
-<img data-fancybox="gallery" data-sizes="auto" data-src="https://pic1.zhimg.com/80/v2-94ea1fe821c9890ad627415775f849f4_1440w.jpg" alt="img" class="lazyload"><figcaption aria-hidden="true">img</figcaption>
-</figure>
-<figure>
 <img data-fancybox="gallery" data-sizes="auto" data-src="https://pic4.zhimg.com/80/v2-01caa34cfa02775aea2338356345965f_1440w.png" alt="img" class="lazyload"><figcaption aria-hidden="true">img</figcaption>
 </figure>
 <p>为了便于说明，这里引入一个简单任务场景：在一个遍布障碍物的平面区域内有若干辆小车在随机位置待命，现在要求它们以最短时间行驶到各自的终点位置停下来，期间避免与障碍物或者其他小车发生碰撞。我们可以把上述目标分解成三部分：1.达到终点，2.避免碰撞，3.用时短。到达终点要求小车知道自己在哪，还要知道终点在哪；避免碰撞要求小车知道附近障碍物的位置，自己和周围其他小车的位置及运动状态；用时短要求小车少绕路，行驶速度快，尽量避免减速和刹车。</p>
 <h3 id="相关信息筛选">相关信息筛选</h3>
 <p>带着以上分析，我们就可以进入下一个环节——相关信息筛选。顾名思义，就是在所有可用信息中找出与任务目标、子目标有关的那些。我们都知道RL任务逻辑最终是以回报函数（reward）为载体呈现的，而RL算法优化的则是该reward系统下的长期累计收益。神经网络的作用是将原始状态信息经过层层非线性提炼后转化为与长期收益高度关联的形式，并进一步指导生成action决策。理想情况下，状态空间应该完全由筛选出的相关信息组成。某个状态信息所代表的事件在越短时间内得到反馈，神经网络就越容易学会如何对其进行加工并建立起决策相关性。按照这个反馈时间的长短，我们还可以粗略地将这些相关信息分为直接相关信息和间接相关信息。</p>
 <h4 id="直接相关信息">直接相关信息</h4>
-<p>所谓直接相关信息，就是与某个reward奖励项或惩罚项即时联动的信息。比如为了更有效地避免小车之间发生碰撞，回报函数里设计了“最近小车距离反比”惩罚项 <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.zhihu.com/equation?tex=-%5Calpha%5Ccdot%5Cmax%5Cleft+%28D-d_%7Bmin%7D+%5Cright+%29" alt="[公式]" class="lazyload"> ，其中 <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.zhihu.com/equation?tex=D" alt="[公式]" class="lazyload"> 是靠近惩罚阈值，当agent与周围最近小车距离 <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.zhihu.com/equation?tex=d_%7Bmin%7D" alt="[公式]" class="lazyload"> 小于 <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.zhihu.com/equation?tex=D" alt="[公式]" class="lazyload"> 时，即开始反比惩罚，靠得越近罚得越多。这里的 <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.zhihu.com/equation?tex=d_%7Bmin%7D" alt="[公式]" class="lazyload"> 相对于该惩罚项就属于直接相关信息，agent在每一步都能收到与 <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.zhihu.com/equation?tex=d_%7Bmin%7D" alt="[公式]" class="lazyload"> 线性相关的反馈，很容易建立起决策相关性。再举一个例子，我们希望小车在电量不足时主动停止工作转而去指定地点充电，除了在reward中设置电量不足的惩罚项，同时也应该在状态空间中增加当前剩余电量，小于设定阈值时即在每步做惩罚。这也属于直接相关信息，没有这个信息，小车是无法建立起电量不足与该惩罚的相关性的，也就无从学会主动去充电。</p>
+<p>所谓直接相关信息，就是与某个reward奖励项或惩罚项即时联动的信息。比如为了更有效地避免小车之间发生碰撞，回报函数里设计了“最近小车距离反比”惩罚项 <span class="math inline">\(-\alpha\cdot max(D-d_{min})\)</span> ，其中 <span class="math inline">\(D\)</span> 是靠近惩罚阈值，当agent与周围最近小车距离 <span class="math inline">\(d_{min}\)</span> 小于 <span class="math inline">\(D\)</span> 时，即开始反比惩罚，靠得越近罚得越多。这里的 <span class="math inline">\(d_{min}\)</span> 相对于该惩罚项就属于直接相关信息，agent在每一步都能收到与 <span class="math inline">\(d_{min}\)</span> 线性相关的反馈，很容易建立起决策相关性。再举一个例子，我们希望小车在电量不足时主动停止工作转而去指定地点充电，除了在reward中设置电量不足的惩罚项，同时也应该在状态空间中增加当前剩余电量，小于设定阈值时即在每步做惩罚。这也属于直接相关信息，没有这个信息，小车是无法建立起电量不足与该惩罚的相关性的，也就无从学会主动去充电。</p>
 <figure>
 <img data-fancybox="gallery" data-sizes="auto" data-src="https://pic4.zhimg.com/80/v2-693ce767b89268e291f373e7f1baa443_1440w.jpg" alt="img" class="lazyload"><figcaption aria-hidden="true">img</figcaption>
 </figure>
 <p>直接相关信息不仅对DRL算法学习很友好，在有对口reward奖励/惩罚项的前提下，对算法工作者来说也更容易设计。事实上，DRL的状态空间设计往往和reward设计同时进行，为了达到某个目的需要增加一项奖励/惩罚，并相应增加一个或多个直接相关状态信息，帮助模型识别现象与反馈之间的因果关系，这一设计理念很直观也很有效。</p>
 <h4 id="间接相关信息">间接相关信息</h4>
 <p>间接相关信息指的是reward中没有即时联动项的状态信息，其所代表的事件需要一段时间后才得到反馈。相对于直接相关信息，DRL利用它们建立决策相关性的难度更高，学习效率更差。比如下图中的游戏画面，agent要通关必须先吃钥匙，假如reward没有专门设置“吃钥匙”的奖励项，那么吃钥匙的好处要等到通关的时候才能体现出来。</p>
-<figure>
-<img data-fancybox="gallery" data-sizes="auto" data-src="https://pic4.zhimg.com/80/v2-fa3a033dff16b034e7f970b3fbfbdda3_1440w.jpg" alt="img" class="lazyload"><figcaption aria-hidden="true">img</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210221220441.png" /></p>
 <p>再比如小车要学会到达终点，当前位置坐标、朝向、速度、加速度、终点坐标、周围障碍物的分布似乎都与到达终点这一目标有关，假如我们暂时没有针对这个目标做更细化的credit assignment，而只设置了到达终点奖励，那么这些信息就都属于间接相关信息，agent只有经过充分探索后才能发现某时刻这些信息的变化与最终达到终点之间的联系。</p>
 <p>间接相关信息通过某些手段可以转化为直接相关信息，从而提高DRL的学习效率。最简单的方法是对任务目标做更详细的credit assignment并增加相应的reward奖励/惩罚项，如果某状态信息恰好与之即时联动，相应状态信息就成为了直接相关信息。还以小车为例，如果在reward中增加靠近终点奖励或远离终点惩罚，那么小车的朝向（配合小车当前坐标和终点坐标）就成为了直接相关信息。更多关于reward函数设计的内容我在下一篇中再详细介绍。</p>
 <h4 id="相关信息预处理">相关信息预处理</h4>
@@ -263,12 +251,8 @@
 <p>当我们已经筛选出了所有相关信息，接下来该以何种形式使用它们呢？把他们拉成一组向量塞到神经网络里行不行？当然可以，但那样做只能得到适用于当前特定场景的policy。比如状态信息中包含了其他小车的信息，则训练出的policy只适合特定数量小车的任务，假如车数增加或减少，输入向量维度随之变化，policy就没法用了。因此，我们必须合理设计状态信息使其对环境主要因素的改变有最起码的兼容性，我把它称之为统一性考虑。具体地，这里的统一性又包含形式统一和逻辑统一。</p>
 <h4 id="形式统一">形式统一</h4>
 <p>为了保证输入向量长度恒定，我们需要找到一种统一形式把不同信息填到对应的位置。比如小车周围装了一圈测距雷达，按固定顺序输出一维距离向量，那么无论把小车放到什么地方，这些信息所代表的含义也不会变；或者采用imagelike的状态表示方式，把地图信息网格化，无论是作为二维channel或拉成一维向量，都能保持外在形式的统一。</p>
-<figure>
-<img data-fancybox="gallery" data-sizes="auto" data-src="https://pic4.zhimg.com/80/v2-4b729223214006aae1d49726f163b60f_1440w.jpg" alt="img" class="lazyload"><figcaption aria-hidden="true">img</figcaption>
-</figure>
-<figure>
-<img data-fancybox="gallery" data-sizes="auto" data-src="https://pic2.zhimg.com/80/v2-28c728fbe04116e0f19cf6ebccb91849_1440w.jpg" alt="img" class="lazyload"><figcaption aria-hidden="true">img</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210221220745.png" /></p>
+<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210221220554.png" /></p>
 <p>针对上述第二种方案，为了将信息离散化到网格点上，不可避免地会带来精度损失。但在实际应用中，只要网格尺寸合理，这样的精度损失是可以接受的。事实上，离散化操作本身会在一定程度上降低学习难度从而带来性能的提升，有paper报告在Montezuma's Revenge游戏里通过离散化agent和环境的信息，DRL模型性能不仅没有下降，反倒提升了30%多。</p>
 <h4 id="逻辑统一">逻辑统一</h4>
 <p>状态空间只做到外在形式统一是不够的。比如我们把小车当前位置 <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B0%7D%2Cy_%7B0%7D%5Cright%29" alt="[公式]" class="lazyload"> 和终点位置坐标 <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B1%7D%2Cy_%7B1%7D%5Cright%29" alt="[公式]" class="lazyload"> 作为状态信息同时输入网络，按照DRL的过拟合天性，神经网络最终会记住这张地图每个坐标处的特征以及在这里通行的最佳路线，policy在这幅地图里测试性能会很高，但换幅地图就完全不能用了。通常情况下，我们并不希望DRL用这种方式获得高性能，而是希望它能学会应对不同地形的通用知识，即使换张地图也至少能达到“勉强能用”的地步，再通过在新地图中finetune即可快速具备实用价值。因此，更合理的方式是将两个绝对坐标合并为一个相对坐标<img data-fancybox="gallery" data-sizes="auto" data-src="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B1%7D-x_%7B0%7D%2Cy_%7B1%7D-y_%7B0%7D%5Cright%29" alt="[公式]" class="lazyload"> ，即终点位置在小车坐标系中的坐标，这样就可以使policy与具体地图“脱钩”，从而学习到更加通用的导航知识。可见，<strong>要想让网络学到我们希望它学到的知识，前提是输入正确形式的状态信息</strong>。</p>
@@ -279,9 +263,7 @@
 <p>如果项目已经有一个较好的baseline，可以搭建一个policy网络，专门模仿该baseline在各种状态下的action，如果状态中包含了正确决策所需的相关信息，那么得到的policy性能就会越接近baseline。考虑到有监督学习的高效性，这是验证状态信息有效性的一种较快方式，尤其适用于项目初期一片懵懂的时候。</p>
 <h4 id="直接验证">直接验证</h4>
 <p>如果没有这样的baseline，那就只能用直接验证了，即用DRL训练一个policy并验证其效果。为了提升效率，可以只比较训练中途（固定步数、固定数据量）的性能，因为一般情况下好状态和差状态的won-lost关系在较早的时候就确定了。另外由于DQN收敛速度相对较快，可以优先考虑用来验证新状态。</p>
-<figure>
-<img data-fancybox="gallery" data-sizes="auto" data-src="https://pic2.zhimg.com/80/v2-ea1bd46280cfd0ff9ce42eac0ba4d4e5_1440w.jpg" alt="img" class="lazyload"><figcaption aria-hidden="true">img</figcaption>
-</figure>
+<p><img src="../../../../../../Documents/1img/blog/%E6%88%AA%E5%B1%8F2021-02-21%20%E4%B8%8B%E5%8D%8810.08.12.png" /></p>
 <h4 id="缺省验证">缺省验证</h4>
 <p>当我们已经训练得到一个不错的policy时，可以用缺省的方式验证每个状态信息的作用大小，即正常输入其他信息，而将目标信息取合理区间内的定值（如区间中点），测试性能损失的百分比。损失越大说明该状态信息越关键，反之则说明作用越边缘化，有时候甚至会发现性能不降反升，说明该信息有干扰作用，还是去掉的好。缺省验证的意义在于，剔除那些无用或起反作用的状态，为进一步优化关键状态和弱作用状态提供指导。</p>
 <h2 id="总结">总结</h2>
@@ -419,7 +401,7 @@
 
 
 <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
- <script src="/blog/js/app.js?v=1613901838318"></script>
+ <script src="/blog/js/app.js?v=1613916610637"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
