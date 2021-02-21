@@ -4,7 +4,7 @@
 
 <head>
   
-  <title>VPG与AC的思想和推导 - SuWei&#39;s Blog</title>
+  <title>【RL算法】VPG与AC的思想和推导 - SuWei&#39;s Blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -14,8 +14,8 @@
   <link rel="shortcut icon" href="/favicon.ico" type="image/png" />
   <meta name="description" content="策略梯度与Actor-Critic的思想和推导">
 <meta property="og:type" content="article">
-<meta property="og:title" content="VPG与AC的思想和推导">
-<meta property="og:url" content="https://github.com/Su-Lemon/blog.git/2021/02/17/VPG%E4%B8%8EAC%E7%9A%84%E6%80%9D%E6%83%B3%E5%92%8C%E6%8E%A8%E5%AF%BC/index.html">
+<meta property="og:title" content="【RL算法】VPG与AC的思想和推导">
+<meta property="og:url" content="https://su-lemon.github.io/blog/2021/02/17/%E3%80%90RL%E7%AE%97%E6%B3%95%E3%80%91VPG%E4%B8%8EAC%E7%9A%84%E6%80%9D%E6%83%B3%E5%92%8C%E6%8E%A8%E5%AF%BC/index.html">
 <meta property="og:site_name" content="SuWei&#39;s Blog">
 <meta property="og:description" content="策略梯度与Actor-Critic的思想和推导">
 <meta property="og:locale" content="zh_CN">
@@ -29,8 +29,8 @@
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjqdcs4up3j30s60dvgnb.jpg">
 <meta property="og:image" content="https://tva1.sinaimg.cn/large/007S8ZIlly1gjqemesrcyj31bs0rqdpk.jpg">
 <meta property="article:published_time" content="2021-02-17T05:29:39.000Z">
-<meta property="article:modified_time" content="2021-02-17T06:13:13.407Z">
-<meta property="article:author" content="苏苇">
+<meta property="article:modified_time" content="2021-02-21T04:31:17.316Z">
+<meta property="article:author" content="SuSu">
 <meta property="article:tag" content="RL">
 <meta property="article:tag" content="algorithm">
 <meta property="article:tag" content="PG">
@@ -40,7 +40,7 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   
-  <link rel="stylesheet" href="/blog/css/style.css?v=1613571577975">
+  <link rel="stylesheet" href="/blog/css/style.css?v=1613895141800">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -48,28 +48,33 @@
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
 
 <body class="mdui-drawer-body-left">
+  <!--鼠标点击烟花爆炸效果，需要引入jQuery-->
+  
+    <script type="text/javascript" src="//raw.githack.com/Su-Lemon/sources/master/js/effects/firework1.js"></script>
+  
+
   
   <div id="nexmoe-background">
-    <div class="nexmoe-bg" style="background-image: url(https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210217171126.png)"></div>
+    <div class="nexmoe-bg" style="background-image: url(https://raw.githack.com/Su-Lemon/sources/master/imgs/blog/20210217171126.png)"></div>
     <div class="mdui-appbar mdui-shadow-0">
       <div class="mdui-toolbar">
         <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/blog/" title="苏苇" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/avatar/IMG_0427.jpeg" alt="苏苇"></a>
+        <a href="/blog/" title="SuSu" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/avatar/IMG_0427.jpeg" alt="SuSu"></a>
        </div>
     </div>
   </div>
   <div id="nexmoe-header">
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
-        <a href="/blog/" title="苏苇">
-            <img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/avatar/IMG_0427.jpeg" alt="苏苇" alt="苏苇">
+        <a href="/blog/" title="SuSu">
+            <img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/avatar/IMG_0427.jpeg" alt="SuSu" alt="SuSu">
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>2</div>
-        <div><span>标签</span>4</div>
+        <div><span>文章</span>3</div>
+        <div><span>标签</span>7</div>
         <div><span>分类</span>2</div>
     </div>
     <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
@@ -140,15 +145,15 @@
         
 
         <li class="category-list-item">
-          <a class="category-list-link" href="/blog/categories/强化学习/">强化学习</a>
-          <span class="category-list-count">2</span>
+          <a class="category-list-link" href="/blog/categories/Hexo/">Hexo</a>
+          <span class="category-list-count">1</span>
         </li>
 
         
 
         <li class="category-list-item">
-          <a class="category-list-link" href="/blog/categories/强化学习/强化学习落地方法论/">强化学习落地方法论</a>
-          <span class="category-list-count">1</span>
+          <a class="category-list-link" href="/blog/categories/强化学习/">强化学习</a>
+          <span class="category-list-count">2</span>
         </li>
 
         
@@ -162,7 +167,7 @@
   
   <div class="nexmoe-widget-wrap">
     <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
-      <a href="/blog/tags/AC/" style="font-size: 10px;">AC</a> <a href="/blog/tags/PG/" style="font-size: 10px;">PG</a> <a href="/blog/tags/RL/" style="font-size: 20px;">RL</a> <a href="/blog/tags/algorithm/" style="font-size: 10px;">algorithm</a>
+      <a href="/blog/tags/AC/" style="font-size: 10px;">AC</a> <a href="/blog/tags/Github-Pages%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">Github Pages部署</a> <a href="/blog/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/blog/tags/PG/" style="font-size: 10px;">PG</a> <a href="/blog/tags/RL/" style="font-size: 20px;">RL</a> <a href="/blog/tags/RL%E8%90%BD%E5%9C%B0%E6%96%B9%E6%B3%95%E8%AE%BA/" style="font-size: 10px;">RL落地方法论</a> <a href="/blog/tags/algorithm/" style="font-size: 10px;">algorithm</a>
     </div>
     
   </div>
@@ -170,7 +175,7 @@
   
 </aside>
     <div class="nexmoe-copyright">
-        &copy; 2021 苏苇
+        &copy; 2021 SuSu
         Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
         & <a href="https://github.com/Su-Lemon" target="_blank">Su-Lemon</a>
         
@@ -182,8 +187,8 @@
         <div class="nexmoe-post">
   
       <div class="nexmoe-post-cover" style="padding-bottom: 50%;"> 
-          <img data-src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210217172343.jpg" data-sizes="auto" alt="VPG与AC的思想和推导" class="lazyload">
-          <h1>VPG与AC的思想和推导</h1>
+          <img data-src="https://raw.githack.com/Su-Lemon/sources/master/imgs/blog/20210217172343.jpg" data-sizes="auto" alt="【RL算法】VPG与AC的思想和推导" class="lazyload">
+          <h1>【RL算法】VPG与AC的思想和推导</h1>
       </div>
   
   
@@ -404,8 +409,8 @@ L(\phi) &amp;=&amp; \frac{1}{N}\sum_{i}^{N} {\left\| V_{\phi}(s_{i,t})-V(s_{i,t}
   
     
   <div class="nexmoe-post-copyright">
-    <strong>本文作者：</strong>苏苇<br>
-    <strong>本文链接：</strong><a href="https://github.com/Su-Lemon/blog.git/2021/02/17/VPG%E4%B8%8EAC%E7%9A%84%E6%80%9D%E6%83%B3%E5%92%8C%E6%8E%A8%E5%AF%BC/" title="https:&#x2F;&#x2F;github.com&#x2F;Su-Lemon&#x2F;blog.git&#x2F;2021&#x2F;02&#x2F;17&#x2F;VPG%E4%B8%8EAC%E7%9A%84%E6%80%9D%E6%83%B3%E5%92%8C%E6%8E%A8%E5%AF%BC&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;github.com&#x2F;Su-Lemon&#x2F;blog.git&#x2F;2021&#x2F;02&#x2F;17&#x2F;VPG%E4%B8%8EAC%E7%9A%84%E6%80%9D%E6%83%B3%E5%92%8C%E6%8E%A8%E5%AF%BC&#x2F;</a><br>
+    <strong>本文作者：</strong>SuSu<br>
+    <strong>本文链接：</strong><a href="https://su-lemon.github.io/blog/2021/02/17/%E3%80%90RL%E7%AE%97%E6%B3%95%E3%80%91VPG%E4%B8%8EAC%E7%9A%84%E6%80%9D%E6%83%B3%E5%92%8C%E6%8E%A8%E5%AF%BC/" title="https:&#x2F;&#x2F;su-lemon.github.io&#x2F;blog&#x2F;2021&#x2F;02&#x2F;17&#x2F;%E3%80%90RL%E7%AE%97%E6%B3%95%E3%80%91VPG%E4%B8%8EAC%E7%9A%84%E6%80%9D%E6%83%B3%E5%92%8C%E6%8E%A8%E5%AF%BC&#x2F;" target="_blank" rel="noopener">https:&#x2F;&#x2F;su-lemon.github.io&#x2F;blog&#x2F;2021&#x2F;02&#x2F;17&#x2F;%E3%80%90RL%E7%AE%97%E6%B3%95%E3%80%91VPG%E4%B8%8EAC%E7%9A%84%E6%80%9D%E6%83%B3%E5%92%8C%E6%8E%A8%E5%AF%BC&#x2F;</a><br>
     
       <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
     
@@ -427,7 +432,7 @@ L(\phi) &amp;=&amp; \frac{1}{N}\sum_{i}^{N} {\left\| V_{\phi}(s_{i,t})-V(s_{i,t}
     <section class="nexmoe-comment">
     
         <link rel="stylesheet" href=//unpkg.com/gitalk/dist/gitalk.css>
-<script src="//raw.githack.com/Su-Lemon/sources/master/js/md5.min.js"></script>
+<script src="//raw.githack.com/Su-Lemon/sources/master/js/effects/md5.min.js"></script>
 <div id="gitalk"></div>
 <script src=//unpkg.com/gitalk/dist/gitalk.min.js></script>
 <!-- <script src="js/md5.min.js"></script> -->
@@ -531,7 +536,7 @@ L(\phi) &amp;=&amp; \frac{1}{N}\sum_{i}^{N} {\left\| V_{\phi}(s_{i,t})-V(s_{i,t}
 
 
 <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
- <script src="/blog/js/app.js?v=1613571577975"></script>
+ <script src="/blog/js/app.js?v=1613895141801"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
@@ -547,14 +552,6 @@ L(\phi) &amp;=&amp; \frac{1}{N}\sum_{i}^{N} {\left\| V_{\phi}(s_{i,t})-V(s_{i,t}
 
 
 
-</body>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7},"log":false});</script></body>
 
 </html>
-
-<!--鼠标点击烟花爆炸效果，需要引入jQuery-->
-
-  <canvas class="fireworks" style="position: fixed;left: 0;top: 0;z-index: 1; pointer-events: none;" ></canvas> 
-  <script type="text/javascript" src="/lib/jquery-3.1.1.min.js"></script>
-  <script type="text/javascript" src="//cdn.bootcss.com/animejs/2.2.0/anime.min.js"></script> 
-  <script type="text/javascript" src="/js/firework.js"></script>
-
