@@ -713,7 +713,7 @@ body {
   -ms-flex: 1;
   flex: 1;
   text-align: center;
-  color: #a3a8ae;
+  color: #fff;
 }
 #nexmoe-header .nexmoe-count div span {
   color: #363636;
@@ -761,7 +761,7 @@ body {
 }
 #nexmoe-header .nexmoe-list .nexmoe-list-item i {
   font-size: 22px;
-  color: #9ca2a8;
+  color: #fff;
 }
 #nexmoe-header .nexmoe-list .nexmoe-list-item .mdui-list-item-content {
   margin-left: 0px;
