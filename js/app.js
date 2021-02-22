@@ -23,11 +23,19 @@ const getRealPath = (pathname, desc = false) => {
 
 let links = document.querySelectorAll(".nexmoe-list-item");
 let rootRealPath = getRealPath(location.pathname, false);
+let activeBtn = 0;
 for (let link of links) {
   let linkPath = link.getAttribute("href");
-  if (linkPath && (getRealPath(linkPath, false) === rootRealPath)) {
+  let linkRealPath = getRealPath(linkPath, false)  // 从后向前截断
+  if (linkPath && linkRealPath === rootRealPath) {
     link.className = "active nexmoe-list-item mdui-list-item mdui-ripple";
+    activeBtn = 1;
+    break;
   }
+}
+// 打开文章后，保持”返回首页“按钮底色激活
+if (activeBtn == 0){
+  links[0].className = "active nexmoe-list-item mdui-list-item mdui-ripple";
 }
 
 $("table")
