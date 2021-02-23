@@ -801,7 +801,7 @@ body {
   color: #fff;
 }
 #nexmoe-header .nexmoe-count div span {
-  color: #363636;
+  color: #000;
   display: block;
 }
 #nexmoe-header .nexmoe-search input {
@@ -1226,7 +1226,7 @@ font.douyin {
   text-align: left;
 }
 .nexmoe-post-right .nexmoe-toc a {
-  color: rgba(0,0,0,0.6);
+  color: rgba(0,0,0,0.8);
 }
 .nexmoe-post-right .nexmoe-toc ol {
   padding-left: 1em;
