@@ -18,7 +18,7 @@
   <meta name="description" content="策略梯度与Actor-Critic的思想和推导">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【RL算法】VPG与AC的思想和推导">
-<meta property="og:url" content="https://su-lemon.github.io/46d87670.html">
+<meta property="og:url" content="https://su-lemon.github.io/blog/46d87670.html">
 <meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
 <meta property="og:description" content="策略梯度与Actor-Critic的思想和推导">
 <meta property="og:locale" content="zh_CN">
@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1614044812885">
+  <link rel="stylesheet" href="/blog/css/style.css?v=1614045107208">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -65,14 +65,14 @@
         <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/" title="SuSu" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/avatar/IMG_0427.jpeg" alt="SuSu"></a>
+        <a href="/blog/" title="SuSu" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/avatar/IMG_0427.jpeg" alt="SuSu"></a>
        </div>
     </div>
   </div>
   <div id="nexmoe-header">
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
-        <a href="/" title="SuSu">
+        <a href="/blog/" title="SuSu">
             <img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/avatar/IMG_0427.jpeg" alt="SuSu" alt="SuSu">
         </a>
     </div>
@@ -83,28 +83,28 @@
     </div>
     <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/blog/" title="回到首页">
             <i class="mdui-list-item-icon nexmoefont icon-home"></i>
             <div class="mdui-list-item-content">
                 回到首页
             </div>
         </a>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/blog/about.html" title="关于博客">
             <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
             <div class="mdui-list-item-content">
                 关于博客
             </div>
         </a>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/blog/PY.html" title="我的朋友">
             <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
             <div class="mdui-list-item-content">
                 我的朋友
             </div>
         </a>
         
-        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives.html" title="文章归档">
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/blog/archives.html" title="文章归档">
             <i class="mdui-list-item-icon nexmoefont icon-container"></i>
             <div class="mdui-list-item-content">
                 文章归档
@@ -161,21 +161,21 @@
         
 
         <li class="category-list-item">
-          <a class="category-list-link" href="/categories/Hexo/">Hexo</a>
+          <a class="category-list-link" href="/blog/categories/Hexo/">Hexo</a>
           <span class="category-list-count">1</span>
         </li>
 
         
 
         <li class="category-list-item">
-          <a class="category-list-link" href="/categories/Mac/">Mac</a>
+          <a class="category-list-link" href="/blog/categories/Mac/">Mac</a>
           <span class="category-list-count">1</span>
         </li>
 
         
 
         <li class="category-list-item">
-          <a class="category-list-link" href="/categories/强化学习/">强化学习</a>
+          <a class="category-list-link" href="/blog/categories/强化学习/">强化学习</a>
           <span class="category-list-count">2</span>
         </li>
 
@@ -190,7 +190,7 @@
     
   <div class="nexmoe-widget-wrap">
     <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
-      <a href="/tags/AC/" style="font-size: 10px;">AC</a> <a href="/tags/Github-Pages%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">Github Pages部署</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/tags/PG/" style="font-size: 10px;">PG</a> <a href="/tags/RL/" style="font-size: 20px;">RL</a> <a href="/tags/RL%E8%90%BD%E5%9C%B0%E6%96%B9%E6%B3%95%E8%AE%BA/" style="font-size: 10px;">RL落地方法论</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/%E4%B8%AA%E6%80%A7%E5%8C%96%E7%BB%88%E7%AB%AF/" style="font-size: 10px;">个性化终端</a>
+      <a href="/blog/tags/AC/" style="font-size: 10px;">AC</a> <a href="/blog/tags/Github-Pages%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">Github Pages部署</a> <a href="/blog/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/blog/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/blog/tags/PG/" style="font-size: 10px;">PG</a> <a href="/blog/tags/RL/" style="font-size: 20px;">RL</a> <a href="/blog/tags/RL%E8%90%BD%E5%9C%B0%E6%96%B9%E6%B3%95%E8%AE%BA/" style="font-size: 10px;">RL落地方法论</a> <a href="/blog/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/blog/tags/%E4%B8%AA%E6%80%A7%E5%8C%96%E7%BB%88%E7%AB%AF/" style="font-size: 10px;">个性化终端</a>
     </div>
     
   </div>
@@ -433,7 +433,7 @@ L(\phi) &amp;=&amp; \frac{1}{N}\sum_{i}^{N} {\left\| V_{\phi}(s_{i,t})-V(s_{i,t}
     
   <div class="nexmoe-post-copyright">
     <strong>本文作者：</strong>SuSu<br>
-    <strong>本文链接：</strong><a href="https://su-lemon.github.io/46d87670.html" title="https:&#x2F;&#x2F;su-lemon.github.io&#x2F;46d87670.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;su-lemon.github.io&#x2F;46d87670.html</a><br>
+    <strong>本文链接：</strong><a href="https://su-lemon.github.io/blog/46d87670.html" title="https:&#x2F;&#x2F;su-lemon.github.io&#x2F;blog&#x2F;46d87670.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;su-lemon.github.io&#x2F;blog&#x2F;46d87670.html</a><br>
     
       <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
     
@@ -444,10 +444,10 @@ L(\phi) &amp;=&amp; \frac{1}{N}\sum_{i}^{N} {\left\| V_{\phi}(s_{i,t})-V(s_{i,t}
   
   <div class="nexmoe-post-meta nexmoe-rainbow">
     
-        <a class="nexmoefont icon-appstore-fill -link" href="/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a>
+        <a class="nexmoefont icon-appstore-fill -link" href="/blog/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/">强化学习</a>
     
     
-        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/AC/" rel="tag">AC</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/PG/" rel="tag">PG</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/RL/" rel="tag">RL</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/algorithm/" rel="tag">algorithm</a>
+        <a class="nexmoefont icon-tag-fill -none-link" href="/blog/tags/AC/" rel="tag">AC</a> <a class="nexmoefont icon-tag-fill -none-link" href="/blog/tags/PG/" rel="tag">PG</a> <a class="nexmoefont icon-tag-fill -none-link" href="/blog/tags/RL/" rel="tag">RL</a> <a class="nexmoefont icon-tag-fill -none-link" href="/blog/tags/algorithm/" rel="tag">algorithm</a>
     
 </div>
 
@@ -559,7 +559,7 @@ L(\phi) &amp;=&amp; \frac{1}{N}\sum_{i}^{N} {\left\| V_{\phi}(s_{i,t})-V(s_{i,t}
 
 
 <script src="https://cdn.jsdelivr.net/gh/xtaodada/xtaodada.github.io@0.0.2/copy.js"></script>
- <script src="/js/app.js?v=1614044812886"></script>
+ <script src="/blog/js/app.js?v=1614045107208"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
@@ -575,6 +575,6 @@ L(\phi) &amp;=&amp; \frac{1}{N}\sum_{i}^{N} {\left\| V_{\phi}(s_{i,t})-V(s_{i,t}
 
 
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7},"log":false});</script></body>
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.7},"log":false});</script></body>
 
 </html>

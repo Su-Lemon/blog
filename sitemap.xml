@@ -2,49 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://su-lemon.github.io/835dea57.html</loc>
+    <loc>https://su-lemon.github.io/blog/835dea57.html</loc>
     
     <lastmod>2021-02-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/63561af6.html</loc>
+    <loc>https://su-lemon.github.io/blog/63561af6.html</loc>
     
     <lastmod>2021-02-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/46d87670.html</loc>
+    <loc>https://su-lemon.github.io/blog/46d87670.html</loc>
     
     <lastmod>2021-02-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/5bd42e8c.html</loc>
+    <loc>https://su-lemon.github.io/blog/5bd42e8c.html</loc>
     
     <lastmod>2021-02-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/about.html</loc>
+    <loc>https://su-lemon.github.io/blog/about.html</loc>
     
     <lastmod>2021-02-22</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/PY.html</loc>
+    <loc>https://su-lemon.github.io/blog/PY.html</loc>
     
     <lastmod>2021-02-21</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/archives.html</loc>
+    <loc>https://su-lemon.github.io/blog/archives.html</loc>
     
     <lastmod>2021-02-17</lastmod>
     
@@ -52,7 +52,7 @@
   
 
   <url>
-    <loc>https://su-lemon.github.io/</loc>
+    <loc>https://su-lemon.github.io/blog</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -60,63 +60,63 @@
 
   
   <url>
-    <loc>https://su-lemon.github.io/tags/Hexo/</loc>
+    <loc>https://su-lemon.github.io/blog/tags/Hexo/</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/tags/Github-Pages%E9%83%A8%E7%BD%B2/</loc>
+    <loc>https://su-lemon.github.io/blog/tags/Github-Pages%E9%83%A8%E7%BD%B2/</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/tags/RL/</loc>
+    <loc>https://su-lemon.github.io/blog/tags/RL/</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/tags/algorithm/</loc>
+    <loc>https://su-lemon.github.io/blog/tags/algorithm/</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/tags/PG/</loc>
+    <loc>https://su-lemon.github.io/blog/tags/PG/</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/tags/AC/</loc>
+    <loc>https://su-lemon.github.io/blog/tags/AC/</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/tags/RL%E8%90%BD%E5%9C%B0%E6%96%B9%E6%B3%95%E8%AE%BA/</loc>
+    <loc>https://su-lemon.github.io/blog/tags/RL%E8%90%BD%E5%9C%B0%E6%96%B9%E6%B3%95%E8%AE%BA/</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/tags/Mac/</loc>
+    <loc>https://su-lemon.github.io/blog/tags/Mac/</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/tags/%E4%B8%AA%E6%80%A7%E5%8C%96%E7%BB%88%E7%AB%AF/</loc>
+    <loc>https://su-lemon.github.io/blog/tags/%E4%B8%AA%E6%80%A7%E5%8C%96%E7%BB%88%E7%AB%AF/</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -125,21 +125,21 @@
 
   
   <url>
-    <loc>https://su-lemon.github.io/categories/Hexo/</loc>
+    <loc>https://su-lemon.github.io/blog/categories/Hexo/</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</loc>
+    <loc>https://su-lemon.github.io/blog/categories/%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0/</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/categories/Mac/</loc>
+    <loc>https://su-lemon.github.io/blog/categories/Mac/</loc>
     <lastmod>2021-02-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
