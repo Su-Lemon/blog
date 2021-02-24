@@ -14,7 +14,7 @@
     <meta name="google-site-verification" content="tE-0DY7ep02Gyi-x9Q4QpuOhofuAEWa3QWrzBXLLHnk" />
 
 
-  <link rel="shortcut icon" href="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210224003301.png" type="image/png" />
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/favicon0.png" type="image/png" />
   <meta property="og:type" content="website">
 <meta property="og:title" content="爱吃猫的小鱼干的 Blog">
 <meta property="og:url" content="https://su-lemon.github.io/blog/categories/Hexo/index.html">
@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   
-  <link rel="stylesheet" href="/blog/css/style.css?v=1614099298547">
+  <link rel="stylesheet" href="/blog/css/style.css?v=1614155825407">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -33,23 +33,23 @@
 <!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
 
 <body class="mdui-drawer-body-left">
-  <script type="text/javascript" src="//raw.githack.com/Su-Lemon/sources/master/js/effects/jquery-3.1.1.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/effects/jquery-3.1.1.min.js"></script>
   <!--鼠标点击烟花爆炸效果，需要引入jQuery-->
   
-    <script type="text/javascript" src="//raw.githack.com/Su-Lemon/sources/master/js/effects/firework1.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/effects/firework1.js"></script>
   
 
   <a target="_blank" rel="noopener" href="https://github.com/Su-Lemon"><img style="position: absolute; top: 0; right: 0;" loading="lazy" width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_darkblue_121621.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
 
   
   <div id="nexmoe-background">
-    <div class="nexmoe-bg" style="background-image: url(https://raw.githack.com/Su-Lemon/sources/master/imgs/blog/20210217171126.png)"></div>
+    <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/background0.png)"></div>
     <div class="mdui-appbar mdui-shadow-0">
       <div class="mdui-toolbar">
         <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/blog/" title="SuSu" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/avatar/IMG_0427.jpeg" alt="SuSu"></a>
+        <a href="/blog/" title="SuSu" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/avatar0.png" alt="SuSu"></a>
        </div>
     </div>
   </div>
@@ -57,7 +57,7 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/blog/" title="SuSu">
-            <img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/avatar/IMG_0427.jpeg" alt="SuSu" alt="SuSu">
+            <img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/avatar0.png" alt="SuSu" alt="SuSu">
         </a>
     </div>
     <div class="nexmoe-count">
@@ -97,10 +97,11 @@
         
     </div>
     <!-- 站内搜索，需要引入jQuery -->
-    <script type="text/javascript" src="//raw.githack.com/Su-Lemon/sources/master/js/functions/search.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/functions/search.js"></script>
     <aside id="nexmoe-sidebar">
   
-    <!-- <div class="nexmoe-widget-wrap">
+    <!-- 谷歌/百度搜索 -->
+<!-- <div class="nexmoe-widget-wrap">
     <div class="nexmoe-widget nexmoe-search">
         <form id="search_form" action_e="https://cn.bing.com/search?q=site:su-lemon.github.io/blog" onsubmit="return search();">
             <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
@@ -108,13 +109,17 @@
     </div>
 </div> -->
 
+<!-- 站内搜索 -->
 <div class="nexmoe-widget-wrap">
-    <div class="exmoe-widget nexmoe-search" >
-        <form id="search_form">
-            <label><input type="text" id="local-search-input" name="q" results="0" placeholder="站内搜索" class="form-control"/></label>
+    <div class="nexmoe-widget nexmoe-search" >
+        <form id="search-form">
+            <label><input type="text" id="local-search-input" name="q" results="0" placeholder="站内搜索" class="input form-control" autocomplete="off" autocorrect="off"/></label>
+            <!-- 清空/重置搜索框 -->
+            <i class="fa fa-times" onclick="resetSearch()"></i>
         </form>
     </div>
-    <div id="local-search-result"></div>
+    <div id="local-search-result"></div> <!-- 搜索结果区 -->
+    <!-- <p class='no-result'></p> 无匹配时显示，注意在 CSS 中设置默认隐藏 -->
 </div>
 
   
@@ -180,6 +185,52 @@
   </div>
 
   
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/">2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/">2020</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/post/5bd42e8c.html">【Hexo博客】从搭建到部署，快速构建私人博客</a>
+          </li>
+        
+          <li>
+            <a href="/blog/post/63561af6.html">【RL落地方法论】状态空间</a>
+          </li>
+        
+          <li>
+            <a href="/blog/post/46d87670.html">【RL算法】VPG与AC的思想和推导</a>
+          </li>
+        
+          <li>
+            <a href="/blog/post/835dea57.html">【Mac】超详细的个性化终端颜色及vim颜色配置</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
 </aside>
     <div class="nexmoe-copyright">
         &copy; 2021 SuSu
@@ -238,7 +289,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
- <script src="/blog/js/app.js?v=1614099298548"></script>
+ <script src="/blog/js/app.js?v=1614155825408"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
