@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>【Python编程】GUI编程tkinter基础，并实现一个目录树遍历工具 - 爱吃猫的小鱼干的 Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+    <!-- Site Verification -->
+    <meta name="google-site-verification" content="tE-0DY7ep02Gyi-x9Q4QpuOhofuAEWa3QWrzBXLLHnk" />
+
+
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/favicon0.png" type="image/png" />
+  <meta name="description" content="本文将对图形用户界面（Graphical User Interface，GUI）编程进行简要的介绍。我们将主要使用的GUI 工具包是Python 默认的GUI 库Tk，通过Python 的接口tkinter（“Tk interface”的缩写）可以访问Tk。 Tk 并不是最新和最好的，也没有包含最强大的GUI 构建模块集，但是它足够易用，你可以使用它构建能够运行在大多数平台下的GUI。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Python编程】GUI编程tkinter基础，并实现一个目录树遍历工具">
+<meta property="og:url" content="https://su-lemon.github.io/blog/post/56c2233b.html">
+<meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
+<meta property="og:description" content="本文将对图形用户界面（Graphical User Interface，GUI）编程进行简要的介绍。我们将主要使用的GUI 工具包是Python 默认的GUI 库Tk，通过Python 的接口tkinter（“Tk interface”的缩写）可以访问Tk。 Tk 并不是最新和最好的，也没有包含最强大的GUI 构建模块集，但是它足够易用，你可以使用它构建能够运行在大多数平台下的GUI。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200224105058824.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JyZWFraW5nRGF3bjA=,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2021-02-24T16:03:20.000Z">
+<meta property="article:modified_time" content="2021-02-24T16:21:42.460Z">
+<meta property="article:author" content="SuSu">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="编程实践">
+<meta property="article:tag" content="GUI">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200224105058824.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JyZWFraW5nRGF3bjA=,size_16,color_FFFFFF,t_70#pic_center">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css?v=1614183717460">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/effects/jquery-3.1.1.min.js"></script>
+  <!--鼠标点击烟花爆炸效果，需要引入jQuery-->
+  
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/effects/firework1.js"></script>
+  
+
+  <a target="_blank" rel="noopener" href="https://github.com/Su-Lemon" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/background0.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/blog/" title="SuSu" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/avatar0.png" alt="SuSu"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/blog/" title="SuSu">
+            <img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/avatar0.png" alt="SuSu" alt="SuSu">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>6</div>
+        <div><span>标签</span>13</div>
+        <div><span>分类</span>4</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/blog/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/blog/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/blog/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/blog/archives.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <!-- 站内搜索，需要引入jQuery -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/functions/search.js"></script>
+    <aside id="nexmoe-sidebar">
+  
+    <!-- 谷歌/百度搜索 -->
+<!-- <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:su-lemon.github.io/blog" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div> -->
+
+<!-- 站内搜索 -->
+<div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search" >
+        <form id="search-form">
+            <label><input type="text" id="local-search-input" name="q" results="0" placeholder="站内搜索" class="input form-control" autocomplete="off" autocorrect="off"/></label>
+            <!-- 清空/重置搜索框 -->
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+        </form>
+    </div>
+    <div id="local-search-result"></div> <!-- 搜索结果区 -->
+    <!-- <p class='no-result'></p> 无匹配时显示，注意在 CSS 中设置默认隐藏 -->
+</div>
+
+  
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://jq.qq.com/?_wv=1027&k=MivHmcOi" target="_blank" mdui-tooltip="{content: 'QQ群'}" style="color: rgb(249, 174, 8);background-color: rgba(249, 174, 8, .1);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="https://space.bilibili.com/76586290" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/Su-Lemon/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/blog/categories/Hexo/">Hexo</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/blog/categories/Mac/">Mac</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/blog/categories/Python/">Python</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/blog/categories/强化学习/">强化学习</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/blog/tags/AC/" style="font-size: 10px;">AC</a> <a href="/blog/tags/GUI/" style="font-size: 10px;">GUI</a> <a href="/blog/tags/Github-Pages%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">Github Pages部署</a> <a href="/blog/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/blog/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/blog/tags/MacOS/" style="font-size: 10px;">MacOS</a> <a href="/blog/tags/PG/" style="font-size: 10px;">PG</a> <a href="/blog/tags/Python/" style="font-size: 10px;">Python</a> <a href="/blog/tags/RL/" style="font-size: 20px;">RL</a> <a href="/blog/tags/RL%E8%90%BD%E5%9C%B0%E6%96%B9%E6%B3%95%E8%AE%BA/" style="font-size: 10px;">RL落地方法论</a> <a href="/blog/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/blog/tags/%E4%B8%AA%E6%80%A7%E5%8C%96%E7%BB%88%E7%AB%AF/" style="font-size: 10px;">个性化终端</a> <a href="/blog/tags/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">编程实践</a>
+    </div>
+    
+  </div>
+
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/">2021</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/">2020</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/post/56c2233b.html">【Python编程】GUI编程tkinter基础，并实现一个目录树遍历工具</a>
+          </li>
+        
+          <li>
+            <a href="/blog/post/5bd42e8c.html">【Hexo博客】从搭建到部署，快速构建私人博客</a>
+          </li>
+        
+          <li>
+            <a href="/blog/post/63561af6.html">【RL落地方法论】状态空间</a>
+          </li>
+        
+          <li>
+            <a href="/blog/post/46d87670.html">【RL算法】VPG与AC的思想和推导</a>
+          </li>
+        
+          <li>
+            <a href="/blog/post/835dea57.html">【Mac】超详细的个性化终端颜色及vim颜色配置</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 SuSu
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/Su-Lemon" target="_blank">Su-Lemon</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 50%;"> 
+          <img data-src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/postcover0.png" data-sizes="auto" alt="【Python编程】GUI编程tkinter基础，并实现一个目录树遍历工具" class="lazyload">
+          <h1>【Python编程】GUI编程tkinter基础，并实现一个目录树遍历工具</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年02月25日</a>
+    <a><i class="nexmoefont icon-areachart"></i>2.7k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 12 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                
+                
+                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%95%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">引言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tcltk%E5%92%8Ctkinter"><span class="toc-number">1.1.</span> <span class="toc-text">Tcl、Tk和tkinter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8tkinterpython3"><span class="toc-number">1.2.</span> <span class="toc-text">安装和使用tkinter（python3）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tkinter%E5%92%8Cpython%E7%BC%96%E7%A8%8B"><span class="toc-number">2.</span> <span class="toc-text">tkinter和python编程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tkinter%E6%A8%A1%E5%9D%97%E6%B7%BB%E5%8A%A0tk%E5%88%B0%E5%BA%94%E7%94%A8%E4%B8%AD"><span class="toc-number">2.1.</span> <span class="toc-text">tkinter模块：添加Tk到应用中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gui-%E7%BC%96%E7%A8%8B%E4%BB%8B%E7%BB%8D"><span class="toc-number">2.2.</span> <span class="toc-text">GUI 编程介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AA%97%E5%8F%A3%E5%92%8C%E6%8E%A7%E4%BB%B6"><span class="toc-number">2.2.1.</span> <span class="toc-text">窗口和控件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8B%E4%BB%B6%E9%A9%B1%E5%8A%A8%E5%A4%84%E7%90%86"><span class="toc-number">2.2.2.</span> <span class="toc-text">事件驱动处理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%83%E5%B1%80%E7%AE%A1%E7%90%86%E5%99%A8"><span class="toc-number">2.2.3.</span> <span class="toc-text">布局管理器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tk%E6%8E%A7%E4%BB%B6"><span class="toc-number">2.3.</span> <span class="toc-text">Tk控件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tkinter%E5%9F%BA%E6%9C%AC%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.</span> <span class="toc-text">tkinter基本示例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#label%E6%8E%A7%E4%BB%B6"><span class="toc-number">3.1.</span> <span class="toc-text">Label控件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#button%E6%8E%A7%E4%BB%B6"><span class="toc-number">3.2.</span> <span class="toc-text">Button控件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E5%BD%95%E6%A0%91%E9%81%8D%E5%8E%86%E5%B7%A5%E5%85%B7"><span class="toc-number">4.</span> <span class="toc-text">目录树遍历工具</span></a></li></ol>
+                
+            </div>
+        </div>
+      </div>
+    
+  </div>
+
+  <article>
+    <p>本文将对图形用户界面（Graphical User Interface，GUI）编程进行简要的介绍。我们将主要使用的GUI 工具包是Python 默认的GUI 库Tk，通过Python 的接口tkinter（“Tk interface”的缩写）可以访问Tk。 Tk 并不是最新和最好的，也没有包含最强大的GUI 构建模块集，但是它足够易用，你可以使用它构建能够运行在大多数平台下的GUI。</p>
+<a id="more"></a>
+<h2 id="引言">引言</h2>
+<h3 id="tcltk和tkinter">Tcl、Tk和tkinter</h3>
+<p>tkinter 是Python 的默认GUI 库。它基于Tk工具包，该工具包最初是为工具命令语言（Tool Command Language，Tcl）设计的。Tk 普及后，被移植到很多其他的脚本语言中，包括Perl（Perl/Tk）、Ruby（Ruby/Tk）和Python（tkinter）。结合Tk 的GUI 开发的可移植性与灵活性，以及与系统语言功能集成的脚本语言的简洁性，可以让你快速开发和实现很多与商业软件品质相当的GUI 应用。</p>
+<h3 id="安装和使用tkinterpython3">安装和使用tkinter（python3）</h3>
+<p>tkinter 在系统中不是默认必须安装的，可以通过在Python 解释器中尝试导入Tkinter 模块（Python 1 和2 版本，在Python 3 中重命名为tkinter）来检查Tkinter 是否可用。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="im">import</span> tkinter</span></code></pre></div>
+<h2 id="tkinter和python编程">tkinter和python编程</h2>
+<h3 id="tkinter模块添加tk到应用中">tkinter模块：添加Tk到应用中</h3>
+<p>为了让tkinter 成为应用的一部分，你需要做些什么呢？让GUI 程序启动和运行起来需要以下5 个主要步骤：</p>
+<ol type="1">
+<li>导入Tkinter 模块（或from Tkinter import *）。</li>
+<li>创建一个顶层窗口对象，用于容纳整个GUI 应用。</li>
+<li>在顶层窗口对象之上（或者“其中”）构建所有的GUI 组件（及其功能）。</li>
+<li>通过底层的应用代码将这些GUI 组件连接起来。</li>
+<li>进入主事件循环。</li>
+</ol>
+<h3 id="gui-编程介绍">GUI 编程介绍</h3>
+<p>创建一个GUI 应用就像艺术家作画一样。必须在搭建起画架之后，才能把画布拼装在上面。在tkinter 中，这个“画架”基础称为<strong>顶层窗口对象</strong>。</p>
+<h4 id="窗口和控件">窗口和控件</h4>
+<p>在GUI 编程中，顶层的根窗口对象包含组成GUI 应用的所有小窗口对象。它们可能是文字标签、按钮、列表框等。这些独立的GUI 组件称为控件。所以当我们说创建一个顶层窗口时，只是表示需要一个地方来摆放所有的控件。在Python 中，一般会写成如下语句。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a>top <span class="op">=</span> tkinter.Tk() <span class="co"># or just Tk() with &quot;from Tkinter import *&quot;</span></span></code></pre></div>
+<p>tkinter.Tk()返回的对象通常称为根窗口，这也是一些应用使用root 而不是top 来指代它的原因。顶层窗口是那些在应用中独立显示的部分。GUI 程序中可以有多个顶层窗口，但是其中只能有一个是根窗口。可以选择先把控件全部设计好，再添加功能；也可以边设计控件边添加功能（这意味着上述步骤中的第3 步和第4 步会混合起来做）。</p>
+<p>控件可以独立存在，也可以作为容器存在。如果一个控件包含其他控件，就可以将其认为是那些控件的父控件。相应地，如果一个控件被其他控件包含，则将其认为是那个控件的子控件，而父控件就是下一个直接包围它的容器控件。</p>
+<p>通常，控件有一些相关的行为，比如按下按钮、将文本写入文本框等。这些用户行为称为事件，而GUI 对这类事件的响应称为回调。</p>
+<h4 id="事件驱动处理">事件驱动处理</h4>
+<p>事件可以包括按钮按下（及释放）、鼠标移动、敲击回车键等。一个GUI 应用从开始到结束就是通过整套事件体系来驱动的。这种方式称为事件驱动处理。最简单的鼠标移动就是一个带有回调的事件的例子。假设鼠标指针正停在GUI 应用顶层窗口的某处。如果你将鼠标移动到应用的另一部分，鼠标移动的行为会被复制到屏幕的光标上，于是看起来像是根据你的手移动的。系统必须处理的这些鼠标移动事件可以绘制窗口上的指针移动。当释放鼠标时，不再有事件需要处理，此时屏幕会重新恢复闲置的状态。</p>
+<p>事件驱动的GUI 处理本质上非常适合于客户端/服务端架构。当启动一个GUI 应用时，需要一些启动步骤来准备核心部分的执行，就像网络服务器启动时必须先分配套接字并将其绑定到本地地址上一样。GUI 应用必须先创建所有的GUI 组件，然后将它们绘制在屏幕上。这是布局管理器（geometry manager）的职责所在。当布局管理器排列好所有控件（包括顶层窗口）后，GUI 应用进入其类似服务器的无限循环。这个循环会一直运行，直到出现GUI 事件，进行处理，然后再等待更多的事件去处理。</p>
+<h4 id="布局管理器">布局管理器</h4>
+<p>Tk 有3 种布局管理器来帮助控件集进行定位。最原始的一种称为Placer。它的做法 非常直接：你提供控件的大小和摆放位置，然后管理器就会将其摆放好。问题是你必须对所有控件进行这些操作，这样就会加重编程开发者的负担，因为这些操作本应该是自动完成的。</p>
+<p>第二种布局管理器会是你主要使用的，它叫做Packer，这个命名十分恰当，因为它会把控件填充到正确的位置（即指定的父控件中），然后对于之后的每个控件，会去寻找剩余的空间进行填充。这个处理很像是旅行时往行李箱中填充行李的过程。</p>
+<p>第三种布局管理器是Grid。你可以基于网格坐标，使用Grid 来指定GUI 控件的放置。Grid 会在它们的网格位置上渲染GUI 应用中的每个对象。本章将使用Packer。</p>
+<p>一旦Packer 确定好所有控件的大小和对齐方式，它就会在屏幕上将其放置妥当。</p>
+<p>当所有控件摆放好后，可以让应用进入前述的无限主循环中。在Tkinter 中，代码如下所示。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>tkinter.mainloop()</span></code></pre></div>
+<p>一般这是程序运行的最后一段代码。当进入主循环后，GUI 就从这里开始接管程序的执行。所有其他行为都会通过回调来处理，甚至包括退出应用。当选择File 菜单并单击Exit 菜单选项，或者直接关闭窗口时，就会调用一个回调函数来结束这个GUI 应用。</p>
+<h3 id="tk控件">Tk控件</h3>
+<table>
+<thead>
+<tr class="header">
+<th>控 件</th>
+<th>描 述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Button</td>
+<td>与Label 类似，但提供额外的功能，如鼠标悬浮、按下、释放以及键盘活动/事件</td>
+</tr>
+<tr class="even">
+<td>Canvas</td>
+<td>提供绘制形状的功能（线段、椭圆、多边形、矩形），可以包含图像或位图</td>
+</tr>
+<tr class="odd">
+<td>Checkbutton</td>
+<td>一组选框，可以勾选其中的任意个（与HTML 的checkbox 输入类似）</td>
+</tr>
+<tr class="even">
+<td>Entry</td>
+<td>单行文本框，用于收集键盘输入（与HTML 的文本输入类似）</td>
+</tr>
+<tr class="odd">
+<td>Frame</td>
+<td>包含其他控件的纯容器</td>
+</tr>
+<tr class="even">
+<td>Label</td>
+<td>用于包含文本或图像</td>
+</tr>
+<tr class="odd">
+<td>LabelFrame</td>
+<td>标签和框架的组合，拥有额外的标签属性</td>
+</tr>
+<tr class="even">
+<td>Listbox</td>
+<td>给用户显示一个选项列表来进行选择</td>
+</tr>
+<tr class="odd">
+<td>Menu</td>
+<td>按下Menubutton 后弹出的选项列表，用户可以从中选择</td>
+</tr>
+<tr class="even">
+<td>Menubutton</td>
+<td>用于包含菜单（下拉、级联等）</td>
+</tr>
+<tr class="odd">
+<td>Message</td>
+<td>消息。与Label 类似，不过可以显示成多行</td>
+</tr>
+<tr class="even">
+<td>PanedWindow</td>
+<td>一个可以控制其他控件在其中摆放的容器控件</td>
+</tr>
+<tr class="odd">
+<td>Radiobutton</td>
+<td>一组按钮，其中只有一个可以“按下”（与HTML 的radio 输入类似）</td>
+</tr>
+<tr class="even">
+<td>Scale</td>
+<td>线性“滑块”控件，根据已设定的起始值和终止值，给出当前设定的精确值</td>
+</tr>
+<tr class="odd">
+<td>Scrollbar</td>
+<td>为Text、Canvas、Listbox、Enter 等支持的控件提供滚动功能</td>
+</tr>
+<tr class="even">
+<td>Spinbox Entry</td>
+<td>和Button 的组合，允许对值进行调整</td>
+</tr>
+<tr class="odd">
+<td>Text</td>
+<td>多行文本框，用于收集（或显示）用户输入的文本（与HTML 的textarea 类似）</td>
+</tr>
+<tr class="even">
+<td>Toplevel</td>
+<td>与Frame 类似，不过它提供了一个单独的窗口容器</td>
+</tr>
+</tbody>
+</table>
+<h2 id="tkinter基本示例">tkinter基本示例</h2>
+<h3 id="label控件">Label控件</h3>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="im">import</span> tkinter <span class="im">as</span> tk</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>top <span class="op">=</span> tk.Tk()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>label <span class="op">=</span> tk.Label(top, text<span class="op">=</span><span class="st">&#39;hello&#39;</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>label.pack()</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>tk.mainloop()</span></code></pre></div>
+<h3 id="button控件">Button控件</h3>
+<div class="sourceCode" id="cb5"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="im">import</span> tkinter <span class="im">as</span> tk</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a>top <span class="op">=</span> tk.Tk()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a>quit <span class="op">=</span> tk.Button(top, text<span class="op">=</span><span class="st">&#39;start&#39;</span>, command<span class="op">=</span>top.quit)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a>quit.pack()</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a>tk.mainloop()</span></code></pre></div>
+<h2 id="目录树遍历工具">目录树遍历工具</h2>
+<p>它会从当前目录开始，提供一个文件列表。双击列表中任意其他目录，就会使得工具切换到新目录中，用新目录中的文件列表代替旧文件列表。 <img data-fancybox="gallery" data-sizes="auto" data-src="https://img-blog.csdnimg.cn/20200224105058824.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JyZWFraW5nRGF3bjA=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" class="lazyload"></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="im">import</span> os</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="im">from</span> time <span class="im">import</span> sleep</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="im">import</span> tkinter <span class="im">as</span> tk</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="im">from</span> functools <span class="im">import</span> partial <span class="im">as</span> pto</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a><span class="kw">class</span> DirList(<span class="bu">object</span>):</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a>    <span class="co">&quot;&quot;&quot;读取并显示指定目录下的文件列表&quot;&quot;&quot;</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, initdir<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a>        <span class="va">self</span>.top <span class="op">=</span> tk.Tk()</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a>        <span class="va">self</span>.label <span class="op">=</span> tk.Label(<span class="va">self</span>.top, text<span class="op">=</span><span class="st">&#39;DirList v1.1&#39;</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a>        <span class="va">self</span>.label.pack()</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a>        <span class="co"># 写入延迟</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a>        <span class="va">self</span>.cwd <span class="op">=</span> tk.StringVar(<span class="va">self</span>.top)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a>        <span class="va">self</span>.dirl <span class="op">=</span> tk.Label(<span class="va">self</span>.top, fg<span class="op">=</span><span class="st">&#39;blue&#39;</span>, font<span class="op">=</span>(<span class="st">&#39;Helvetica&#39;</span>, <span class="dv">12</span>, <span class="st">&#39;bold&#39;</span>))</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a>        <span class="va">self</span>.dirl.pack()</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a>        <span class="va">self</span>.dirfm <span class="op">=</span> tk.Frame(<span class="va">self</span>.top)</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a>        <span class="va">self</span>.dirsb <span class="op">=</span> tk.Scrollbar(<span class="va">self</span>.dirfm)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a>        <span class="va">self</span>.dirsb.pack(side<span class="op">=</span>tk.RIGHT, fill<span class="op">=</span>tk.Y)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true"></a>        <span class="va">self</span>.dirs <span class="op">=</span> tk.Listbox(<span class="va">self</span>.dirfm, height<span class="op">=</span><span class="dv">15</span>, width<span class="op">=</span><span class="dv">50</span>,</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true"></a>                               yscrollcommand<span class="op">=</span><span class="va">self</span>.dirsb.<span class="bu">set</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true"></a>        <span class="va">self</span>.dirs.bind(<span class="st">&#39;&lt;Double-1&gt;&#39;</span>, <span class="va">self</span>.setDirAndGo)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true"></a>        <span class="va">self</span>.dirsb.config(command<span class="op">=</span><span class="va">self</span>.dirs.yview)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true"></a>        <span class="va">self</span>.dirs.pack(side<span class="op">=</span>tk.LEFT, fill<span class="op">=</span>tk.BOTH)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true"></a>        <span class="va">self</span>.dirfm.pack()</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true"></a></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true"></a>        <span class="va">self</span>.dirn <span class="op">=</span> tk.Entry(<span class="va">self</span>.top, width<span class="op">=</span><span class="dv">50</span>, textvariable<span class="op">=</span><span class="va">self</span>.cwd)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true"></a>        <span class="va">self</span>.dirn.bind(<span class="st">&#39;&lt;Return&gt;&#39;</span>, <span class="va">self</span>.doLS)</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true"></a>        <span class="va">self</span>.dirn.pack()</span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true"></a></span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true"></a>        <span class="va">self</span>.bfm <span class="op">=</span> tk.Frame(<span class="va">self</span>.top)</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true"></a>        <span class="va">self</span>.clr <span class="op">=</span> tk.Button(<span class="va">self</span>.bfm, text<span class="op">=</span><span class="st">&#39;Clear&#39;</span>, command<span class="op">=</span><span class="va">self</span>.clrDir,</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true"></a>                             activeforeground<span class="op">=</span><span class="st">&#39;white&#39;</span>, activebackground<span class="op">=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true"></a>        <span class="va">self</span>.ls <span class="op">=</span> tk.Button(<span class="va">self</span>.bfm, text<span class="op">=</span><span class="st">&#39;List Directory&#39;</span>, command<span class="op">=</span><span class="va">self</span>.doLS,</span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true"></a>                            activeforeground<span class="op">=</span><span class="st">&#39;white&#39;</span>, activebackground<span class="op">=</span><span class="st">&#39;green&#39;</span>)</span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true"></a>        <span class="va">self</span>.quit <span class="op">=</span> tk.Button(<span class="va">self</span>.bfm, text<span class="op">=</span><span class="st">&#39;Quit&#39;</span>, command<span class="op">=</span><span class="va">self</span>.top.quit,</span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true"></a>                              activeforeground<span class="op">=</span><span class="st">&#39;white&#39;</span>, activebackground<span class="op">=</span><span class="st">&#39;red&#39;</span>)</span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true"></a>        <span class="va">self</span>.clr.pack(side<span class="op">=</span>tk.LEFT)</span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true"></a>        <span class="va">self</span>.ls.pack(side<span class="op">=</span>tk.LEFT)</span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true"></a>        <span class="va">self</span>.quit.pack(side<span class="op">=</span>tk.LEFT)</span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true"></a>        <span class="va">self</span>.bfm.pack()</span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true"></a></span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true"></a>        <span class="cf">if</span> initdir:</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true"></a>            <span class="va">self</span>.cwd.<span class="bu">set</span>(os.curdir)</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true"></a>            <span class="va">self</span>.doLS()</span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true"></a></span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true"></a>    <span class="kw">def</span> clrDir(<span class="va">self</span>, ev<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true"></a>        <span class="co">&quot;&quot;&quot;清空文件列表&quot;&quot;&quot;</span></span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true"></a>        <span class="va">self</span>.cwd.<span class="bu">set</span>(<span class="st">&#39;&#39;</span>)</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true"></a></span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true"></a>    <span class="kw">def</span> setDirAndGo(<span class="va">self</span>, ev<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true"></a>        <span class="co">&quot;&quot;&quot;设置文件夹路径并读取&quot;&quot;&quot;</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true"></a>        <span class="va">self</span>.last <span class="op">=</span> <span class="va">self</span>.cwd.get()</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true"></a>        <span class="va">self</span>.dirs.config(selectbackgroung<span class="op">=</span><span class="st">&#39;red&#39;</span>)</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true"></a>        check <span class="op">=</span> <span class="va">self</span>.dirs.get(<span class="va">self</span>.dirs.curselection())</span>
+<span id="cb6-59"><a href="#cb6-59" aria-hidden="true"></a>        <span class="cf">if</span> <span class="kw">not</span> check:</span>
+<span id="cb6-60"><a href="#cb6-60" aria-hidden="true"></a>            check <span class="op">=</span> os.curdir</span>
+<span id="cb6-61"><a href="#cb6-61" aria-hidden="true"></a>        <span class="va">self</span>.cwd.<span class="bu">set</span>(check)</span>
+<span id="cb6-62"><a href="#cb6-62" aria-hidden="true"></a>        <span class="va">self</span>.doLS()</span>
+<span id="cb6-63"><a href="#cb6-63" aria-hidden="true"></a></span>
+<span id="cb6-64"><a href="#cb6-64" aria-hidden="true"></a>    <span class="kw">def</span> doLS(<span class="va">self</span>, ev<span class="op">=</span><span class="va">None</span>):</span>
+<span id="cb6-65"><a href="#cb6-65" aria-hidden="true"></a>        error <span class="op">=</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb6-66"><a href="#cb6-66" aria-hidden="true"></a>        tdir <span class="op">=</span> <span class="va">self</span>.cwd.get()</span>
+<span id="cb6-67"><a href="#cb6-67" aria-hidden="true"></a>        <span class="cf">if</span> <span class="kw">not</span> tdir:</span>
+<span id="cb6-68"><a href="#cb6-68" aria-hidden="true"></a>            tdir <span class="op">=</span> os.curdir</span>
+<span id="cb6-69"><a href="#cb6-69" aria-hidden="true"></a>        <span class="cf">if</span> <span class="kw">not</span> os.path.exists(tdir):</span>
+<span id="cb6-70"><a href="#cb6-70" aria-hidden="true"></a>            error <span class="op">=</span> tdir <span class="op">+</span> <span class="st">&#39;:no such file&#39;</span></span>
+<span id="cb6-71"><a href="#cb6-71" aria-hidden="true"></a>        <span class="cf">elif</span> <span class="kw">not</span> os.path.isdir(tdir):</span>
+<span id="cb6-72"><a href="#cb6-72" aria-hidden="true"></a>            error <span class="op">=</span> tdir <span class="op">+</span> <span class="st">&#39;:not a directory&#39;</span></span>
+<span id="cb6-73"><a href="#cb6-73" aria-hidden="true"></a></span>
+<span id="cb6-74"><a href="#cb6-74" aria-hidden="true"></a>        <span class="cf">if</span> error:</span>
+<span id="cb6-75"><a href="#cb6-75" aria-hidden="true"></a>            <span class="va">self</span>.cwd.<span class="bu">set</span>(error)</span>
+<span id="cb6-76"><a href="#cb6-76" aria-hidden="true"></a>            <span class="va">self</span>.top.update()</span>
+<span id="cb6-77"><a href="#cb6-77" aria-hidden="true"></a>            sleep(<span class="dv">2</span>)</span>
+<span id="cb6-78"><a href="#cb6-78" aria-hidden="true"></a>            <span class="cf">if</span> <span class="kw">not</span> (<span class="bu">hasattr</span>(<span class="va">self</span>, <span class="st">&#39;last&#39;</span>) <span class="kw">and</span> <span class="va">self</span>.last):</span>
+<span id="cb6-79"><a href="#cb6-79" aria-hidden="true"></a>                <span class="va">self</span>.last <span class="op">=</span> os.curdir</span>
+<span id="cb6-80"><a href="#cb6-80" aria-hidden="true"></a>            <span class="va">self</span>.cwd.<span class="bu">set</span>(<span class="va">self</span>.last)</span>
+<span id="cb6-81"><a href="#cb6-81" aria-hidden="true"></a>            <span class="va">self</span>.dirs.config(selectbackground<span class="op">=</span><span class="st">&#39;LightSkyBlue&#39;</span>)</span>
+<span id="cb6-82"><a href="#cb6-82" aria-hidden="true"></a>            <span class="va">self</span>.top.update()</span>
+<span id="cb6-83"><a href="#cb6-83" aria-hidden="true"></a>            <span class="cf">return</span></span>
+<span id="cb6-84"><a href="#cb6-84" aria-hidden="true"></a></span>
+<span id="cb6-85"><a href="#cb6-85" aria-hidden="true"></a>        <span class="va">self</span>.cwd.<span class="bu">set</span>(<span class="st">&#39;Fetching directory contents...&#39;</span>)</span>
+<span id="cb6-86"><a href="#cb6-86" aria-hidden="true"></a>        <span class="va">self</span>.top.update()</span>
+<span id="cb6-87"><a href="#cb6-87" aria-hidden="true"></a>        dirlist <span class="op">=</span> os.listdir(tdir)</span>
+<span id="cb6-88"><a href="#cb6-88" aria-hidden="true"></a>        dirlist.sort()</span>
+<span id="cb6-89"><a href="#cb6-89" aria-hidden="true"></a>        os.chdir(tdir)</span>
+<span id="cb6-90"><a href="#cb6-90" aria-hidden="true"></a></span>
+<span id="cb6-91"><a href="#cb6-91" aria-hidden="true"></a>        <span class="va">self</span>.dirl.config(text<span class="op">=</span>os.getcwd())</span>
+<span id="cb6-92"><a href="#cb6-92" aria-hidden="true"></a>        <span class="va">self</span>.dirs.delete(<span class="dv">0</span>, tk.END)</span>
+<span id="cb6-93"><a href="#cb6-93" aria-hidden="true"></a>        <span class="va">self</span>.dirs.insert(tk.END, os.curdir)</span>
+<span id="cb6-94"><a href="#cb6-94" aria-hidden="true"></a>        <span class="va">self</span>.dirs.insert(tk.END, os.pardir)</span>
+<span id="cb6-95"><a href="#cb6-95" aria-hidden="true"></a>        <span class="cf">for</span> eachFile <span class="kw">in</span> dirlist:</span>
+<span id="cb6-96"><a href="#cb6-96" aria-hidden="true"></a>            <span class="va">self</span>.dirs.insert(tk.END, eachFile)</span>
+<span id="cb6-97"><a href="#cb6-97" aria-hidden="true"></a>        <span class="va">self</span>.cwd.<span class="bu">set</span>(os.curdir)</span>
+<span id="cb6-98"><a href="#cb6-98" aria-hidden="true"></a>        <span class="va">self</span>.dirs.config(selectbackground<span class="op">=</span><span class="st">&#39;LightSkyBlue&#39;</span>)</span>
+<span id="cb6-99"><a href="#cb6-99" aria-hidden="true"></a></span>
+<span id="cb6-100"><a href="#cb6-100" aria-hidden="true"></a></span>
+<span id="cb6-101"><a href="#cb6-101" aria-hidden="true"></a></span>
+<span id="cb6-102"><a href="#cb6-102" aria-hidden="true"></a><span class="kw">def</span> main():</span>
+<span id="cb6-103"><a href="#cb6-103" aria-hidden="true"></a>    DirList(os.curdir)</span>
+<span id="cb6-104"><a href="#cb6-104" aria-hidden="true"></a>    tk.mainloop()</span>
+<span id="cb6-105"><a href="#cb6-105" aria-hidden="true"></a></span>
+<span id="cb6-106"><a href="#cb6-106" aria-hidden="true"></a></span>
+<span id="cb6-107"><a href="#cb6-107" aria-hidden="true"></a><span class="cf">if</span> <span class="va">__name__</span> <span class="op">==</span> <span class="st">&#39;__main__&#39;</span>:</span>
+<span id="cb6-108"><a href="#cb6-108" aria-hidden="true"></a>    main()</span></code></pre></div>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>SuSu<br>
+    <strong>本文链接：</strong><a href="https://su-lemon.github.io/blog/post/56c2233b.html" title="https:&#x2F;&#x2F;su-lemon.github.io&#x2F;blog&#x2F;post&#x2F;56c2233b.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;su-lemon.github.io&#x2F;blog&#x2F;post&#x2F;56c2233b.html</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/blog/categories/Python/">Python</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/blog/tags/GUI/" rel="tag">GUI</a> <a class="nexmoefont icon-tag-fill -none-link" href="/blog/tags/Python/" rel="tag">Python</a> <a class="nexmoefont icon-tag-fill -none-link" href="/blog/tags/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/" rel="tag">编程实践</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    
+        <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.css">
+<script src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/effects/md5.min.js"></script>
+<div id="gitalk"></div>
+<script src="//cdn.jsdelivr.net/npm/gitalk@1.5.0/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    // var gitalk = new Gitalk({
+    //   clientID: '',
+    //   clientSecret: '',
+    //   repo: 'gittalk-comments.github.io',
+    //   owner: 'Su-Lemon',
+    //   admin: 'Su-Lemon',
+    //   id: 'location.pathname',
+    //   labels: 'Gitalk'.split(',').filter(l => l),
+    // //   perPage: '15',
+    //   pagerDirection: 'last',
+    //   createIssueManually: 'true',
+    //   distractionFreeMode: 'false'
+    // })
+    var gitalk = new Gitalk({
+      clientID: '2543206578680a1bdf99',
+      clientSecret: '24e25a0277329218d91186c354b4a9d3ec9eaf29',
+      repo: 'gittalk-comments',
+      owner: 'Su-Lemon',
+      admin: 'Su-Lemon',
+      id: md5(location.pathname),
+      labels: ['Gitalk'],
+      perPage: 15,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      distractionFreeMode: false
+    })
+    gitalk.render('gitalk')
+</script>
+    
+</section>
+
+  </div>
+</div>
+
+
+  
+  <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <!-- 给MathJax元素添加has-jax class -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        Tex: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+        "HTML-CSS": {linebreaks: {automatic: true}},
+        SVG: {linebreaks: {automatic: true}}
+    });
+  </script>
+  <!-- 通过连接CDN加载MathJax的js代码 -->
+  <script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+
+
+
+        <div class="nexmoe-post-right">
+          
+            <div class="nexmoe-fixed">
+              <div class="nexmoe-tool">
+                <a href="#" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+              </div>
+            </div>
+          
+        </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ <script src="/blog/js/app.js?v=1614183717462"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+  
+
+
+
+
+
+    <!-- baidu Analytics -->
+<script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?https://hm.baidu.com/hm.js?42f6946da788f3603a9329323a4fd82e';
+    var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+
+</html>
