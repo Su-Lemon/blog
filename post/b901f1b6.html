@@ -4,7 +4,7 @@
 
 <head>
   
-  <title>关于 - 爱吃猫的小鱼干的 Blog</title>
+  <title>【RL落地方法论1】需求分析 - 爱吃猫的小鱼干的 Blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -15,21 +15,26 @@
 
 
   <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/favicon0.png" type="image/png" />
-  <meta name="description" content="博客相关 创立于：2021年02月17日 本博客主要用于记录博主的成长记录。  话题：心情、强化学习、计算机视觉、姿态估计、计算机科学与技术 、游戏开发 程序：Hexo 主机：Github Pages  我 项目 梦">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="https://su-lemon.github.io/blog/about.html">
+  <meta name="description" content="任何机器学习方法都不是包治百病的灵丹妙药，它们也有各自的“舒适圈”，有时候还相当挑剔。强化学习，无论前面带不带“深度”二字，也同样有其鲜明的优势和局限性，务必要具体问题具体分析。不是所有需求都适合用DRL做，适合用DRL做的需求也未必能超越传统方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【RL落地方法论1】需求分析">
+<meta property="og:url" content="https://su-lemon.github.io/blog/post/b901f1b6.html">
 <meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
-<meta property="og:description" content="博客相关 创立于：2021年02月17日 本博客主要用于记录博主的成长记录。  话题：心情、强化学习、计算机视觉、姿态估计、计算机科学与技术 、游戏开发 程序：Hexo 主机：Github Pages  我 项目 梦">
+<meta property="og:description" content="任何机器学习方法都不是包治百病的灵丹妙药，它们也有各自的“舒适圈”，有时候还相当挑剔。强化学习，无论前面带不带“深度”二字，也同样有其鲜明的优势和局限性，务必要具体问题具体分析。不是所有需求都适合用DRL做，适合用DRL做的需求也未必能超越传统方法。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-02-15T09:17:25.000Z">
-<meta property="article:modified_time" content="2021-02-24T08:12:55.605Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225214923.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225215143.png">
+<meta property="article:published_time" content="2020-08-25T13:44:44.000Z">
+<meta property="article:modified_time" content="2021-02-25T13:55:55.353Z">
 <meta property="article:author" content="SuSu">
+<meta property="article:tag" content="RL">
+<meta property="article:tag" content="方法论">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225214923.png">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   
-  <link rel="stylesheet" href="/blog/css/style.css?v=1614261874387">
+  <link rel="stylesheet" href="/blog/css/style.css?v=1614261874405">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -260,15 +265,15 @@
         <div class="nexmoe-post">
   
       <div class="nexmoe-post-cover" style="padding-bottom: 50%;"> 
-          <img data-src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/about1.png" data-sizes="auto" alt="关于" class="lazyload">
-          <h1>关于</h1>
+          <img data-src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/cover/cover7.png" data-sizes="auto" alt="【RL落地方法论1】需求分析" class="lazyload">
+          <h1>【RL落地方法论1】需求分析</h1>
       </div>
   
   
   <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2021年02月15日</a>
-    <a><i class="nexmoefont icon-areachart"></i>67 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年08月25日</a>
+    <a><i class="nexmoefont icon-areachart"></i>2.8k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 11 分钟</a>
 </div>
 
   <div class="nexmoe-post-right">
@@ -278,7 +283,7 @@
             <div class="nexmoe-toc">
                 
                 
-                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%9A%E5%AE%A2%E7%9B%B8%E5%85%B3"><span class="toc-number">1.</span> <span class="toc-text">博客相关</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%88%91"><span class="toc-number">2.</span> <span class="toc-text">我</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE"><span class="toc-number">3.</span> <span class="toc-text">项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A2%A6"><span class="toc-number">4.</span> <span class="toc-text">梦</span></a></li></ol>
+                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#drl%E7%9A%84%E8%BF%87%E6%8B%9F%E5%90%88%E5%A4%A9%E6%80%A7"><span class="toc-number">1.</span> <span class="toc-text">DRL的过拟合天性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%82%E7%94%A8drl%E7%9A%84%E4%BA%94%E5%A4%A7%E7%89%B9%E5%BE%81"><span class="toc-number">2.</span> <span class="toc-text">适用DRL的五大特征</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%BA%E6%99%AF%E5%9B%BA%E5%AE%9A"><span class="toc-number">2.1.</span> <span class="toc-text">场景固定</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%E6%98%8E%E7%A1%AE"><span class="toc-number">2.2.</span> <span class="toc-text">目标明确</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BB%89%E4%BB%B7"><span class="toc-number">2.3.</span> <span class="toc-text">数据廉价</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E7%A8%8B%E5%A4%8D%E6%9D%82"><span class="toc-number">2.4.</span> <span class="toc-text">过程复杂</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E7%94%B1%E5%BA%A6%E9%AB%98"><span class="toc-number">2.5.</span> <span class="toc-text">自由度高</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
                 
             </div>
         </div>
@@ -287,17 +292,36 @@
   </div>
 
   <article>
-    <h2 id="博客相关">博客相关</h2>
-<p>创立于：2021年02月17日</p>
-<p>本博客主要用于记录博主的成长记录。</p>
-<ul>
-<li>话题：心情、强化学习、计算机视觉、姿态估计、计算机科学与技术 、游戏开发</li>
-<li>程序：Hexo</li>
-<li>主机：Github Pages</li>
-</ul>
-<h2 id="我">我</h2>
-<h2 id="项目">项目</h2>
-<h2 id="梦">梦</h2>
+    <p>任何机器学习方法都不是包治百病的灵丹妙药，它们也有各自的“舒适圈”，有时候还相当挑剔。强化学习，无论前面带不带“深度”二字，也同样有其鲜明的优势和局限性，务必要具体问题具体分析。不是所有需求都适合用DRL做，适合用DRL做的需求也未必能超越传统方法。</p>
+<a id="more"></a>
+<p>在我看来，算法工程师的核心能力可以总结成以下三点：</p>
+<ol type="1">
+<li>对各种算法本质及其能力边界的深刻理解</li>
+<li>对问题内在逻辑的深入分析</li>
+<li>对两者结合点的敏锐直觉</li>
+</ol>
+<p>一个优秀算法工程师的高光时刻从拒绝不合理的需求开始，其他的都是后话。不经慎重评估而盲目上马的项目不仅是对资源的巨大浪费，更让每个参与者陷在深坑中痛不欲生。知道一种算法不能干什么与知道它能干什么同样重要，对DRL而言，即使在最理想的外部条件下，也有其绕不过去的七寸——泛化无能。这是DRL的基本原理决定的，任何在这一点上提出过高要求的应用都不适合用DRL解决。</p>
+<h2 id="drl的过拟合天性">DRL的过拟合天性</h2>
+<p>DRL解决的是从过去经验中学习有用知识，并用于后续决策的问题。有别于纯视觉应用，DRL不仅仅满足于识别和定位，而是要根据这些信息采取针对性的行动以获取最大长期收益。从本质上说，DRL就是一种依赖过拟合的算法，说白了就是通过暴力搜索把其中的成功经验记下来，并用以指导后续决策。别嫌露骨，别怕尴尬，岂不闻学术界某大牛的辛辣讽刺仍余音绕梁——强化学习是唯一被允许在训练集上测试的算法。由于缺乏直接监督信号用于训练，DRL还特别“费数据”，以至于需要专门的模拟器源源不断地产生数据供其挥霍。好不容易训出来的policy在训练环境用得好好的，换个环境立马歇菜。</p>
+<p>等等，不是说好了DNN有泛化能力吗？ResNet明明能在一张没见过的图片中识别出阿猫阿狗的呀。这是因为任务层次不同，泛化的定义和要求自然也不同。视觉识别层面的泛化可以理解为深度网络学习到了通用的高层语义信息，以至于只要看到类似的像素结构就能与高层语义对应起来。这个层次的泛化能力DRL也可以有，可惜远远不够。我们前边说过，DRL是要根据识别到的信息做出决策以最大化长期收益的，具体地，DRL拟合了一个特定环境、特定reward函数和当前policy下，从特定输入状态（state）到最终收益（episode结束时）的Value函数，再反过来根据这个函数去优化policy，使其输出的action最大化该Value函数。这是一个交替更新的过程，Value函数和policy你中有我我中有你，直到抵达某种纳什均衡。假设探索足够充分，我们可以认为最终的Value函数只由环境特性和reward函数决定。</p>
+<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225214923.png" /></p>
+<p>OK，整理一下DRL的逻辑链条：Value函数过拟合环境特性和reward函数，Policy又过拟合Value函数。一朝天子一朝臣，一种环境一种policy，环境换了，policy废了。在训练环境中agent看到家猫，发现喂食可以得到高回报，于是用policy记了下来，在测试环境中，家猫换成野猫，虽然识别到的还是猫，agent继续喂食，然后就被猫抓了……相信看到这里，你就能明白为什么DRL被允许在训练集上测试了，也明白为什么DRL泛化无能了，因为这个level的泛化要求太TM高了！即使是人类在缺乏相关经验的情况下也会踩坑，但人类能做到吃一堑长一智，甚至从此主动避开所有可能有危险的动物，这得益于人类的两大核心优势：高效学习（只需极少样本）和终身学习（举一反三、融会贯通），而现阶段DRL却只会低效地死记硬背，训练也是一锤子买卖，这是真正的智能对人工智能的降维碾压。</p>
+<h2 id="适用drl的五大特征">适用DRL的五大特征</h2>
+<p>于是我们产生了两个问题：1.是不是DRL就真的一点泛化能力都没有？2.这样的DRL到底有没有实用价值？关于第一个问题我建议读者去了解一些Meta-RL（元强化学习）方向的工作，利用DNN的表征能力，agent能够利用有限的环境探索不断在线学习该环境的特性和reward函数，并据此调整policy的输出使其表现出对新环境的适应能力。但目前也仅能解决一类相似任务间的泛化问题，而代价是训练难度进一步提升，数据效率进一步下降，愿景很美好，实用有点早。第二个问题才是目前我们最关注的，换个问法，到底什么样的任务适合用DRL解决呢?答曰：<strong>场景固定，目标明确，数据廉价，过程复杂，自由度高</strong>。依次解读如下：</p>
+<h3 id="场景固定">场景固定</h3>
+<p>场景固定是指决定系统动态演化趋势的主要因素保持恒定。听起来可能有点抽象，举个例子，agent在环境中遇到一条峡谷，跳过去的过程中有30%的概率被落石击中，这里的30%就属于这类因素，无论在训练和工作的时候都不能改变。用符号表示：状态s=面对峡谷，动作a=跳过去，下一个状态s'的概率分布p(s'|s,a)是明确的，即安全着陆70%，壮烈牺牲30%，这个概率在RL中叫状态转移概率，很多paper又称其为环境的model，对于任何s,a和s'，p(s'|s,a)都明确而恒定的决策过程又称为Markov Decision Process或MDP，RL的理论基础即建立在MDP之上，Value函数和policy就是通过隐式（model-free）或显式(model-based)地对环境model建模得到的。model变了，policy就废了，上边举的家猫和野猫的例子就是这个道理。另一个不满足场景固定的典型例子是DOTA更换地图，基于训练地图得到的局势演化预期在新地图里不成立了。又比如临时要求围棋棋盘里某几个位置不准落子，AlphaGo大概率是要跪的。你要是还不理解，就记住：训练环境尽可能做到与工作（测试）环境相同。</p>
+<h3 id="目标明确">目标明确</h3>
+<p>目标明确很好理解，任务要达到何种效果清晰具体，最好可以量化。工业界的需求一般都是优化某个指标（效率、能耗、胜算等），基本满足这个条件。目标越明确，设计优质的reward函数就越容易，从而训练得到更接近预期的policy。</p>
+<h3 id="数据廉价">数据廉价</h3>
+<p>数据廉价对RL至关重要，毕竟挥霍数据是RL与生俱来的属性，没办法。我们知道视频游戏领域很容易满足这个条件，所以我们最常听说DRL在XX游戏里碾压、吊打、秒杀人类玩家。然而这个要求对牵涉到硬件的应用却相当不友好，Google可以用7台KUKA iiwa机器人（单价80万rmb体会一下）日夜不停跑上几个月训练抓取技能，其他公司怕是连8千的设备撞坏了都心疼，那就只剩下模拟器这一条路了。所谓模拟器，就是将真实场景中的各种物理模型（即上文提到的model）在软件环境中仿真，从而生成无限量的高仿数据。这里有一个reality gap的问题，即这些仿真model与真实世界的误差，如果太大则训练出的policy无法直接应用。一个逼真的模拟器也是要花功夫（钱）的，像MuJoCo这样的优秀仿真平台收费也是合情合理的。</p>
+<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225215143.png" /></p>
+<p>有心的朋友已经发现，对模拟器精度的要求其实与上文的“场景固定”逻辑上是一致的，之所以分开介绍，是因为廉价还包含了另一层意思——采样速率。AlphaGo和OpenAI Five在宣传的时候动不动就说他们的agent学习了相当于人类XX万年的经验，显然没有高速模拟器是不可能做到的。总之，如果非要做硬件相关的应用，先尽最大努力做出逼真的高速模拟器吧！</p>
+<h3 id="过程复杂">过程复杂</h3>
+<p>如果说前三个特征决定了“能不能”，那么接下来两个特征决定了“值不值”。我们用DRL的目的无非是看中了其处理复杂场景的能力，人类看不透，DRL来凑。如果任务太简单，依靠规则和启发式就能解决问题了，相当于拿到了“解析解”，还用神经网络拟合个什么劲儿。这里介绍一个技巧，请熟悉业务流程的甲方人员结合Domain Knowledge，分析一下阻碍性能提升的主要瓶颈在哪里，如果对方回答是过程太复杂难以掌握规律或其他类似的答复，那就说明DRL值得一试。</p>
+<h3 id="自由度高">自由度高</h3>
+<p>自由度高指的是选择空间大、限制少，我们人类之所以有“选择困难症”，正是因为选择太多了，这时候DRL的优势就体现出来了，通过大量探索总能拟合出不错的value函数指导policy做选择。自由度越高，DRL优势越明显，自由度越低，越有利于规则。因此在决定用DRL之前，一定要认真评估任务场景是否有足够的优化空间，千万不要拎着锤子找钉子，否则即使训出了policy，性能也不如传统算法，白忙活一场。</p>
+<h2 id="总结">总结</h2>
+<p>关于需求分析就先写到这里，基本涵盖了需求评估的主要方面，如果经仔细了解后发现不满足以上五个特征，就要小心了。这时候要么直接向对方提出不可行，要么在大需求里找出符合以上要求的子任务用强化学习解决，一样可以改善总体性能，切不可盲目追求大而全。好了，万里长征走完了第一步也是最重要的一步，接下来我们就假设已经拿到了一个适合又值得用DRL解决的任务，讨论如何选择合适的算法。</p>
 
   </article>
 
@@ -305,7 +329,7 @@
     
   <div class="nexmoe-post-copyright">
     <strong>本文作者：</strong>SuSu<br>
-    <strong>本文链接：</strong><a href="https://su-lemon.github.io/blog/about.html" title="https:&#x2F;&#x2F;su-lemon.github.io&#x2F;blog&#x2F;about.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;su-lemon.github.io&#x2F;blog&#x2F;about.html</a><br>
+    <strong>本文链接：</strong><a href="https://su-lemon.github.io/blog/post/b901f1b6.html" title="https:&#x2F;&#x2F;su-lemon.github.io&#x2F;blog&#x2F;post&#x2F;b901f1b6.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;su-lemon.github.io&#x2F;blog&#x2F;post&#x2F;b901f1b6.html</a><br>
     
       <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
     
@@ -316,6 +340,10 @@
   
   <div class="nexmoe-post-meta nexmoe-rainbow">
     
+        <a class="nexmoefont icon-appstore-fill -link" href="/blog/categories/RL/">RL</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/blog/tags/RL/" rel="tag">RL</a> <a class="nexmoefont icon-tag-fill -none-link" href="/blog/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" rel="tag">方法论</a>
     
 </div>
 
@@ -362,6 +390,48 @@
 </div>
 
 
+  
+  <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <!-- 给MathJax元素添加has-jax class -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        Tex: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+        "HTML-CSS": {linebreaks: {automatic: true}},
+        SVG: {linebreaks: {automatic: true}}
+    });
+  </script>
+  <!-- 通过连接CDN加载MathJax的js代码 -->
+  <script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+
+
 
         <div class="nexmoe-post-right">
           
@@ -382,7 +452,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
- <script src="/blog/js/app.js?v=1614261874389"></script>
+ <script src="/blog/js/app.js?v=1614261874405"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>

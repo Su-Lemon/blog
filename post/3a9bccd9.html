@@ -26,8 +26,8 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225141747.png">
 <meta property="og:image" content="https://pic3.zhimg.com/v2-8e4654480ae1bd802293347ad8cd4902_b.jpg">
 <meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225142104.png">
-<meta property="article:published_time" content="2021-02-17T06:47:10.000Z">
-<meta property="article:modified_time" content="2021-02-25T07:32:20.152Z">
+<meta property="article:published_time" content="2020-08-27T06:47:10.000Z">
+<meta property="article:modified_time" content="2021-02-25T13:53:31.172Z">
 <meta property="article:author" content="SuSu">
 <meta property="article:tag" content="RL">
 <meta property="article:tag" content="方法论">
@@ -36,7 +36,7 @@
   <link rel="stylesheet" href="//cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   
-  <link rel="stylesheet" href="/blog/css/style.css?v=1614238423273">
+  <link rel="stylesheet" href="/blog/css/style.css?v=1614261874403">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -72,9 +72,9 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>7</div>
+        <div><span>文章</span>11</div>
         <div><span>标签</span>13</div>
-        <div><span>分类</span>5</div>
+        <div><span>分类</span>4</div>
     </div>
     <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
         
@@ -183,14 +183,7 @@
 
         <li class="category-list-item">
           <a class="category-list-link" href="/blog/categories/RL/">RL</a>
-          <span class="category-list-count">1</span>
-        </li>
-
-        
-
-        <li class="category-list-item">
-          <a class="category-list-link" href="/blog/categories/强化学习/">强化学习</a>
-          <span class="category-list-count">2</span>
+          <span class="category-list-count">7</span>
         </li>
 
         
@@ -214,7 +207,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章归档</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/">2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/">2020</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/">2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/">2020</a><span class="archive-list-count">6</span></li></ul>
     </div>
   </div>
 
@@ -236,7 +229,7 @@
       <ul>
         
           <li>
-            <a href="/blog/post/63561af6.html">【RL落地方法论4】状态空间</a>
+            <a href="/blog/post/6aa0d565.html">【RL落地方法论6】模型训练</a>
           </li>
         
           <li>
@@ -244,11 +237,11 @@
           </li>
         
           <li>
-            <a href="/blog/post/5bd42e8c.html">【Hexo博客】从搭建到部署，快速构建私人博客</a>
+            <a href="/blog/post/d73b0d23.html">【RL落地方法论5】回报函数</a>
           </li>
         
           <li>
-            <a href="/blog/post/3a9bccd9.html">【RL落地方法论2】算法分析</a>
+            <a href="/blog/post/5bd42e8c.html">【Hexo博客】从搭建到部署，快速构建私人博客</a>
           </li>
         
           <li>
@@ -280,7 +273,7 @@
   
   
   <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2021年02月17日</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年08月27日</a>
     <a><i class="nexmoefont icon-areachart"></i>3.6k 字</a>
     <a><i class="nexmoefont icon-time-circle-fill"></i>大概 15 分钟</a>
 </div>
@@ -314,14 +307,14 @@
 <p><strong>强化学习的训练过程其实就是从以探索为主到以利用为主的过渡过程</strong>，训练早期通过广泛试错找准一个方向，然后沿着该方向一路试探下去直到达到最优。请牢牢记住这“两点一线”，因为这是所有RL算法的主要内容，任何RL算法都能以此为切入点进行解构，有助于不断加深对算法的理解。接下来就谈谈对三个主流DRL框架的一些浅见。</p>
 <h2 id="dqn">DQN</h2>
 <p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225135416.png" /></p>
-<p>DQN是借助AlphaGo最早成名的深度强化学习算法，其核心思想是利用Bellman公式的bootstrap特性，不断迭代优化一个<span class="math inline">\(Q(s,a)\)</span>函数，并据此在各种状态下选择action。其中<span class="math inline">\(Q(s,a)\)</span>函数拟合的是一对状态-动作的长期收益评估，该算法没有显式的policy。DQN探索和利用的平衡靠的是一种称为<code>ε-greedy</code>的策略，针对最新的<span class="math inline">\(Q(s,a)\)</span>函数和当前的输入状态<span class="math inline">\(s\)</span>，agent做决策时以概率<span class="math inline">\(p\)</span>随机选择action，而以<span class="math inline">\(1-p\)</span>的概率选择使<span class="math inline">\(Q(s,a)\)</span>最大的action，随着<span class="math inline">\(p\)</span>从大到小变化，DQN也相应地从“强探索弱利用”过渡到“弱探索强利用”。DQN的原理使其天然地适合那些具备有限action集合的任务，说白了就是action可以穷举，比如走迷宫的agent只允许前后左右4个动作，下围棋的AlphaGo只允许<span class="math inline">\(19*19=361\)</span>个落子位置（实际还要排除已经落子的网格点）。这是一个重要的特征，如果是一个连续控制任务，action在某区间内有无数种可能，那就不适合用DQN了。当然，我们可以选择把区间离散化，这样就可以应用DQN了，也曾有paper报告这样做在某些任务中可以比连续控制取得更好的性能。</p>
-<p>DQN属于off-policy方法，所谓off-policy是指用于计算梯度的数据不一定是当前policy/Q下采集的，DQN使用一个叫replay buffer的FIFO结构，用于存储transition，即<span class="math inline">\((s,a,s&#39;,r,q)\)</span>，每次随机从buffer中拿出一个batch用于梯度计算和参数更新。Replay buffer是稳定DQN训练的重要措施，历史数据的重复使用也提高了其数据利用率，对于那些数据比较“贵”的任务，比如Google的抓取应用，这一点非常重要，事实上Google除了replay buffer，还专门搞了个数据库，把之前存储的另一个抓取应用采集的数据拿出来做预训练，精打细算到了极致，真是比你有钱，还比你节约~。</p>
+<p>DQN是借助AlphaGo最早成名的深度强化学习算法，其核心思想是利用Bellman公式的bootstrap特性，不断迭代优化一个 <span class="math inline">\(Q(s,a)\)</span> 函数，并据此在各种状态下选择action。其中 <span class="math inline">\(Q(s,a)\)</span> 函数拟合的是一对状态-动作的长期收益评估，该算法没有显式的policy。DQN探索和利用的平衡靠的是一种称为<code>ε-greedy</code>的策略，针对最新的 <span class="math inline">\(Q(s,a)\)</span> 函数和当前的输入状态 <span class="math inline">\(s\)</span> ，agent做决策时以概率 <span class="math inline">\(p\)</span> 随机选择action，而以 <span class="math inline">\(1-p\)</span> 的概率选择使 <span class="math inline">\(Q(s,a)\)</span> 最大的action，随着 <span class="math inline">\(p\)</span> 从大到小变化，DQN也相应地从“强探索弱利用”过渡到“弱探索强利用”。DQN的原理使其天然地适合那些具备有限action集合的任务，说白了就是action可以穷举，比如走迷宫的agent只允许前后左右4个动作，下围棋的AlphaGo只允许 <span class="math inline">\(19*19=361\)</span> 个落子位置（实际还要排除已经落子的网格点）。这是一个重要的特征，如果是一个连续控制任务，action在某区间内有无数种可能，那就不适合用DQN了。当然，我们可以选择把区间离散化，这样就可以应用DQN了，也曾有paper报告这样做在某些任务中可以比连续控制取得更好的性能。</p>
+<p>DQN属于off-policy方法，所谓off-policy是指用于计算梯度的数据不一定是当前policy/Q下采集的，DQN使用一个叫replay buffer的FIFO结构，用于存储transition，即 <span class="math inline">\((s,a,s&#39;,r,q)\)</span> ，每次随机从buffer中拿出一个batch用于梯度计算和参数更新。Replay buffer是稳定DQN训练的重要措施，历史数据的重复使用也提高了其数据利用率，对于那些数据比较“贵”的任务，比如Google的抓取应用，这一点非常重要，事实上Google除了replay buffer，还专门搞了个数据库，把之前存储的另一个抓取应用采集的数据拿出来做预训练，精打细算到了极致，真是比你有钱，还比你节约~。</p>
 <p>DQN的缺点挺多，有些是RL的通病，比如对超参数敏感，笔者在训练篇会详细介绍；另一些是DQN所独有的，比如overestimation造成的训练不稳定问题，近些年学术界有不少工作是围绕这一点做出改进。此外，DQN还有off-policy方法的通病，对历史数据的重复利用虽然可以提高数据效率，但有个前提条件是环境model不能发生变化，single agent任务较易满足这个条件，但multi agent场景就未必了，对任意agent而言，其他agent也是环境的一部分，而他们的学习进化会改变这个环境，从而使历史数据失效，这就是MARL领域著名的环境不稳定问题，此时off-policy方法的性能往往不如on-policy方法。 <span class="math display">\[
 loss = (r + \gamma \max\limits_{a&#39;}Q(s&#39;,a&#39;)-Q(s,a))^2
 \]</span> 如果超参数设置合适，DQN收敛速度相对是比较快的，因为更新公式里有个<span class="math inline">\(max\)</span>操作，意思是计算目标值时s’状态下使用使<span class="math inline">\(Q(s’,a)\)</span>最大的a从而达到加速收敛的目的（上边说到的overestimation问题也源自于此……）。因此，DQN可以作为在新项目场景中快速测试效果的首选框架，比如测试一个新状态信息或一个新reward项是否有用。</p>
 <h2 id="ddpg">DDPG</h2>
 <p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225141747.png" /></p>
-<p>针对DQN无法处理连续控制任务的空白，DDPG在DQN的基础上做了改进，引入了一个输出连续action的显式policy，与<span class="math inline">\(Q\)</span>函数组成Actor-Critic结构，更新policy网络的梯度完全来自于<span class="math inline">\(Q\)</span>网络，目标是最大化当前的<span class="math inline">\(Q\)</span>函数。<span class="math inline">\(Q\)</span>函数的更新与DQN类似，只是计算<span class="math inline">\(s’\)</span>状态下目标值时放弃了<span class="math inline">\(\max\)</span>操作，而采用当前policy网络的输出<span class="math inline">\(π(a|s&#39;)\)</span>。DDPG名字里的第一个<span class="math inline">\(D\)</span>是Deterministic的缩写，意思是确定性的，这是有意与正宗Actor-Critic方法（如A2C，A3C等）区分开，后者policy输出的是action的概率分布，而DDPG输出的就是确定性的action。正因为如此，DDPG采用了独特的探索方式，即在action输出直接加上一个noise，该noise的强弱决定了探索力度，本质上相当于以当前action为中心形成了一个概率分布，每次更新都使policy向该分布中更好的方向演化，直到action达到了最优，此时对应分布内其他方向都是更差的方向，policy输出也就稳定在最优action附近了，从而实现了探索和利用的平衡。</p>
+<p>针对DQN无法处理连续控制任务的空白，DDPG在DQN的基础上做了改进，引入了一个输出连续action的显式policy，与 <span class="math inline">\(Q\)</span> 函数组成Actor-Critic结构，更新policy网络的梯度完全来自于 <span class="math inline">\(Q\)</span> 网络，目标是最大化当前的 <span class="math inline">\(Q\)</span> 函数。 <span class="math inline">\(Q\)</span> 函数的更新与DQN类似，只是计算 <span class="math inline">\(s’\)</span> 状态下目标值时放弃了 <span class="math inline">\(\max\)</span> 操作，而采用当前policy网络的输出<span class="math inline">\(π(a|s&#39;)\)</span>。DDPG名字里的第一个<span class="math inline">\(D\)</span>是Deterministic的缩写，意思是确定性的，这是有意与正宗Actor-Critic方法（如A2C，A3C等）区分开，后者policy输出的是action的概率分布，而DDPG输出的就是确定性的action。正因为如此，DDPG采用了独特的探索方式，即在action输出直接加上一个noise，该noise的强弱决定了探索力度，本质上相当于以当前action为中心形成了一个概率分布，每次更新都使policy向该分布中更好的方向演化，直到action达到了最优，此时对应分布内其他方向都是更差的方向，policy输出也就稳定在最优action附近了，从而实现了探索和利用的平衡。</p>
 <figure>
 <img data-fancybox="gallery" data-sizes="auto" data-src="https://pic3.zhimg.com/v2-8e4654480ae1bd802293347ad8cd4902_b.jpg" alt="img" class="lazyload"><figcaption aria-hidden="true">img</figcaption>
 </figure>
@@ -465,7 +458,7 @@ loss = (r + \gamma \max\limits_{a&#39;}Q(s&#39;,a&#39;)-Q(s,a))^2
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
- <script src="/blog/js/app.js?v=1614238423274"></script>
+ <script src="/blog/js/app.js?v=1614261874404"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>

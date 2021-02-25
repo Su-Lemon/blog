@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>【RL落地方法论5】回报函数 - 爱吃猫的小鱼干的 Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+    <!-- Site Verification -->
+    <meta name="google-site-verification" content="tE-0DY7ep02Gyi-x9Q4QpuOhofuAEWa3QWrzBXLLHnk" />
+
+
+  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/favicon0.png" type="image/png" />
+  <meta name="description" content="回报函数（reward）设计在DRL应用中是极其重要的一环，通过将任务目标具体化和数值化，reward就如同一种特殊语言，实现了目标与算法之间的沟通，算法工作者在这里面承担了翻译的角色，翻译的好坏体现了其对任务逻辑的理解深度，决定了agent最终是否能学到期望的技能，并直接影响算法的收敛速度和最终性能。结合上一篇的内容，我们知道DRL算法中reward负责引导神经网络挖掘状态信息中的决策相关因素并">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【RL落地方法论5】回报函数">
+<meta property="og:url" content="https://su-lemon.github.io/blog/post/d73b0d23.html">
+<meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
+<meta property="og:description" content="回报函数（reward）设计在DRL应用中是极其重要的一环，通过将任务目标具体化和数值化，reward就如同一种特殊语言，实现了目标与算法之间的沟通，算法工作者在这里面承担了翻译的角色，翻译的好坏体现了其对任务逻辑的理解深度，决定了agent最终是否能学到期望的技能，并直接影响算法的收敛速度和最终性能。结合上一篇的内容，我们知道DRL算法中reward负责引导神经网络挖掘状态信息中的决策相关因素并">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225212358.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225212421.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225213337.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225213402.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225213423.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225213439.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225213456.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225213513.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225213530.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225213927.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225214007.png">
+<meta property="article:published_time" content="2021-02-24T08:58:20.000Z">
+<meta property="article:modified_time" content="2021-02-25T13:56:34.553Z">
+<meta property="article:author" content="SuSu">
+<meta property="article:tag" content="RL">
+<meta property="article:tag" content="方法论">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225212358.png">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
+  
+  <link rel="stylesheet" href="/blog/css/style.css?v=1614261874395">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/effects/jquery-3.1.1.min.js"></script>
+  <!--鼠标点击烟花爆炸效果，需要引入jQuery-->
+  
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/effects/firework1.js"></script>
+  
+
+  <a target="_blank" rel="noopener" href="https://github.com/Su-Lemon" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/background0.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/blog/" title="SuSu" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/avatar0.png" alt="SuSu"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/blog/" title="SuSu">
+            <img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/avatar0.png" alt="SuSu" alt="SuSu">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>11</div>
+        <div><span>标签</span>13</div>
+        <div><span>分类</span>4</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/blog/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/blog/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/blog/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/blog/archives.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+    </div>
+    <!-- 站内搜索，需要引入jQuery -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/functions/search.js"></script>
+    <aside id="nexmoe-sidebar">
+  
+    <!-- 谷歌/百度搜索 -->
+<!-- <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:su-lemon.github.io/blog" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div> -->
+
+<!-- 站内搜索 -->
+<div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search" >
+        <form id="search-form">
+            <label><input type="text" id="local-search-input" name="q" results="0" placeholder="站内搜索" class="input form-control" autocomplete="off" autocorrect="off"/></label>
+            <!-- 清空/重置搜索框 -->
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+        </form>
+    </div>
+    <div id="local-search-result"></div> <!-- 搜索结果区 -->
+    <!-- <p class='no-result'></p> 无匹配时显示，注意在 CSS 中设置默认隐藏 -->
+</div>
+
+  
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://jq.qq.com/?_wv=1027&k=MivHmcOi" target="_blank" mdui-tooltip="{content: 'QQ群'}" style="color: rgb(249, 174, 8);background-color: rgba(249, 174, 8, .1);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="https://space.bilibili.com/76586290" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/Su-Lemon/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/blog/categories/Hexo/">Hexo</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/blog/categories/Mac/">Mac</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/blog/categories/Python/">Python</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/blog/categories/RL/">RL</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/blog/tags/AC/" style="font-size: 10px;">AC</a> <a href="/blog/tags/GUI/" style="font-size: 10px;">GUI</a> <a href="/blog/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/blog/tags/Mac/" style="font-size: 10px;">Mac</a> <a href="/blog/tags/MacOS/" style="font-size: 10px;">MacOS</a> <a href="/blog/tags/PG/" style="font-size: 10px;">PG</a> <a href="/blog/tags/Python/" style="font-size: 10px;">Python</a> <a href="/blog/tags/RL/" style="font-size: 20px;">RL</a> <a href="/blog/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/blog/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/blog/tags/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">博客部署</a> <a href="/blog/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" style="font-size: 15px;">方法论</a> <a href="/blog/tags/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">编程实践</a>
+    </div>
+    
+  </div>
+
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2021/">2021</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/blog/archives/2020/">2020</a><span class="archive-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/blog/post/6aa0d565.html">【RL落地方法论6】模型训练</a>
+          </li>
+        
+          <li>
+            <a href="/blog/post/56c2233b.html">【Python编程】GUI编程tkinter基础，并实现一个目录树遍历工具</a>
+          </li>
+        
+          <li>
+            <a href="/blog/post/d73b0d23.html">【RL落地方法论5】回报函数</a>
+          </li>
+        
+          <li>
+            <a href="/blog/post/5bd42e8c.html">【Hexo博客】从搭建到部署，快速构建私人博客</a>
+          </li>
+        
+          <li>
+            <a href="/blog/post/46d87670.html">【RL算法】VPG与AC的思想和推导</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 SuSu
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/Su-Lemon" target="_blank">Su-Lemon</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 50%;"> 
+          <img data-src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/cover/cover7.png" data-sizes="auto" alt="【RL落地方法论5】回报函数" class="lazyload">
+          <h1>【RL落地方法论5】回报函数</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年02月24日</a>
+    <a><i class="nexmoefont icon-areachart"></i>4.5k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 18 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                
+                
+                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E8%A6%81%E6%89%8B%E5%B7%A5%E8%AE%BE%E8%AE%A1%E5%90%97"><span class="toc-number">1.</span> <span class="toc-text">非要手工设计吗？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E7%BA%BFreward%E5%92%8C%E7%A8%80%E7%96%8F%E5%9B%9E%E6%8A%A5%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">主线reward和稀疏回报问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%E5%88%86%E8%A7%A3%E5%92%8C%E8%BE%85%E5%8A%A9reward"><span class="toc-number">3.</span> <span class="toc-text">目标分解和辅助reward</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%AE%E6%A0%87%E5%88%86%E8%A7%A3%E5%AE%9E%E4%BE%8B"><span class="toc-number">3.1.</span> <span class="toc-text">目标分解实例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9D%9C%E7%BB%9D%E5%BC%82%E5%B8%B8%E8%A1%8C%E4%B8%BA"><span class="toc-number">3.2.</span> <span class="toc-text">杜绝异常行为</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%B2%81%E8%8E%BD"><span class="toc-number">3.2.1.</span> <span class="toc-text">鲁莽</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B4%AA%E5%A9%AA"><span class="toc-number">3.2.2.</span> <span class="toc-text">贪婪</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%83%86%E6%80%AF"><span class="toc-number">3.2.3.</span> <span class="toc-text">胆怯</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#reward-shaping"><span class="toc-number">3.3.</span> <span class="toc-text">Reward Shaping</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#optimal-reward-problem"><span class="toc-number">4.</span> <span class="toc-text">Optimal Reward Problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">5.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">6.</span> <span class="toc-text">参考</span></a></li></ol>
+                
+            </div>
+        </div>
+      </div>
+    
+  </div>
+
+  <article>
+    <p>回报函数（reward）设计在DRL应用中是极其重要的一环，通过将任务目标具体化和数值化，reward就如同一种特殊语言，实现了目标与算法之间的沟通，算法工作者在这里面承担了翻译的角色，翻译的好坏体现了其对任务逻辑的理解深度，决定了agent最终是否能学到期望的技能，并直接影响算法的收敛速度和最终性能。结合上一篇的内容，我们知道DRL算法中reward负责引导神经网络挖掘状态信息中的决策相关因素并经过提炼后用于action的计算生成。既然reward设计这么重要，想必分析起来又会是像状态空间那样的长篇大论吧。AI时代有了深度神经网络，也不缺数据和算力，难道这点人工就不能省下来吗？</p>
+<a id="more"></a>
+<h2 id="非要手工设计吗">非要手工设计吗？</h2>
+<p>鉴于强化学习算法对优秀reward函数设计的依赖，学术界提出了很多方法改善这一状况。比如逆向强化学习，利用expert demonstration（专家示范）学习到reward函数，再用这个reward函数训练RL策略。此外，还有一大堆模仿学习的方法，干脆抛开reward直接拟合专家策略。以上方法的前提是要有专家数据，不具备普适性，这里就不多说了。</p>
+<p>近年来学术界有个趋势，希望通过深度神经网络自动学习reward函数，从而代替手工设计。其中一篇比较有代表性的工作[1] ，在传统Actor-Critic框架的基础上，又增加了一个Reward网络，输入当前的状（state）和动作（action），输出这一步的reward值。Actor和Critic网络都依据最新的reward网络输出进行优化，而reward网络则依据人类（supervisor）的喜好用有监督的方式进行更新，具体方法是周期性地采集一些episode片段并成对地让人类观看，后者反馈更喜欢哪个片段，再由reward网络拟合这个二分类问题。这篇paper的思想我非常欣赏，现实生活中确实存在很多难以分解和量化的目标，比如让agent学会后空翻，reward就很难设计；有些目标虽然是本身是量化的，但过于笼统难以分解成具体的reward，此时这种方法就很有吸引力。</p>
+<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225212358.png" /></p>
+<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225212421.png" /></p>
+<p>可惜啊~~~，我们在现实中遇到的需求不大可能是第一种情况，比起“不能做→能做”，工业界更喜欢“能做→做得更好”，一般都会给出一个明确的指标用来最大化或最小化。假如这个指标能通过少量采样统计出来或体现出优劣关系，那就适合采用这种方法自动学习reward函数，而且不需要人的介入，全程自动化进行。但如果这个指标必须通过大量采样才能统计出来或者获得可靠的优劣关系，该方法的效率就非常低了，这种情况下就得老老实实地手工设计reward，走传统DRL路线了。</p>
+<h2 id="主线reward和稀疏回报问题">主线reward和稀疏回报问题</h2>
+<p>当我们拿到一个任务目标，往往能够简单分析就能找出与该目标紧密联系的主线事件，比如小车到达终点的任务中“到终点”就是这样的事件，拳皇里“KO”也是这样的事件，超级马里奥中“通关”还是这样的事件。此时我们就有了第一个reward项，我把它称之为主线reward，一般是正奖励，当主线事件发生时即反馈给agent。理论上，只要有主线reward就可以用强化学习算法进行训练了。在很多简单任务中，agent在探索过程中靠误打误撞就能以一定概率遇到主线事件，通过正反馈尝到甜头后通过更新policy逐渐提升得到奖励的概率直至收敛。可是当问题稍微复杂一些，通过随机方式探索到主线事件（正样本）的概率变得很低，而强化学习算法本身的数据效率不高，只靠这些少得可怜的正样本，算法难以收敛或收敛很慢。下面我引用伯克利RL大神Pieter Abbeel的课程CS294-40中的例子具体说明。</p>
+<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225213337.png" /></p>
+<p>在上图中agent从最左端起始位置S处出发（state=1），目标是到达最右端的G位置(state=5)，允许的动作包括向左一格和向右一格。在图中的reward系统下，agent只有到达G才能得到1分的奖励（主线reward），其他状态都没有任何反馈，那么仅靠随机探索agent是很难到达G的，<strong>因为中间缺乏有效信号来指导agent向正确的方向前进</strong>。在强化学习中，这一类问题被称作稀疏回报问题（Sparse Reward Problem），一直都是DRL领域研究的热点。显然，只定义了主线reward的任务几乎都是稀疏回报问题，对数据效率低下的RL算法而言，学习难度是很大的。</p>
+<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225213402.png" /></p>
+<p>当稀疏回报问题遇上高难度探索（Hard Exploration）问题，DRL算法收敛更是难上加难，几乎是不可能完成的任务。比如让机器人学会打开盒子，抓起木块放到盒子里，然后再把盒子盖上，如果只在成功完成这一系列动作的时候才给出奖励，那么用一般的DRL算法和探索策略根本不可能学会目标技能，因为正样本产生的概率跟闭着眼用针尖扎到平面上一点的概率差不多，可以认为是0。</p>
+<p>针对稀疏回报问题，学术界提出了很多方法，比如通过鼓励agent探索未见过的状态，提高正样本利用率，或者干脆用遗传算法或进化策略代替RL学习policy网络。这些方法不在本篇的讨论范围内，我们关心的是如何通过reward设计本身来规避稀疏回报问题，并尽可能提高训练效率和最终性能。</p>
+<p>此外，联系上一篇状态空间设计的内容，由于主线事件通常难以一蹴而就，大部分状态信息相对于主线reward也就都属于间接相关信息，这也从另一个角度解释了为什么在稀疏回报下算法训练难度高。</p>
+<h2 id="目标分解和辅助reward">目标分解和辅助reward</h2>
+<p>既然只有主线reward不行，我们接下来就要将原始任务目标进一步分解成子目标，并分别给予合理的奖励或惩罚，从而达到引导agent趋利避害提高主线事件发生概率的目的。学术界一般称该过程为credit assignment，credit意译过来就是功劳，说的是某个子目标在达成总目标的过程中起了多大作用，是正向作用还是负向作用。这些子目标对应的reward可以称之为辅助reward，它们使reward不再稀疏。通常情况下，<strong>为了保证主线奖励的核心地位和吸引力，各种辅助reward的绝对值都设得相对较小，以免喧宾夺主</strong>。</p>
+<h3 id="目标分解实例">目标分解实例</h3>
+<p>Agent在环境中探索时需要获得反馈，即刚刚的决策好不好，反馈越及时学得越快，理想情况是每一步都有反馈。还以小车导航到终点的应用为例，除了抵达终点+10分，如果每次靠近终点也+1分，那么小车在抵达终点之前就学会主动靠近终点，这样探索到抵达终点的概率也大大提高了，DRL算法收敛速度自然会加快。</p>
+<p>除了抵达终点，小车还要避免与障碍物和其他小车发生碰撞，我们还要对碰撞事件做出惩罚。为了使agent更好地学会避免碰撞，我们除了对已经发生的碰撞事件给予惩罚，还可以再增加一个预防式的靠近惩罚，并利用状态空间里的直接相关信息——与最近邻居的距离，提高算法学习效率，具体可以参考<a href="https://su-lemon.github.io/blog/post/63561af6.html">状态空间篇</a>。</p>
+<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225213423.png" /></p>
+<p>辅助reward的设计建立在对任务逻辑的深刻分析和理解之上，有很多细节都会对最终目标的实现产生正向或负向的影响，值得我们深入挖掘。比如，为了使小车尽快到达终点，就要求少绕路，而绕路的典型表现是转弯多，于是可以增加对转弯的惩罚。类似这样的链式思考有助于找到更好的辅助reward，帮助降低学习难度和提升最终性能。</p>
+<p>此外，由于将最终目标分解成了子目标，在设计对应辅助reward时往往很容易找到与之即时联动的直接相关状态信息，或者相关性较强的间接相关信息。事实上，我们每设计一个reward项，就应该回过头去检查状态空间中是否包含了直接或间接相关信息，已经包含的信息是否足够直接高效，有没有改进的空间。</p>
+<h3 id="杜绝异常行为">杜绝异常行为</h3>
+<p>OK，让我们来捋一捋目前的reward项：抵达奖励，靠近终点奖励，碰撞惩罚和转弯惩罚。Reward项一多，我们就要特别注意它们之间的相对大小。首先，应该避免某个（些）reward项的绝对值过大，以至于淹没其他reward项的影响，必要时应使用系数加以调控；其次，应该避免reward项的不合理取值及多项reward之间的不合理相对大小，导致agent学到异常行为。因为不合理reward造成的常见异常行为主要包括三种类型：鲁莽、贪婪和胆怯，怎么感觉我在说炒股呢~~~</p>
+<h4 id="鲁莽">鲁莽</h4>
+<p>鲁莽行为指的是reward中漏掉了针对某个不希望出现的事件的惩罚项或者惩罚力度太小，被其他reward项盖过，导致agent无法学到主动规避该事件或者权衡利弊后仍然选择接受该事件的惩罚以换取更大收益。比如下图中金币搜索任务中，设计者忘了给予进入岩浆的惩罚，结果机器人为了尽快得到金币而甘愿“赴汤蹈火”；在小车导航的例子中，碰撞惩罚相对于远离惩罚过小，小车可能为了尽快到达终点宁愿撞到其他小车上也不愿意绕远。</p>
+<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225213439.png" /></p>
+<h4 id="贪婪">贪婪</h4>
+<p>靠近终点奖励使reward变稠密了，但这样做就够了吗？我们说过RL追求的是长期收益，事实上对小车来说收益最高的选择不是尽快抵达终点，而是不断重复“靠近-远离”的动作，如此一点点地累加，收益远超过抵达终点的一锤子买卖！很显然，agent钻了reward设计漏洞的空子，变得不思进取，贪得无厌。为了防止这种情况发生，我们还要对原地不动或远离终点的行为进行惩罚，而且相对于靠近奖励，扣分太少也不行，否则agent仍然会发现钻空子是划算的。一劳永逸的办法是，将靠近终点的正向奖励改成微小惩罚，绝对值小于原地不动或远离惩罚，这样做的好处是不仅不给agent钻空子的机会，而且还能督促小车尽快向终点行驶。</p>
+<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225213456.png" /></p>
+<p>再比如在蒙特祖玛的复仇中，要想通关（主线事件，+10）必须先吃到钥匙，为了鼓励agent吃钥匙我们还可以为这个子目标提供专门的奖励（+1）。这种情况下房间只有一把钥匙还好，但如果到处都是钥匙呢？Agent很可能会变得乐不思蜀，一直留在房间里找新的钥匙，忘记通关这回事了。如果真是这样，那就不如不设吃钥匙奖励，只保留主线奖励，由Agent自己去发掘通关与吃钥匙之间的内在联系。</p>
+<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225213513.png" /></p>
+<p>实际上，<strong>除了主线reward应该提供正向奖励以外，其他辅助reward最好都设置为惩罚项</strong>。除非某个子目标与主线事件之间存在强关联，而且该子目标的达成是一次性的或者数量可控，否则不应轻易设置额外奖励项，因为这样很容易诱导agent学习到短视的贪婪策略，只捡芝麻，不要西瓜。</p>
+<h4 id="胆怯">胆怯</h4>
+<p>与贪婪相反的另一个异常行为是胆怯，如果惩罚项很多且绝对值相对于主线reward太大，那么agent在探索过程中会收到大量负反馈，从而变得畏首畏尾，学习到各种意想不到的“绥靖”策略。比如在小车到终点的例子中，假如碰撞惩罚和转弯惩罚绝对值过大，agent有可能宁愿选择原地不动，这是因为训练初期policy很差，需要经历大量转弯和碰撞后才可能出现主线事件（到达终点），而收到的负反馈完全湮没了主线奖励，因此在agent看来原地不动的长期累计收益<strong>暂时</strong>不比到终点差，尽管只是暂时的，但agent很可能陷在这个局部最优里出不来了。</p>
+<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225213530.png" /></p>
+<p>在上述情况下，你会发现只需要将惩罚项绝对值减小，突出主线奖励的影响，其他什么也不用干，DRL模型就能顺利收敛了。当然，还可以适当降低折扣因子，让agent变成“近视眼”，更多关注眼前利益，忽略长期的负收益期望（靠后的负反馈都被折扣掉了），只要agent“迈开腿”出来探索，就有更大可能遇到主线事件，并在主线reward的奖励下学习到目标技能。折扣因子的设置技巧我将在训练篇中详细介绍。</p>
+<h3 id="reward-shaping">Reward Shaping</h3>
+<p>把任务目标分解得足够细，又避开了上述各种坑，这样就完美了吗？并没有~~~如果你读过Andrew Ng在1999年发表的关于reward shaping的paper，你就会发现还可以让RL算法收敛得更快一些。Reward shaping技术的证明这里就不赘述了，喜欢手推公式的朋友可以去读原著。我大概说下原理，在原有reward基础上增加一项shaping reward，该项代表某种势能函数，与最终目标的差距决定了势能大小。对于我们上一节举过的例子，如果把reward修改为下图中的形式，agent每向右移动一格都会获得奖励，且离G越近奖励越高，那么agent就很容易被引导到G位置，从而大大加速算法收敛。</p>
+<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225213927.png" /></p>
+<p>Ng从理论上证明了理想势能函数就是 <span class="math inline">\(V(s)\)</span> ，这很好解释，我们前边说过 <span class="math inline">\(V(s)\)</span> 是对长期收益的期望，policy就是根据它优化的，如果一开始就把完美的 <span class="math inline">\(V(s)\)</span> 提供给小车，那也就不用学了。对小车到终点的应用而言，用小车当前位置与终点的距离作为势能函数，增加一个惩罚项 <span class="math inline">\(-\alpha \cdot dist\)</span> ，离终点较远时惩罚得多一些，较近时惩罚得小一些，这样就能起到reward shaping的作用。此外，参考上一篇状态空间设计的内容，你会发现增加的惩罚项可以与状态空间中描述小车与终点相对位置的信息即时联动，从而使后者由间接相关信息转变为直接相关信息，这就从另一个角度解释了reward shaping为什么能提高算法训练的效率。</p>
+<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225214007.png" /></p>
+<h2 id="optimal-reward-problem">Optimal Reward Problem</h2>
+<p>看到这里你可能会问，针对特定任务，比如小车导航到终点，是否存在一组最优reward使得DRL算法在同等条件下收敛最快、性能最高？答案是肯定的，但要想找到它是困难的，该问题在学术界被称为Optimal Reward Problem（ORP），解决方案包括暴力搜索[2]、基于在线策略梯度的PGRD[3]、分层强化学习[4]、遗传算法[5]、Bayes方法[6]等等，有兴趣的朋友可以找来相关paper读一读，相关参考文献我列到最后。</p>
+<h2 id="总结">总结</h2>
+<p>总结一下，reward设计的原则是：<strong>尽可能稠密（最好每步都有反馈），能够反映任务目标/子目标逻辑，与状态空间相呼应，控制好各项取值和相对大小，避免异常行为，适时采用reward shaping</strong>。当算法选择好，动作空间定义好，状态空间和回报函数都设计好，接下来就该进入训练环节了。</p>
+<h2 id="参考">参考</h2>
+<ol type="1">
+<li>Christiano, P. F.; Leike, J.; Brown, T. B.; Martic, M.; Legg, S.; and Amodei, D. 2017. Deep Reinforcement Learning from Human Preferences. Neural Information Processing Systems: 4299-4307.</li>
+<li>Sorg, J.; Singh, S. P.; and Lewis, R. L. 2010. Internal Rewards Mitigate Agent Boundedness. International Conference on Machine Learning: 1007-1014.</li>
+<li>Sorg, J.; Lewis, R. L.; and Singh, S. P. 2010. Reward Design via Online Gradient Ascent. Neural Information Processing Systems: 2190-2198.</li>
+<li>Bratman, J.; Singh, S. P.; Sorg, J.; and Lewis, R. L. 2012. Strong Mitigation: Nesting Search for Good Policies within Search for Good Reward. Adaptive Agents and Multi Agents Systems: 407-414.</li>
+<li>Niekum, S.; Barto, A. G.; and Spector, L. 2010. Genetic Programming for Reward Function Search. IEEE Transactions on Autonomous Mental Development 2(2): 83-90.</li>
+<li>Hadfield-Menell, D.; Milli, S.; Abbeel, P.; Russell, S.; and Dragan, A. D. 2017. Inverse Reward Design. Neural Information Processing Systems: 6765-6774.</li>
+</ol>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>SuSu<br>
+    <strong>本文链接：</strong><a href="https://su-lemon.github.io/blog/post/d73b0d23.html" title="https:&#x2F;&#x2F;su-lemon.github.io&#x2F;blog&#x2F;post&#x2F;d73b0d23.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;su-lemon.github.io&#x2F;blog&#x2F;post&#x2F;d73b0d23.html</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/blog/categories/RL/">RL</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/blog/tags/RL/" rel="tag">RL</a> <a class="nexmoefont icon-tag-fill -none-link" href="/blog/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" rel="tag">方法论</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/effects/md5.min.js"></script>
+<div id="gitalk"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    // var gitalk = new Gitalk({
+    //   clientID: '',
+    //   clientSecret: '',
+    //   repo: 'gittalk-comments.github.io',
+    //   owner: 'Su-Lemon',
+    //   admin: 'Su-Lemon',
+    //   id: 'location.pathname',
+    //   labels: 'Gitalk'.split(',').filter(l => l),
+    // //   perPage: '15',
+    //   pagerDirection: 'last',
+    //   createIssueManually: 'true',
+    //   distractionFreeMode: 'false'
+    // })
+    var gitalk = new Gitalk({
+      clientID: '2543206578680a1bdf99',
+      clientSecret: '24e25a0277329218d91186c354b4a9d3ec9eaf29',
+      repo: 'gittalk-comments',
+      owner: 'Su-Lemon',
+      admin: 'Su-Lemon',
+      id: md5(location.pathname),
+      labels: ['Gitalk'],
+      perPage: 15,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      distractionFreeMode: false
+    })
+    gitalk.render('gitalk')
+</script>
+    
+</section>
+
+  </div>
+</div>
+
+
+  
+  <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <!-- 给MathJax元素添加has-jax class -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        Tex: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+        "HTML-CSS": {linebreaks: {automatic: true}},
+        SVG: {linebreaks: {automatic: true}}
+    });
+  </script>
+  <!-- 通过连接CDN加载MathJax的js代码 -->
+  <script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+
+
+
+        <div class="nexmoe-post-right">
+          
+            <div class="nexmoe-fixed">
+              <div class="nexmoe-tool">
+                <a href="#" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+              </div>
+            </div>
+          
+        </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ <script src="/blog/js/app.js?v=1614261874396"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+  
+
+
+
+
+
+    <!-- baidu Analytics -->
+<script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?https://hm.baidu.com/hm.js?42f6946da788f3603a9329323a4fd82e';
+    var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+<script src="/blog/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/blog/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+
+</html>
