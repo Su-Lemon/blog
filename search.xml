@@ -31,60 +31,6 @@
     
     
     <entry>
-      <title>【Tools-Tmux】Tmux技巧</title>
-      <link href="/blog/post/cc4db011.html"/>
-      <url>/blog/post/cc4db011.html</url>
-      
-        <content type="html"><![CDATA[<p>tmux 是一款终端复用命令行工具，一般用于 Terminal 的窗口管理。</p><a id="more"></a><h2 id="为什么选择tmux">为什么选择tmux</h2><p>在 macOS 下，使用 iTerm2 能应付绝大多数窗口管理的需求。如<img src="https://img-blog.csdnimg.cn/20201024212759972.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JyZWFraW5nRGF3bjA=,size_16,color_FFFFFF,t_70#pic_center" /> 图所示，iTerm2 能新建多个标签页（快捷键 ⌘T），也能在同一个窗口中分割出多个窗格（快捷键 ⌘D 或 ⌘⇧D）。</p><p><strong>tmux 相比 iTerm2 的优势在于：</strong> - iTerm2 的窗格切换快捷键（⌘⌥→）容易与其他软件全局快捷键冲突（例如 Spectacle 的窗口分割快捷键），tmux 由于存在前缀快捷键，所以不存在快捷键冲突问题； - tmux 可以在终端软件重启后通过命令行恢复上次的 session ，而终端软件则不行； - tmux 简洁优雅、订制性强，也能在 Linux 上使用。</p><h2 id="安装">安装</h2><div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">brew</span> install tmux</span></code></pre></div><h2 id="快捷键">快捷键</h2><p>一般情况下 tmux 中所有的快捷键都需要和<strong>前缀快捷键 ⌃ B</strong> 来组合使用（⌃ 即 Mac 的 control 键），以下是常用的窗格（pane）快捷键列表，大家可以依次尝试下： ## 窗格操作 | ^ B之后组合键 | 作用 | | ------------- | ------------------------------------------------------------ | | % | 左右平分出两个窗格 | | " | 上下平分出两个窗格 | | x | 关闭当前窗格 | | { | 当前窗格前移 | | } | 当前窗格后移 | | ; | 选择上次使用的窗格 | | o | 选择下一个窗格，也可以使用上下左右方向键来选择 | | space | 切换窗格布局，tmux 内置了五种窗格布局，也可以通过 ⌥1 至 ⌥5来切换 | | z | 最大化当前窗格，再次执行可恢复原来大小 | | q | 显示所有窗格的序号，在序号出现期间按下对应的数字，即可跳转至对应的窗格 |</p><h2 id="窗口操作">窗口操作</h2><p>tmux 除了窗格以外，还有窗口（window） 的概念。tmux 的窗口操作： | ^ B之后组合键 | 作用 | | ------------- | ------------------------------------------------------------ | | c | 新建窗口，此时当前窗口会切换至新窗口，不影响原有窗口的状态 | | p | 切换至上一窗口 | | n | 切换至下一窗口 | | w | 窗口列表选择，注意 macOS 下使用 ⌃p 和 ⌃n 进行上下选择 | | &amp; | 关闭当前窗口 | | , | 重命名窗口，可以使用中文，重命名后能在 tmux 状态栏更快速的识别窗口 id | | 0 | 切换至 0 号窗口，使用其他数字 id 切换至对应窗口 | | f | 根据窗口名搜索选择窗口，可模糊匹配# | ## 会话操作 在 shell 主进程下运行以下命令可以操作 tmux 会话：</p><div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ex">tmux</span> new -s foo             # 新建名称为 foo 的会话</span><span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="ex">tmux</span> ls                     # 列出所有 tmux 会话</span><span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="ex">tmux</span> a                      # 恢复至上一次的会话</span><span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="ex">tmux</span> a -t foo               # 恢复名称为 foo 的会话，会话默认名称为数字</span><span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="ex">tmux</span> kill-session -t foo    # 删除名称为 foo 的会话</span><span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="ex">tmux</span> kill-server            # 删除所有的会话</span></code></pre></div><p>在 tmux 会话中，使用<strong>前缀快捷键 ⌃b</strong> 配合以下快捷键可操作会话： - $ 重命名当前会话 - s 选择会话列表 - d detach当前会话，运行后将会退出 tmux 进程，返回至 shell 主进程</p><p>除以上提到的快捷键以外，tmux 还有许多其他的快捷键和命令，使用前缀快捷键 ⌃b 加 ? 可以查看所有的快捷键列表，该列表视图为 tmux copy 模式，该模式下可使用以下快捷键（无需加 ⌃b 前缀）： - ⌃v 下一页 - Meta v 上一页 （tmux 快捷键为 Emacs 风格，这里的 Meta 键可用 Esc 模拟） - ⌃s 向前搜索</p><h2 id="滚屏设置">滚屏设置</h2><p>要退出复制模式，请按ESC键 要在此模式（称为复制模式）下使用鼠标，请按 <strong>^b + :</strong> 并输入以下内容：</p><div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="ex">setw</span> -g mouse on</span><span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co"># 注意：在tmux &lt;2.1中，该选项名为mode-mouse，而不是mouse</span></span><span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span><span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="st">&quot;每次运行tmux时都将其加载，以使用滚屏&quot;</span></span><span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="bu">echo</span> <span class="st">&quot;setw -g mouse on&quot;</span> <span class="op">&gt;&gt;</span> ~/.tmux.conf</span></code></pre></div><p>更新：从tmux 1.5开始，此选项使使用滚轮自动切换到复制模式并向后滚动tmux回滚缓冲区。没有必要先打Ctrl-B+ [。向下滚动到提示也会自动结束复制模式。</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> Tools </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> Tools </tag>
-            
-            <tag> Tmux </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>【GitHub】解决无法访问、加载缓慢等问题</title>
-      <link href="/blog/post/d361f453.html"/>
-      <url>/blog/post/d361f453.html</url>
-      
-        <content type="html"><![CDATA[<p>本文的方法可以大概率解决：GitHub中的用户头像和文章中的图片随缘显示，经常不能加载；使用GitHub仓库作为图床，本地访问图片时加载失败等问题。</p><a id="more"></a><h2 id="问题原因">问题原因</h2><p>以拉取代码时的报错为例：curl: (7) Failed to connect to raw.githubusercontent.com port 443: Connection refused</p><p>从报错信息可以发现，脚本需要到 raw.githubusercontent.com 上拉取代码。</p><p>问题的原因是github一些域名的 <a href="https://zhuanlan.zhihu.com/p/101908711">DNS 解析被污染</a>，导致DNS 解析过程无法通过域名取得正确的IP地址。</p><h2 id="解决方案">解决方案</h2><ol type="1"><li><p>打开 <a href="https://www.ipaddress.com/">https://www.ipaddress.com/</a> 输入访问不了的域名（其它类似问题输入对应域名）raw.githubusercontent.com</p><p><img src="https://img-blog.csdnimg.cn/20200910235026353.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JyZWFraW5nRGF3bjA=,size_16,color_FFFFFF,t_70#pic_center" /></p></li><li><p>查询后会得到正确的IP地址：</p><div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">199.232.68.133</span> raw.githubusercontent.com</span><span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="ex">199.232.68.133</span> user-images.githubusercontent.com</span><span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="ex">199.232.68.133</span> avatars2.githubusercontent.com</span><span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="ex">199.232.68.133</span> avatars1.githubusercontent.com</span></code></pre></div><p>截图里由于博主已经配置好了，返回的结果里没有包括正确的IP地址。</p></li><li><p>在本机的 host 文件中添加以上几条host配置。可以使用switchhosts方便 host 管理。</p></li><li><p>下载安装 <a href="https://github.com/oldj/SwitchHosts/releases">switchhosts</a> ，使用非常便捷，在my hosts里添加并启用上述host配置就可以了。 <img src="https://img-blog.csdnimg.cn/20200911000623389.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JyZWFraW5nRGF3bjA=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p></li></ol>]]></content>
-      
-      
-      <categories>
-          
-          <category> GitHub </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> GitHub </tag>
-            
-            <tag> Mac </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>【Latex】数学符号-代码对照表</title>
       <link href="/blog/post/73a19565.html"/>
       <url>/blog/post/73a19565.html</url>
@@ -303,6 +249,33 @@
     
     
     <entry>
+      <title>【Tools-Tmux】Tmux技巧</title>
+      <link href="/blog/post/cc4db011.html"/>
+      <url>/blog/post/cc4db011.html</url>
+      
+        <content type="html"><![CDATA[<p>tmux 是一款终端复用命令行工具，一般用于 Terminal 的窗口管理。</p><a id="more"></a><h2 id="为什么选择tmux">为什么选择tmux</h2><p>在 macOS 下，使用 iTerm2 能应付绝大多数窗口管理的需求。如<img src="https://img-blog.csdnimg.cn/20201024212759972.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JyZWFraW5nRGF3bjA=,size_16,color_FFFFFF,t_70#pic_center" /> 图所示，iTerm2 能新建多个标签页（快捷键 ⌘T），也能在同一个窗口中分割出多个窗格（快捷键 ⌘D 或 ⌘⇧D）。</p><p><strong>tmux 相比 iTerm2 的优势在于：</strong> - iTerm2 的窗格切换快捷键（⌘⌥→）容易与其他软件全局快捷键冲突（例如 Spectacle 的窗口分割快捷键），tmux 由于存在前缀快捷键，所以不存在快捷键冲突问题； - tmux 可以在终端软件重启后通过命令行恢复上次的 session ，而终端软件则不行； - tmux 简洁优雅、订制性强，也能在 Linux 上使用。</p><h2 id="安装">安装</h2><div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">brew</span> install tmux</span></code></pre></div><h2 id="快捷键">快捷键</h2><p>一般情况下 tmux 中所有的快捷键都需要和<strong>前缀快捷键 ⌃ B</strong> 来组合使用（⌃ 即 Mac 的 control 键），以下是常用的窗格（pane）快捷键列表，大家可以依次尝试下： ## 窗格操作 | ^ B之后组合键 | 作用 | | ------------- | ------------------------------------------------------------ | | % | 左右平分出两个窗格 | | " | 上下平分出两个窗格 | | x | 关闭当前窗格 | | { | 当前窗格前移 | | } | 当前窗格后移 | | ; | 选择上次使用的窗格 | | o | 选择下一个窗格，也可以使用上下左右方向键来选择 | | space | 切换窗格布局，tmux 内置了五种窗格布局，也可以通过 ⌥1 至 ⌥5来切换 | | z | 最大化当前窗格，再次执行可恢复原来大小 | | q | 显示所有窗格的序号，在序号出现期间按下对应的数字，即可跳转至对应的窗格 |</p><h2 id="窗口操作">窗口操作</h2><p>tmux 除了窗格以外，还有窗口（window） 的概念。tmux 的窗口操作： | ^ B之后组合键 | 作用 | | ------------- | ------------------------------------------------------------ | | c | 新建窗口，此时当前窗口会切换至新窗口，不影响原有窗口的状态 | | p | 切换至上一窗口 | | n | 切换至下一窗口 | | w | 窗口列表选择，注意 macOS 下使用 ⌃p 和 ⌃n 进行上下选择 | | &amp; | 关闭当前窗口 | | , | 重命名窗口，可以使用中文，重命名后能在 tmux 状态栏更快速的识别窗口 id | | 0 | 切换至 0 号窗口，使用其他数字 id 切换至对应窗口 | | f | 根据窗口名搜索选择窗口，可模糊匹配# | ## 会话操作 在 shell 主进程下运行以下命令可以操作 tmux 会话：</p><div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="ex">tmux</span> new -s foo             # 新建名称为 foo 的会话</span><span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="ex">tmux</span> ls                     # 列出所有 tmux 会话</span><span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="ex">tmux</span> a                      # 恢复至上一次的会话</span><span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="ex">tmux</span> a -t foo               # 恢复名称为 foo 的会话，会话默认名称为数字</span><span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="ex">tmux</span> kill-session -t foo    # 删除名称为 foo 的会话</span><span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="ex">tmux</span> kill-server            # 删除所有的会话</span></code></pre></div><p>在 tmux 会话中，使用<strong>前缀快捷键 ⌃b</strong> 配合以下快捷键可操作会话： - $ 重命名当前会话 - s 选择会话列表 - d detach当前会话，运行后将会退出 tmux 进程，返回至 shell 主进程</p><p>除以上提到的快捷键以外，tmux 还有许多其他的快捷键和命令，使用前缀快捷键 ⌃b 加 ? 可以查看所有的快捷键列表，该列表视图为 tmux copy 模式，该模式下可使用以下快捷键（无需加 ⌃b 前缀）： - ⌃v 下一页 - Meta v 上一页 （tmux 快捷键为 Emacs 风格，这里的 Meta 键可用 Esc 模拟） - ⌃s 向前搜索</p><h2 id="滚屏设置">滚屏设置</h2><p>要退出复制模式，请按ESC键 要在此模式（称为复制模式）下使用鼠标，请按 <strong>^b + :</strong> 并输入以下内容：</p><div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="ex">setw</span> -g mouse on</span><span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="co"># 注意：在tmux &lt;2.1中，该选项名为mode-mouse，而不是mouse</span></span><span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a></span><span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="st">&quot;每次运行tmux时都将其加载，以使用滚屏&quot;</span></span><span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="bu">echo</span> <span class="st">&quot;setw -g mouse on&quot;</span> <span class="op">&gt;&gt;</span> ~/.tmux.conf</span></code></pre></div><p>更新：从tmux 1.5开始，此选项使使用滚轮自动切换到复制模式并向后滚动tmux回滚缓冲区。没有必要先打Ctrl-B+ [。向下滚动到提示也会自动结束复制模式。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Tools </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Tools </tag>
+            
+            <tag> Tmux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【RL落地方法论3】动作空间</title>
       <link href="/blog/post/82d3f6a1.html"/>
       <url>/blog/post/82d3f6a1.html</url>
@@ -428,6 +401,33 @@
         <tags>
             
             <tag> MacOS </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>【GitHub】解决无法访问、加载缓慢等问题</title>
+      <link href="/blog/post/d361f453.html"/>
+      <url>/blog/post/d361f453.html</url>
+      
+        <content type="html"><![CDATA[<p>本文的方法可以大概率解决：GitHub中的用户头像和文章中的图片随缘显示，经常不能加载；使用GitHub仓库作为图床，本地访问图片时加载失败等问题。</p><a id="more"></a><h2 id="问题原因">问题原因</h2><p>以拉取代码时的报错为例：curl: (7) Failed to connect to raw.githubusercontent.com port 443: Connection refused</p><p>从报错信息可以发现，脚本需要到 raw.githubusercontent.com 上拉取代码。</p><p>问题的原因是github一些域名的 <a href="https://zhuanlan.zhihu.com/p/101908711">DNS 解析被污染</a>，导致DNS 解析过程无法通过域名取得正确的IP地址。</p><h2 id="解决方案">解决方案</h2><ol type="1"><li><p>打开 <a href="https://www.ipaddress.com/">https://www.ipaddress.com/</a> 输入访问不了的域名（其它类似问题输入对应域名）raw.githubusercontent.com</p><p><img src="https://img-blog.csdnimg.cn/20200910235026353.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JyZWFraW5nRGF3bjA=,size_16,color_FFFFFF,t_70#pic_center" /></p></li><li><p>查询后会得到正确的IP地址：</p><div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="ex">199.232.68.133</span> raw.githubusercontent.com</span><span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="ex">199.232.68.133</span> user-images.githubusercontent.com</span><span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="ex">199.232.68.133</span> avatars2.githubusercontent.com</span><span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="ex">199.232.68.133</span> avatars1.githubusercontent.com</span></code></pre></div><p>截图里由于博主已经配置好了，返回的结果里没有包括正确的IP地址。</p></li><li><p>在本机的 host 文件中添加以上几条host配置。可以使用switchhosts方便 host 管理。</p></li><li><p>下载安装 <a href="https://github.com/oldj/SwitchHosts/releases">switchhosts</a> ，使用非常便捷，在my hosts里添加并启用上述host配置就可以了。 <img src="https://img-blog.csdnimg.cn/20200911000623389.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JyZWFraW5nRGF3bjA=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" /></p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> GitHub </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> GitHub </tag>
+            
+            <tag> Mac </tag>
             
         </tags>
       
