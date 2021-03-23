@@ -14,7 +14,7 @@
     <meta name="google-site-verification" content="tE-0DY7ep02Gyi-x9Q4QpuOhofuAEWa3QWrzBXLLHnk" />
 
 
-  <link rel="shortcut icon" href="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/favicon1.png" type="image/png" />
+  <link rel="shortcut icon" href="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/favicon1.png" type="image/png" />
   <meta name="description" content="虽然每年RL方向的paper满天飞，但真正具有普遍实用价值的突破性工作实在不多，大多数还是在经典框架基础上的改进和扩展。DRL常规武器库里的存货主要还是老三样：DQN，DDPG和A3C，它们是深度学习时代最成熟、最能体现智慧结晶的三个DRL框架，我们可以在GitHub上找到无数相关代码，有OpenAI，DeepMind和Nvidia这些大公司的，也有个人爱好者的。对于DRL初学者，它们是最佳的敲门">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【RL落地方法论2】算法分析">
@@ -22,17 +22,17 @@
 <meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
 <meta property="og:description" content="虽然每年RL方向的paper满天飞，但真正具有普遍实用价值的突破性工作实在不多，大多数还是在经典框架基础上的改进和扩展。DRL常规武器库里的存货主要还是老三样：DQN，DDPG和A3C，它们是深度学习时代最成熟、最能体现智慧结晶的三个DRL框架，我们可以在GitHub上找到无数相关代码，有OpenAI，DeepMind和Nvidia这些大公司的，也有个人爱好者的。对于DRL初学者，它们是最佳的敲门">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225135416.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225141747.png">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225135416.png">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225141747.png">
 <meta property="og:image" content="https://pic3.zhimg.com/v2-8e4654480ae1bd802293347ad8cd4902_b.jpg">
-<meta property="og:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225142104.png">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225142104.png">
 <meta property="article:published_time" content="2020-08-27T06:47:10.000Z">
-<meta property="article:modified_time" content="2021-02-25T13:53:31.172Z">
+<meta property="article:modified_time" content="2021-03-23T13:34:08.216Z">
 <meta property="article:author" content="SuSu">
 <meta property="article:tag" content="RL">
 <meta property="article:tag" content="方法论">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225135416.png">
+<meta name="twitter:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225135416.png">
   <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin> -->
   <!-- <link href="https://gitee.com/Su-Lemon/sources/blob/master/css/blog_style.min.css"> -->
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/Su-Lemon/sources/css/blog.css">
@@ -40,7 +40,7 @@
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2432472_9kqdqg64gbn.css">
   
-  <link rel="stylesheet" href="/blog/css/style.css?v=1616497112562">
+  <link rel="stylesheet" href="/blog/css/style.css?v=1616506927759">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -58,13 +58,13 @@
 
   
   <div id="nexmoe-background">
-    <div class="nexmoe-bg" style="background-image: url(https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/background0.png)"></div>
+    <div class="nexmoe-bg" style="background-image: url(https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/background0.png)"></div>
     <div class="mdui-appbar mdui-shadow-0">
       <div class="mdui-toolbar">
         <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
         <div class="mdui-toolbar-spacer"></div>
         <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
-        <a href="/blog/" title="SuSu" class="mdui-btn mdui-btn-icon"><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/avatar0.png" alt="SuSu"></a>
+        <a href="/blog/" title="SuSu" class="mdui-btn mdui-btn-icon"><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/avatar0.png" alt="SuSu"></a>
        </div>
     </div>
   </div>
@@ -72,7 +72,7 @@
       <div class="nexmoe-drawer mdui-drawer" id="drawer">
     <div class="nexmoe-avatar mdui-ripple">
         <a href="/blog/" title="SuSu">
-            <img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/blog_style/avatar0.png" alt="SuSu" alt="SuSu">
+            <img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/avatar0.png" alt="SuSu" alt="SuSu">
         </a>
     </div>
     <div class="nexmoe-count">
@@ -307,7 +307,7 @@
         <div class="nexmoe-post">
   
       <div class="nexmoe-post-cover" style="padding-bottom: 50%;"> 
-          <img data-src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/cover/cover7.png" data-sizes="auto" alt="【RL落地方法论2】算法分析" class="lazyload">
+          <img data-src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/cover/cover7.png" data-sizes="auto" alt="【RL落地方法论2】算法分析" class="lazyload">
           <h1>【RL落地方法论2】算法分析</h1>
       </div>
   
@@ -346,14 +346,14 @@
 </ol>
 <p><strong>强化学习的训练过程其实就是从以探索为主到以利用为主的过渡过程</strong>，训练早期通过广泛试错找准一个方向，然后沿着该方向一路试探下去直到达到最优。请牢牢记住这“两点一线”，因为这是所有RL算法的主要内容，任何RL算法都能以此为切入点进行解构，有助于不断加深对算法的理解。接下来就谈谈对三个主流DRL框架的一些浅见。</p>
 <h2 id="dqn">DQN</h2>
-<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225135416.png" /></p>
+<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225135416.png" /></p>
 <p>DQN是借助AlphaGo最早成名的深度强化学习算法，其核心思想是利用Bellman公式的bootstrap特性，不断迭代优化一个 <span class="math inline">\(Q(s,a)\)</span> 函数，并据此在各种状态下选择action。其中 <span class="math inline">\(Q(s,a)\)</span> 函数拟合的是一对状态-动作的长期收益评估，该算法没有显式的policy。DQN探索和利用的平衡靠的是一种称为<code>ε-greedy</code>的策略，针对最新的 <span class="math inline">\(Q(s,a)\)</span> 函数和当前的输入状态 <span class="math inline">\(s\)</span> ，agent做决策时以概率 <span class="math inline">\(p\)</span> 随机选择action，而以 <span class="math inline">\(1-p\)</span> 的概率选择使 <span class="math inline">\(Q(s,a)\)</span> 最大的action，随着 <span class="math inline">\(p\)</span> 从大到小变化，DQN也相应地从“强探索弱利用”过渡到“弱探索强利用”。DQN的原理使其天然地适合那些具备有限action集合的任务，说白了就是action可以穷举，比如走迷宫的agent只允许前后左右4个动作，下围棋的AlphaGo只允许 <span class="math inline">\(19*19=361\)</span> 个落子位置（实际还要排除已经落子的网格点）。这是一个重要的特征，如果是一个连续控制任务，action在某区间内有无数种可能，那就不适合用DQN了。当然，我们可以选择把区间离散化，这样就可以应用DQN了，也曾有paper报告这样做在某些任务中可以比连续控制取得更好的性能。</p>
 <p>DQN属于off-policy方法，所谓off-policy是指用于计算梯度的数据不一定是当前policy/Q下采集的，DQN使用一个叫replay buffer的FIFO结构，用于存储transition，即 <span class="math inline">\((s,a,s&#39;,r,q)\)</span> ，每次随机从buffer中拿出一个batch用于梯度计算和参数更新。Replay buffer是稳定DQN训练的重要措施，历史数据的重复使用也提高了其数据利用率，对于那些数据比较“贵”的任务，比如Google的抓取应用，这一点非常重要，事实上Google除了replay buffer，还专门搞了个数据库，把之前存储的另一个抓取应用采集的数据拿出来做预训练，精打细算到了极致，真是比你有钱，还比你节约~。</p>
 <p>DQN的缺点挺多，有些是RL的通病，比如对超参数敏感，笔者在训练篇会详细介绍；另一些是DQN所独有的，比如overestimation造成的训练不稳定问题，近些年学术界有不少工作是围绕这一点做出改进。此外，DQN还有off-policy方法的通病，对历史数据的重复利用虽然可以提高数据效率，但有个前提条件是环境model不能发生变化，single agent任务较易满足这个条件，但multi agent场景就未必了，对任意agent而言，其他agent也是环境的一部分，而他们的学习进化会改变这个环境，从而使历史数据失效，这就是MARL领域著名的环境不稳定问题，此时off-policy方法的性能往往不如on-policy方法。 <span class="math display">\[
 loss = (r + \gamma \max\limits_{a&#39;}Q(s&#39;,a&#39;)-Q(s,a))^2
 \]</span> 如果超参数设置合适，DQN收敛速度相对是比较快的，因为更新公式里有个<span class="math inline">\(max\)</span>操作，意思是计算目标值时s’状态下使用使<span class="math inline">\(Q(s’,a)\)</span>最大的a从而达到加速收敛的目的（上边说到的overestimation问题也源自于此……）。因此，DQN可以作为在新项目场景中快速测试效果的首选框架，比如测试一个新状态信息或一个新reward项是否有用。</p>
 <h2 id="ddpg">DDPG</h2>
-<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225141747.png" /></p>
+<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225141747.png" /></p>
 <p>针对DQN无法处理连续控制任务的空白，DDPG在DQN的基础上做了改进，引入了一个输出连续action的显式policy，与 <span class="math inline">\(Q\)</span> 函数组成Actor-Critic结构，更新policy网络的梯度完全来自于 <span class="math inline">\(Q\)</span> 网络，目标是最大化当前的 <span class="math inline">\(Q\)</span> 函数。 <span class="math inline">\(Q\)</span> 函数的更新与DQN类似，只是计算 <span class="math inline">\(s’\)</span> 状态下目标值时放弃了 <span class="math inline">\(\max\)</span> 操作，而采用当前policy网络的输出<span class="math inline">\(π(a|s&#39;)\)</span>。DDPG名字里的第一个<span class="math inline">\(D\)</span>是Deterministic的缩写，意思是确定性的，这是有意与正宗Actor-Critic方法（如A2C，A3C等）区分开，后者policy输出的是action的概率分布，而DDPG输出的就是确定性的action。正因为如此，DDPG采用了独特的探索方式，即在action输出直接加上一个noise，该noise的强弱决定了探索力度，本质上相当于以当前action为中心形成了一个概率分布，每次更新都使policy向该分布中更好的方向演化，直到action达到了最优，此时对应分布内其他方向都是更差的方向，policy输出也就稳定在最优action附近了，从而实现了探索和利用的平衡。</p>
 <figure>
 <img data-fancybox="gallery" data-sizes="auto" data-src="https://pic3.zhimg.com/v2-8e4654480ae1bd802293347ad8cd4902_b.jpg" alt="img" class="lazyload"><figcaption aria-hidden="true">img</figcaption>
@@ -361,7 +361,7 @@ loss = (r + \gamma \max\limits_{a&#39;}Q(s&#39;,a&#39;)-Q(s,a))^2
 <p>能用于连续控制任务自然是招人喜欢的，毕竟实际控制任务的变量往往都是连续取值的，比如角度、位移、速度、加速度、电流、电压等等。学者们把DDPG用在MuJoCo上，解决了很多连续domain的任务，后来也有人把它用到真实的软体章鱼机器人上，用两只触角实现了向前运动。然而，在连续区间上找到最优的确定性action输出本身是一件非常困难的事，导致<strong>DDPG在action维度较高的复杂任务中表现不佳</strong>，比如KUKA iiwa机器人有7个自由度，使得探索空间一下大了很多，训练难度陡升。同时policy网络的梯度完全来自于<span class="math inline">\(Q\)</span>网络，<span class="math inline">\(Q\)</span>函数的拟合误差都直接传导给了policy，致使DDPG的训练稳定性也不足。在Google的抓取paper中，干脆抛弃了独立policy网络，做决策时随机在区间里取16个点输入<span class="math inline">\(Q\)</span>网络，然后选择<span class="math inline">\(Q\)</span>值最大的那个作为action，实验结果表明如此粗糙的做法却大大提升了训练稳定性，且性能显著优于DDPG，有点尴尬……</p>
 <p>总结一下，如果我们面对的问题是连续控制任务，action维度又不高，可以尝试用DDPG解决，但也不要忘了离散化动作空间并用DQN训练得到更高性能的可能性。如果action维度很高，那还是别用DDPG的好。如果数据很“贵”不得不用off-policy方法的话，那就向Google学习，拿掉policy网络，直接用Q网络+启发式搜索选择action。如果数据廉价又追求高性能，我推荐用A3C框架——个人比较偏爱的一种框架。</p>
 <h2 id="a3c">A3C</h2>
-<p><img src="https://raw.githubusercontent.com/Su-Lemon/sources/master/imgs/blog/20210225142104.png" /></p>
+<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225142104.png" /></p>
 <p>喜爱A3C的原因很简单，它带给我的成功经验最多。A3C是Actor-Critic框架A2C的扩展。A2C脱胎于经典的REINFORCE梯度方法，其policy输出的不是action，而是关于action的概率分布，因此梯度无法直接从Critic（又称为V网络）流到policy网络，只能用在线样本统计出一个近似梯度。原始REINFORCE梯度形式如 <span class="math inline">\(V(s)\nabla logπ(a|s)\)</span> ，直观解释就是使状态 <span class="math inline">\(s\)</span> 下返回高 <span class="math inline">\(V\)</span> 值的action出现概率更大。缺点是 <span class="math inline">\(V\)</span> 值绝对值不可控（与reward等因素有关），variance很大，造成训练不稳定。A2C把梯度改成 <span class="math inline">\(A(s,a)\nabla logπ(a|s)\)</span> ，<span class="math inline">\(A(s,a)\)</span> 是在线episode计算出的一对<span class="math inline">\(s,a\)</span>的Value值与当前<span class="math inline">\(V\)</span>网络估计值之差，并经过normalization操作，简单理解就是把 <span class="math inline">\(log\)</span> 前的部分做了一个居中 <span class="math inline">\(+\)</span> 归一化，variance降低，训练稳定性显著提升，这里的 <span class="math inline">\(A(s,a)\)</span> 称为 <span class="math inline">\(a\)</span> 在 <span class="math inline">\(s\)</span> 下的advantage，是A2C名字里的第一个‘A’。既然policy输出的是action概率分布，那么探索就很容易实现——按照这个分布采样即可，训练初期分布variance比较大，探索力度强，随着policy不断改善，分布variance越来越小，代表policy对所选action越来越自信，这就实现了对经验的利用。</p>
 <p>A3C在A2C的基础上增加了对并行采样的支持，从而有效利用多核资源，在不同CPU上并行运行不同的环境种子，显著提升了训练稳定性、收敛速度以及最终性能，A3C比A2C名字里多了一个‘A’，代表asynchronous的缩写。A3C支持多种action概率分布，如果action空间是DQN那样的离散集合，可以用Categorical分布；如果是像DDPG那样的多维连续分布，可以用Multivariate Gaussian分布，此外A3C还支持伯努利分布，如果action的每一维都是非此即彼的二值选项，或者one-hot向量太长想改用二进制表示，那就是它了。可见，A3C在通用性上是显著优于DQN和DDPG的，几乎所有任务都能拿A3C跑一跑。此外，A3C作为on-policy方法，每次更新policy的梯度都由当前policy采集的样本计算，这使得A3C在Multi-agent任务里对环境不稳定性的抵抗能力比DQN和DDPG更强。</p>
 <p>和很多paper的实验结果一致，笔者在实际应用中发现A3C+PPO的组合（PPO是一种稳定训练的算法，笔者会在训练篇详细介绍）在连续控制任务里性能显著优于DDPG，对超参数的敏感度也比DDPG低，因此训练起来更加得心应手。因此，笔者推荐在解决连续任务时首选A3C，资源不够就A2C，DDPG的优先级往后放就是了。很多离散action空间的任务也值得用A3C跑一下，跟DQN比一比。</p>
@@ -503,7 +503,7 @@ loss = (r + \gamma \max\limits_{a&#39;}Q(s&#39;,a&#39;)-Q(s,a))^2
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
- <script src="/blog/js/app.js?v=1616497112563"></script>
+ <script src="/blog/js/app.js?v=1616506927760"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
