@@ -100,10 +100,12 @@
 }
 article {
   color: #444;
-  font-family: microsoft yahei;
+  font-family: 'microsoft yahei', 'Times New Roman', 'STHeiti';
 }
 article p {
-  line-height: 24px;
+  line-height: 28px;
+  font-family: 'microsoft yahei', 'Times New Roman', 'STHeiti';
+  font-size: 18px;
 }
 article code {
   background-color: rgba(27,31,35,0.05);
@@ -271,6 +273,12 @@ article h6 {
 article h4:before,
 article h5:before,
 article h6:before {
+  display: inline-block;
+  width: 1em;
+  content: '+';
+  color: #ff4e6a;
+}
+article h3:before {
   display: inline-block;
   width: 1em;
   content: '#';
