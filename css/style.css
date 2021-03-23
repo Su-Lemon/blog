@@ -122,15 +122,13 @@ article code::-webkit-scrollbar-thumb {
   background-color: #888;
 }
 article pre {
+  font-family: "Consolas", "Monaco";
+  font-size: 16px;
   border-radius: 15px;
   overflow: hidden;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-  margin: 25px 0;
-  padding: 15px;
   position: relative;
-  background: #282c34;
-  line-height: 1.3em;
 }
 article pre::before {
   background: #282c34;
