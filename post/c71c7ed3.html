@@ -23,7 +23,7 @@
 <meta property="og:description" content="ffmpeg 是一个快速的音视频转码器，并且可是从实时的音视频源中抓取数据。他可以通过一个高质量的多相滤波器转换任意音频的采样频率，缩放任意视频的尺寸。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-22T05:00:21.000Z">
-<meta property="article:modified_time" content="2021-03-23T12:48:23.096Z">
+<meta property="article:modified_time" content="2021-03-23T13:46:59.538Z">
 <meta property="article:author" content="SuSu">
 <meta property="article:tag" content="Tools">
 <meta property="article:tag" content="FFmpeg">
@@ -35,7 +35,7 @@
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2432472_9kqdqg64gbn.css">
   
-  <link rel="stylesheet" href="/blog/css/style.css?v=1616506927742">
+  <link rel="stylesheet" href="/blog/css/style.css?v=1616508856397">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -309,8 +309,8 @@
   
   <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
     <a><i class="nexmoefont icon-calendar-fill"></i>2021年03月22日</a>
-    <a><i class="nexmoefont icon-areachart"></i>5.9k 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 25 分钟</a>
+    <a><i class="nexmoefont icon-areachart"></i>6k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 26 分钟</a>
 </div>
 
   <div class="nexmoe-post-right">
@@ -320,7 +320,7 @@
             <div class="nexmoe-toc">
                 
                 
-                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">视频处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E8%A7%88"><span class="toc-number">2.</span> <span class="toc-text">总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-number">3.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E"><span class="toc-number">4.</span> <span class="toc-text">详细说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%A4%E6%B3%A2"><span class="toc-number">4.1.</span> <span class="toc-text">滤波</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%BB%84"><span class="toc-number">4.1.1.</span> <span class="toc-text">简单滤波器组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%BB%84"><span class="toc-number">4.1.2.</span> <span class="toc-text">复杂滤波器组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E6%8B%B7%E8%B4%9D"><span class="toc-number">4.2.</span> <span class="toc-text">流拷贝</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E9%80%89%E6%8B%A9"><span class="toc-number">5.</span> <span class="toc-text">流选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E9%A1%B9"><span class="toc-number">6.</span> <span class="toc-text">选项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E6%8C%87%E7%A4%BA%E7%AC%A6"><span class="toc-number">6.1.</span> <span class="toc-text">流指示符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E9%80%89%E9%A1%B9"><span class="toc-number">6.2.</span> <span class="toc-text">通用选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#avoptions"><span class="toc-number">6.3.</span> <span class="toc-text">AVOptions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E9%80%89%E9%A1%B9"><span class="toc-number">6.4.</span> <span class="toc-text">主要选项</span></a></li></ol></li></ol>
+                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">1.</span> <span class="toc-text">常用指令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A7%86%E9%A2%91%E5%A4%84%E7%90%86"><span class="toc-number">1.1.</span> <span class="toc-text">视频处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">图像处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E8%A7%88"><span class="toc-number">2.</span> <span class="toc-text">总览</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E"><span class="toc-number">3.</span> <span class="toc-text">说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E8%AF%B4%E6%98%8E"><span class="toc-number">4.</span> <span class="toc-text">详细说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%A4%E6%B3%A2"><span class="toc-number">4.1.</span> <span class="toc-text">滤波</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%BB%84"><span class="toc-number">4.1.1.</span> <span class="toc-text">简单滤波器组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E6%BB%A4%E6%B3%A2%E5%99%A8%E7%BB%84"><span class="toc-number">4.1.2.</span> <span class="toc-text">复杂滤波器组</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E6%8B%B7%E8%B4%9D"><span class="toc-number">4.2.</span> <span class="toc-text">流拷贝</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E9%80%89%E6%8B%A9"><span class="toc-number">5.</span> <span class="toc-text">流选择</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%80%89%E9%A1%B9"><span class="toc-number">6.</span> <span class="toc-text">选项</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E6%8C%87%E7%A4%BA%E7%AC%A6"><span class="toc-number">6.1.</span> <span class="toc-text">流指示符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E7%94%A8%E9%80%89%E9%A1%B9"><span class="toc-number">6.2.</span> <span class="toc-text">通用选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#avoptions"><span class="toc-number">6.3.</span> <span class="toc-text">AVOptions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E9%80%89%E9%A1%B9"><span class="toc-number">6.4.</span> <span class="toc-text">主要选项</span></a></li></ol></li></ol>
                 
             </div>
         </div>
@@ -372,6 +372,14 @@
 <li><p><code>-t 00:00:10</code> 表示剪辑的长度，即 10 秒钟。</p></li>
 </ul>
 <p>当然一段视频是可以在一个命令里同时进行剪辑、缩放、裁剪的，只需把相关的参数合在一起即可。</p></li>
+</ul>
+<h3 id="图像处理">图像处理</h3>
+<ul>
+<li><p><strong>调整图像大小</strong></p>
+<p>指定长宽： <code>ffmpeg -i input.jpg -vf scale=320:240 output_320x240.png</code></p>
+<p>指定长，高度按比例缩放： <code>ffmpeg -i input.jpg -vf scale=320:-1 output_320x240.png</code></p>
+<p>缩放为之前的两倍： <code>ffmpeg -i input.jpg -vf scale=iw*2:ih input_double_width.png</code></p>
+<p>缩放为之前的二分之一： <code>ffmpeg -i input.jpg -vf “scale=iw*.5:ih*.5” input_half_size.png</code> <code>ffmpeg -i input.jpg -vf “scale=iw/2:ih/2” input_half_size.png</code></p></li>
 </ul>
 <h2 id="总览">总览</h2>
 <pre><code>ffmpeg [global_options] &#123;[input_file_options] -i input_url&#125; ... &#123;[output_file_options] output_url&#125; ...</code></pre>
@@ -850,7 +858,7 @@ ffmpeg -cpuflags 0 ...</code></pre>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
- <script src="/blog/js/app.js?v=1616506927743"></script>
+ <script src="/blog/js/app.js?v=1616508856398"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
