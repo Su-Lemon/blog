@@ -409,7 +409,7 @@ article > ol > li::before {
   color: #ff4e6a;
 }
 article li {
-  line-height: 2rem;
+  line-height: 1.5rem;
 }
 article li p {
   margin: 0 !important;
