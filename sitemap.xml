@@ -2,133 +2,133 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://su-lemon.github.io/blog/post/c71c7ed3.html</loc>
+    <loc>http://example.com/post/c71c7ed3.html</loc>
     
     <lastmod>2021-03-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/post/46d87670.html</loc>
+    <loc>http://example.com/post/46d87670.html</loc>
     
     <lastmod>2021-03-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/post/6aa0d565.html</loc>
+    <loc>http://example.com/post/6aa0d565.html</loc>
     
     <lastmod>2021-03-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/post/d73b0d23.html</loc>
+    <loc>http://example.com/post/d73b0d23.html</loc>
     
     <lastmod>2021-03-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/post/63561af6.html</loc>
+    <loc>http://example.com/post/63561af6.html</loc>
     
     <lastmod>2021-03-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/post/82d3f6a1.html</loc>
+    <loc>http://example.com/post/82d3f6a1.html</loc>
     
     <lastmod>2021-03-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/post/3a9bccd9.html</loc>
+    <loc>http://example.com/post/3a9bccd9.html</loc>
     
     <lastmod>2021-03-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/post/b901f1b6.html</loc>
+    <loc>http://example.com/post/b901f1b6.html</loc>
     
     <lastmod>2021-03-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/post/5bd42e8c.html</loc>
+    <loc>http://example.com/post/5bd42e8c.html</loc>
     
     <lastmod>2021-03-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/about.html</loc>
+    <loc>http://example.com/about.html</loc>
     
     <lastmod>2021-03-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/post/d361f453.html</loc>
+    <loc>http://example.com/post/d361f453.html</loc>
     
     <lastmod>2021-03-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/post/cc4db011.html</loc>
+    <loc>http://example.com/post/cc4db011.html</loc>
     
     <lastmod>2021-03-23</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/post/73a19565.html</loc>
+    <loc>http://example.com/post/73a19565.html</loc>
     
     <lastmod>2021-03-17</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/post/223e533f.html</loc>
+    <loc>http://example.com/post/223e533f.html</loc>
     
     <lastmod>2021-03-16</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/post/835dea57.html</loc>
+    <loc>http://example.com/post/835dea57.html</loc>
     
     <lastmod>2021-02-25</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/post/62abf324.html</loc>
+    <loc>http://example.com/post/62abf324.html</loc>
     
     <lastmod>2021-02-25</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/post/56c2233b.html</loc>
+    <loc>http://example.com/post/56c2233b.html</loc>
     
     <lastmod>2021-02-25</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/PY.html</loc>
+    <loc>http://example.com/PY.html</loc>
     
     <lastmod>2021-02-24</lastmod>
     
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/archives.html</loc>
+    <loc>http://example.com/archives.html</loc>
     
     <lastmod>2021-02-17</lastmod>
     
@@ -136,7 +136,7 @@
   
 
   <url>
-    <loc>https://su-lemon.github.io/blog</loc>
+    <loc>http://example.com/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -144,133 +144,133 @@
 
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/GitHub/</loc>
+    <loc>http://example.com/tags/GitHub/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/Mac/</loc>
+    <loc>http://example.com/tags/Mac/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/Git/</loc>
+    <loc>http://example.com/tags/Hexo/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/Hexo/</loc>
+    <loc>http://example.com/tags/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/</loc>
+    <loc>http://example.com/tags/MacOS/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/Latex/</loc>
+    <loc>http://example.com/tags/Git/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/MacOS/</loc>
+    <loc>http://example.com/tags/Latex/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/Python/</loc>
+    <loc>http://example.com/tags/Python/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/</loc>
+    <loc>http://example.com/tags/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/GUI/</loc>
+    <loc>http://example.com/tags/GUI/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/RL/</loc>
+    <loc>http://example.com/tags/RL/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/algorithm/</loc>
+    <loc>http://example.com/tags/algorithm/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/PG/</loc>
+    <loc>http://example.com/tags/PG/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/AC/</loc>
+    <loc>http://example.com/tags/AC/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/</loc>
+    <loc>http://example.com/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/Tools/</loc>
+    <loc>http://example.com/tags/Tools/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/Tmux/</loc>
+    <loc>http://example.com/tags/Tmux/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/Shell/</loc>
+    <loc>http://example.com/tags/Shell/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/tags/FFmpeg/</loc>
+    <loc>http://example.com/tags/FFmpeg/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -279,56 +279,56 @@
 
   
   <url>
-    <loc>https://su-lemon.github.io/blog/categories/GitHub/</loc>
+    <loc>http://example.com/categories/GitHub/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/categories/Git/</loc>
+    <loc>http://example.com/categories/Hexo/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/categories/Hexo/</loc>
+    <loc>http://example.com/categories/Mac/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/categories/Latex/</loc>
+    <loc>http://example.com/categories/Git/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/categories/Mac/</loc>
+    <loc>http://example.com/categories/Latex/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/categories/Python/</loc>
+    <loc>http://example.com/categories/Python/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/categories/RL/</loc>
+    <loc>http://example.com/categories/RL/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.github.io/blog/categories/Tools/</loc>
+    <loc>http://example.com/categories/Tools/</loc>
     <lastmod>2021-03-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

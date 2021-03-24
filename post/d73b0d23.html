@@ -22,7 +22,7 @@
   <meta name="description" content="回报函数（reward）设计在DRL应用中是极其重要的一环，通过将任务目标具体化和数值化，reward就如同一种特殊语言，实现了目标与算法之间的沟通，算法工作者在这里面承担了翻译的角色，翻译的好坏体现了其对任务逻辑的理解深度，决定了agent最终是否能学到期望的技能，并直接影响算法的收敛速度和最终性能。结合上一篇的内容，我们知道DRL算法中reward负责引导神经网络挖掘状态信息中的决策相关因素并">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【RL落地方法论5】回报函数">
-<meta property="og:url" content="https://su-lemon.github.io/blog/post/d73b0d23.html">
+<meta property="og:url" content="http://example.com/post/d73b0d23.html">
 <meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
 <meta property="og:description" content="回报函数（reward）设计在DRL应用中是极其重要的一环，通过将任务目标具体化和数值化，reward就如同一种特殊语言，实现了目标与算法之间的沟通，算法工作者在这里面承担了翻译的角色，翻译的好坏体现了其对任务逻辑的理解深度，决定了agent最终是否能学到期望的技能，并直接影响算法的收敛速度和最终性能。结合上一篇的内容，我们知道DRL算法中reward负责引导神经网络挖掘状态信息中的决策相关因素并">
 <meta property="og:locale" content="zh_CN">
@@ -51,7 +51,7 @@
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2432472_9kqdqg64gbn.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1616554920499">
+  <link rel="stylesheet" href="/css/style.css?v=1616555487279">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -365,7 +365,7 @@
 <p>既然只有主线reward不行，我们接下来就要将原始任务目标进一步分解成子目标，并分别给予合理的奖励或惩罚，从而达到引导agent趋利避害提高主线事件发生概率的目的。学术界一般称该过程为credit assignment，credit意译过来就是功劳，说的是某个子目标在达成总目标的过程中起了多大作用，是正向作用还是负向作用。这些子目标对应的reward可以称之为辅助reward，它们使reward不再稀疏。通常情况下，<strong>为了保证主线奖励的核心地位和吸引力，各种辅助reward的绝对值都设得相对较小，以免喧宾夺主</strong>。</p>
 <h3 id="目标分解实例">目标分解实例</h3>
 <p>Agent在环境中探索时需要获得反馈，即刚刚的决策好不好，反馈越及时学得越快，理想情况是每一步都有反馈。还以小车导航到终点的应用为例，除了抵达终点+10分，如果每次靠近终点也+1分，那么小车在抵达终点之前就学会主动靠近终点，这样探索到抵达终点的概率也大大提高了，DRL算法收敛速度自然会加快。</p>
-<p>除了抵达终点，小车还要避免与障碍物和其他小车发生碰撞，我们还要对碰撞事件做出惩罚。为了使agent更好地学会避免碰撞，我们除了对已经发生的碰撞事件给予惩罚，还可以再增加一个预防式的靠近惩罚，并利用状态空间里的直接相关信息——与最近邻居的距离，提高算法学习效率，具体可以参考<a href="https://su-lemon.github.io/blog/post/63561af6.html">状态空间篇</a>。</p>
+<p>除了抵达终点，小车还要避免与障碍物和其他小车发生碰撞，我们还要对碰撞事件做出惩罚。为了使agent更好地学会避免碰撞，我们除了对已经发生的碰撞事件给予惩罚，还可以再增加一个预防式的靠近惩罚，并利用状态空间里的直接相关信息——与最近邻居的距离，提高算法学习效率，具体可以参考<a target="_blank" rel="noopener" href="https://su-lemon.github.io/blog/post/63561af6.html">状态空间篇</a>。</p>
 <p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225213423.png" /></p>
 <p>辅助reward的设计建立在对任务逻辑的深刻分析和理解之上，有很多细节都会对最终目标的实现产生正向或负向的影响，值得我们深入挖掘。比如，为了使小车尽快到达终点，就要求少绕路，而绕路的典型表现是转弯多，于是可以增加对转弯的惩罚。类似这样的链式思考有助于找到更好的辅助reward，帮助降低学习难度和提升最终性能。</p>
 <p>此外，由于将最终目标分解成了子目标，在设计对应辅助reward时往往很容易找到与之即时联动的直接相关状态信息，或者相关性较强的间接相关信息。事实上，我们每设计一个reward项，就应该回过头去检查状态空间中是否包含了直接或间接相关信息，已经包含的信息是否足够直接高效，有没有改进的空间。</p>
@@ -409,7 +409,7 @@
     
   <div class="nexmoe-post-copyright">
     <strong>本文作者：</strong>SuSu<br>
-    <strong>本文链接：</strong><a href="https://su-lemon.github.io/blog/post/d73b0d23.html" title="https:&#x2F;&#x2F;su-lemon.github.io&#x2F;blog&#x2F;post&#x2F;d73b0d23.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;su-lemon.github.io&#x2F;blog&#x2F;post&#x2F;d73b0d23.html</a><br>
+    <strong>本文链接：</strong><a href="http://example.com/post/d73b0d23.html" title="http:&#x2F;&#x2F;example.com&#x2F;post&#x2F;d73b0d23.html" target="_blank" rel="noopener">http:&#x2F;&#x2F;example.com&#x2F;post&#x2F;d73b0d23.html</a><br>
     
       <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
     
@@ -537,7 +537,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
- <script src="/js/app.js?v=1616554920500"></script>
+ <script src="/js/app.js?v=1616555487280"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
