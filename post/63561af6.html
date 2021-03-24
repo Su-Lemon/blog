@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>【RL落地方法论4】状态空间 - 爱吃猫的小鱼干的 Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+    <!-- Site Verification -->
+    
+        <meta name="google-site-verification" content="tE-0DY7ep02Gyi-x9Q4QpuOhofuAEWa3QWrzBXLLHnk" />
+    
+        <meta name="google-site-verification" content="zgLg9-wvfHmxSHnfimcW10Mf9EO6uKCZGPMpRNXQNXo" />
+    
+
+
+    <!-- Site Verification -->
+    
+        <meta name="baidu-site-verification" content="code-99DmpaRiYX" />
+    
+
+  <link rel="shortcut icon" href="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/favicon1.png" type="image/png" />
+  <meta name="description" content="DRL的状态信息代表了agent所感知到的环境信息，以及因自身的action带来的变化。状态信息是agent制定决策和评估其长期收益的依据，而状态设计的好坏直接决定了DRL算法能否收敛、收敛速度以及最终性能，兹事体大，不可不察。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【RL落地方法论4】状态空间">
+<meta property="og:url" content="https://su-lemon.gitee.io/post/63561af6.html">
+<meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
+<meta property="og:description" content="DRL的状态信息代表了agent所感知到的环境信息，以及因自身的action带来的变化。状态信息是agent制定决策和评估其长期收益的依据，而状态设计的好坏直接决定了DRL算法能否收敛、收敛速度以及最终性能，兹事体大，不可不察。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-01caa34cfa02775aea2338356345965f_1440w.png">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-693ce767b89268e291f373e7f1baa443_1440w.jpg">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210221220441.png">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210221220745.png">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210221220554.png">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B0%7D%2Cy_%7B0%7D%5Cright%29">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B1%7D%2Cy_%7B1%7D%5Cright%29">
+<meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B1%7D-x_%7B0%7D%2Cy_%7B1%7D-y_%7B0%7D%5Cright%29">
+<meta property="article:published_time" content="2020-11-15T05:34:04.000Z">
+<meta property="article:modified_time" content="2021-03-23T13:38:12.825Z">
+<meta property="article:author" content="SuSu">
+<meta property="article:tag" content="RL">
+<meta property="article:tag" content="方法论">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic4.zhimg.com/80/v2-01caa34cfa02775aea2338356345965f_1440w.png">
+  <!-- <link rel="stylesheet" href="//cdn.jsdelivr.net/combine/npm/highlight.js@9.15.8/styles/atom-one-dark.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/mdui_043tiny/css/mdui.css,gh/theme-nexmoe/hexo-theme-nexmoe@latest/source/lib/iconfont/iconfont.css,gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css?v=233" crossorigin> -->
+  <!-- <link href="https://gitee.com/Su-Lemon/sources/blob/master/css/blog_style.min.css"> -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/Su-Lemon/sources/css/blog.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
+  
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2432472_9kqdqg64gbn.css">
+  
+  <link rel="stylesheet" href="/css/style.css?v=1616574549951">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/effects/jquery-3.1.1.min.js"></script>
+  <!--鼠标点击烟花爆炸效果，需要引入jQuery-->
+  
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/effects/firework1.js"></script>
+  
+
+  <a target="_blank" rel="noopener" href="https://github.com/Su-Lemon" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/background0.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="SuSu" class="mdui-btn mdui-btn-icon"><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/avatar0.png" alt="SuSu"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="SuSu">
+            <img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/avatar0.png" alt="SuSu" alt="SuSu">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>16</div>
+        <div><span>标签</span>19</div>
+        <div><span>分类</span>8</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <!-- 站内搜索，需要引入jQuery -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/functions/search.js"></script>
+    <aside id="nexmoe-sidebar">
+  
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://su-lemon.gitee.io/apps/BVH_player.html" target="_blank" mdui-tooltip="{content: 'BVH-Player'}" style="color: rgb(243, 81, 11);background-color: rgba(243, 81, 11, .1);">
+            <i class="nexmoefont icon-app"></i>
+        </a>
+    </div>
+</div>
+  
+    <!-- 谷歌/百度搜索 -->
+<!-- <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:su-lemon.github.io/blog" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div> -->
+
+<!-- 站内搜索 -->
+<div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search" >
+        <form id="search-form">
+            <label><input type="text" id="local-search-input" name="q" results="0" placeholder="站内搜索" class="input form-control" autocomplete="off" autocorrect="off"/></label>
+            <!-- 清空/重置搜索框 -->
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+        </form>
+    </div>
+    <div id="local-search-result"></div> <!-- 搜索结果区 -->
+    <!-- <p class='no-result'></p> 无匹配时显示，注意在 CSS 中设置默认隐藏 -->
+</div>
+
+  
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://jq.qq.com/?_wv=1027&k=MivHmcOi" target="_blank" mdui-tooltip="{content: 'QQ群'}" style="color: rgb(249, 174, 8);background-color: rgba(249, 174, 8, .1);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="https://space.bilibili.com/76586290" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/Su-Lemon/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Git/">Git</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/GitHub/">GitHub</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Hexo/">Hexo</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Latex/">Latex</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Mac/">Mac</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Python/">Python</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/RL/">RL</a>
+          <span class="category-list-count">7</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Tools/">Tools</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/AC/" style="font-size: 10px;">AC</a> <a href="/tags/FFmpeg/" style="font-size: 10px;">FFmpeg</a> <a href="/tags/GUI/" style="font-size: 10px;">GUI</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Latex/" style="font-size: 10px;">Latex</a> <a href="/tags/Mac/" style="font-size: 13.33px;">Mac</a> <a href="/tags/MacOS/" style="font-size: 10px;">MacOS</a> <a href="/tags/PG/" style="font-size: 10px;">PG</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RL/" style="font-size: 20px;">RL</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Tmux/" style="font-size: 10px;">Tmux</a> <a href="/tags/Tools/" style="font-size: 13.33px;">Tools</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">博客部署</a> <a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" style="font-size: 16.67px;">方法论</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">编程实践</a>
+    </div>
+    
+  </div>
+
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/post/c71c7ed3.html">【Tools-FFmpeg】FFmpeg一个快速的音视频处理器</a>
+          </li>
+        
+          <li>
+            <a href="/post/73a19565.html">【Latex】数学符号-代码对照表</a>
+          </li>
+        
+          <li>
+            <a href="/post/223e533f.html">【Git】rebase</a>
+          </li>
+        
+          <li>
+            <a href="/post/6aa0d565.html">【RL落地方法论6】模型训练</a>
+          </li>
+        
+          <li>
+            <a href="/post/56c2233b.html">【Python编程】GUI编程tkinter基础，并实现一个目录树遍历工具</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 SuSu
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/Su-Lemon" target="_blank">Su-Lemon</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 50%;"> 
+          <img data-src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/cover/cover7.png" data-sizes="auto" alt="【RL落地方法论4】状态空间" class="lazyload">
+          <h1>【RL落地方法论4】状态空间</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2020年11月15日</a>
+    <a><i class="nexmoefont icon-areachart"></i>4.2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 17 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                
+                
+                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%AE%BE%E8%AE%A1%E7%9A%84%E5%9B%9B%E4%B8%AA%E6%AD%A5%E9%AA%A4"><span class="toc-number">2.</span> <span class="toc-text">状态设计的四个步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%BB%E5%8A%A1%E5%88%86%E6%9E%90"><span class="toc-number">2.1.</span> <span class="toc-text">任务分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF%E7%AD%9B%E9%80%89"><span class="toc-number">2.2.</span> <span class="toc-text">相关信息筛选</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF"><span class="toc-number">2.2.1.</span> <span class="toc-text">直接相关信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%97%B4%E6%8E%A5%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF"><span class="toc-number">2.2.2.</span> <span class="toc-text">间接相关信息</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E4%BF%A1%E6%81%AF%E9%A2%84%E5%A4%84%E7%90%86"><span class="toc-number">2.2.3.</span> <span class="toc-text">相关信息预处理</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BB%9F%E4%B8%80%E6%80%A7%E8%80%83%E8%99%91"><span class="toc-number">2.3.</span> <span class="toc-text">统一性考虑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BD%A2%E5%BC%8F%E7%BB%9F%E4%B8%80"><span class="toc-number">2.3.1.</span> <span class="toc-text">形式统一</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%80%BB%E8%BE%91%E7%BB%9F%E4%B8%80"><span class="toc-number">2.3.2.</span> <span class="toc-text">逻辑统一</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%88%E6%9E%9C%E9%AA%8C%E8%AF%81"><span class="toc-number">2.4.</span> <span class="toc-text">效果验证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%A8%A1%E4%BB%BF%E5%AD%A6%E4%B9%A0%E9%AA%8C%E8%AF%81"><span class="toc-number">2.4.1.</span> <span class="toc-text">模仿学习验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E9%AA%8C%E8%AF%81"><span class="toc-number">2.4.2.</span> <span class="toc-text">直接验证</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%BA%E7%9C%81%E9%AA%8C%E8%AF%81"><span class="toc-number">2.4.3.</span> <span class="toc-text">缺省验证</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+                
+            </div>
+        </div>
+      </div>
+    
+  </div>
+
+  <article>
+    <p>DRL的状态信息代表了agent所感知到的环境信息，以及因自身的action带来的变化。状态信息是agent制定决策和评估其长期收益的依据，而状态设计的好坏直接决定了DRL算法能否收敛、收敛速度以及最终性能，兹事体大，不可不察。</p>
+<a id="more"></a>
+<h2 id="前言">前言</h2>
+<p>DRL的状态信息代表了agent所感知到的环境信息，以及因自身的action带来的变化。状态信息是agent制定决策和评估其长期收益的依据，而状态设计的好坏直接决定了DRL算法能否收敛、收敛速度以及最终性能，兹事体大，不可不察。通常在一些公共平台，如Gym，大部分domain的状态空间都是现成的，学者们在上边比的是谁的算法收敛快、性能好；然而，在实际项目中，状态空间设计工作却要自己来，根据我的个人经验，增加一个优秀的新状态信息所带来的性能提升明显高于其他方面的工作（如调参），性价比非常高，因此状态空间的优化工作几乎贯彻项目始终。</p>
+<p>大家注意到我多次使用“设计”这个词，这不就是特征工程（feature engineering）嘛，9102年都快过完了，怎么还搞这一套？直接上深度神经网络呀！真要那么简单就好了……把所有原始信息一股脑堆砌起来，让神经网络去挑选其中有用的成分并学习它们与决策间的相关性，原理上是没毛病的，可端到端的DRL学习效率实在不太给力，比有监督学习差老远了，即使经过大量训练神经网络能够最终提取到有用信息，因为训练时间的延长也会导致算法实用性的下降。更糟糕的是，一些不相关的干扰信息还会起到反作用。因此，要想在可控时间内得到比较好的policy，的确需要人为筛选出一些好的状态信息，可以是raw information，也可以是经过二次加工的信息，帮助神经网络更轻松准确地建立起决策相关性。</p>
+<h2 id="状态设计的四个步骤">状态设计的四个步骤</h2>
+<p>那么具体该如何做呢？我把状态空间设计的精髓总结成以下4个步骤：<strong>任务分析，相关信息筛选，统一性考虑，效果验证</strong>。</p>
+<h3 id="任务分析">任务分析</h3>
+<p>任务分析是状态设计的灵魂，好的状态信息建立在对任务逻辑的深入理解之上。客户提出最终目标，优秀的算法工程师需要把这个目标进一步分解，研究该目标的本质是什么，要实现它涉及到哪些重要环节，每个环节有哪些影响因素，每个因素又由哪些信息体现。对任务逻辑的深入分析也有助于我们设计优秀的回报函数（reward），并反哺状态空间的设计。对一个复杂任务的理解，除非天赋异禀或者相关经验丰富，一般都是要经过一段时间的摸爬滚打后才会深入到一定程度，期间还可能不断推翻之前的错误认知，更伴随瞬间顿悟的喜悦，因此要保持足够的耐心。</p>
+<figure>
+<img data-fancybox="gallery" data-sizes="auto" data-src="https://pic4.zhimg.com/80/v2-01caa34cfa02775aea2338356345965f_1440w.png" alt="img" class="lazyload"><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>为了便于说明，这里引入一个简单任务场景：在一个遍布障碍物的平面区域内有若干辆小车在随机位置待命，现在要求它们以最短时间行驶到各自的终点位置停下来，期间避免与障碍物或者其他小车发生碰撞。我们可以把上述目标分解成三部分：1.达到终点，2.避免碰撞，3.用时短。到达终点要求小车知道自己在哪，还要知道终点在哪；避免碰撞要求小车知道附近障碍物的位置，自己和周围其他小车的位置及运动状态；用时短要求小车少绕路，行驶速度快，尽量避免减速和刹车。</p>
+<h3 id="相关信息筛选">相关信息筛选</h3>
+<p>带着以上分析，我们就可以进入下一个环节——相关信息筛选。顾名思义，就是在所有可用信息中找出与任务目标、子目标有关的那些。我们都知道RL任务逻辑最终是以回报函数（reward）为载体呈现的，而RL算法优化的则是该reward系统下的长期累计收益。神经网络的作用是将原始状态信息经过层层非线性提炼后转化为与长期收益高度关联的形式，并进一步指导生成action决策。理想情况下，状态空间应该完全由筛选出的相关信息组成。某个状态信息所代表的事件在越短时间内得到反馈，神经网络就越容易学会如何对其进行加工并建立起决策相关性。按照这个反馈时间的长短，我们还可以粗略地将这些相关信息分为直接相关信息和间接相关信息。</p>
+<h4 id="直接相关信息">直接相关信息</h4>
+<p>所谓直接相关信息，就是与某个reward奖励项或惩罚项即时联动的信息。比如为了更有效地避免小车之间发生碰撞，回报函数里设计了“最近小车距离反比”惩罚项 <span class="math inline">\(-\alpha\cdot max(D-d_{min})\)</span> ，其中 <span class="math inline">\(D\)</span> 是靠近惩罚阈值，当agent与周围最近小车距离 <span class="math inline">\(d_{min}\)</span> 小于 <span class="math inline">\(D\)</span> 时，即开始反比惩罚，靠得越近罚得越多。这里的 <span class="math inline">\(d_{min}\)</span> 相对于该惩罚项就属于直接相关信息，agent在每一步都能收到与 <span class="math inline">\(d_{min}\)</span> 线性相关的反馈，很容易建立起决策相关性。再举一个例子，我们希望小车在电量不足时主动停止工作转而去指定地点充电，除了在reward中设置电量不足的惩罚项，同时也应该在状态空间中增加当前剩余电量，小于设定阈值时即在每步做惩罚。这也属于直接相关信息，没有这个信息，小车是无法建立起电量不足与该惩罚的相关性的，也就无从学会主动去充电。</p>
+<figure>
+<img data-fancybox="gallery" data-sizes="auto" data-src="https://pic4.zhimg.com/80/v2-693ce767b89268e291f373e7f1baa443_1440w.jpg" alt="img" class="lazyload"><figcaption aria-hidden="true">img</figcaption>
+</figure>
+<p>直接相关信息不仅对DRL算法学习很友好，在有对口reward奖励/惩罚项的前提下，对算法工作者来说也更容易设计。事实上，DRL的状态空间设计往往和reward设计同时进行，为了达到某个目的需要增加一项奖励/惩罚，并相应增加一个或多个直接相关状态信息，帮助模型识别现象与反馈之间的因果关系，这一设计理念很直观也很有效。</p>
+<h4 id="间接相关信息">间接相关信息</h4>
+<p>间接相关信息指的是reward中没有即时联动项的状态信息，其所代表的事件需要一段时间后才得到反馈。相对于直接相关信息，DRL利用它们建立决策相关性的难度更高，学习效率更差。比如下图中的游戏画面，agent要通关必须先吃钥匙，假如reward没有专门设置“吃钥匙”的奖励项，那么吃钥匙的好处要等到通关的时候才能体现出来。</p>
+<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210221220441.png" /></p>
+<p>再比如小车要学会到达终点，当前位置坐标、朝向、速度、加速度、终点坐标、周围障碍物的分布似乎都与到达终点这一目标有关，假如我们暂时没有针对这个目标做更细化的credit assignment，而只设置了到达终点奖励，那么这些信息就都属于间接相关信息，agent只有经过充分探索后才能发现某时刻这些信息的变化与最终达到终点之间的联系。</p>
+<p>间接相关信息通过某些手段可以转化为直接相关信息，从而提高DRL的学习效率。最简单的方法是对任务目标做更详细的credit assignment并增加相应的reward奖励/惩罚项，如果某状态信息恰好与之即时联动，相应状态信息就成为了直接相关信息。还以小车为例，如果在reward中增加靠近终点奖励或远离终点惩罚，那么小车的朝向（配合小车当前坐标和终点坐标）就成为了直接相关信息。更多关于reward函数设计的内容我在下一篇中再详细介绍。</p>
+<h4 id="相关信息预处理">相关信息预处理</h4>
+<p>无论是直接相关还是间接相关，原始信息都要经过神经网络的提炼才能转化为action输出，提炼难度与学习效率和最终性能呈反向相关。如果我们提前对原始信息做些二次加工，人为提炼出与学习目标更相关的因素，相当于替神经网络干了一部分活儿，虽然不那么elegant，但往往能收到奇效。举个极端例子，直接告诉agent钥匙的相对坐标在哪儿，一定比神经网络通过原始图像更容易学到吃钥匙的操作。由于强化学习的优化目标是折扣累加的长期收益，这使得reward起作用的方式较为间接，无法像有监督学习那样为神经网络的feature extraction提供很好的指导，这也是DRL训练效率低下的根本原因。因此，我们在状态空间上多下一点功夫，DRL学习的难度就降低一点。在资源有限的情况下这很有可能就是训不出来和训得出来的区别，也有可能是性能不达标与性能达标的区别。</p>
+<h3 id="统一性考虑">统一性考虑</h3>
+<p>当我们已经筛选出了所有相关信息，接下来该以何种形式使用它们呢？把他们拉成一组向量塞到神经网络里行不行？当然可以，但那样做只能得到适用于当前特定场景的policy。比如状态信息中包含了其他小车的信息，则训练出的policy只适合特定数量小车的任务，假如车数增加或减少，输入向量维度随之变化，policy就没法用了。因此，我们必须合理设计状态信息使其对环境主要因素的改变有最起码的兼容性，我把它称之为统一性考虑。具体地，这里的统一性又包含形式统一和逻辑统一。</p>
+<h4 id="形式统一">形式统一</h4>
+<p>为了保证输入向量长度恒定，我们需要找到一种统一形式把不同信息填到对应的位置。比如小车周围装了一圈测距雷达，按固定顺序输出一维距离向量，那么无论把小车放到什么地方，这些信息所代表的含义也不会变；或者采用imagelike的状态表示方式，把地图信息网格化，无论是作为二维channel或拉成一维向量，都能保持外在形式的统一。</p>
+<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210221220745.png" /></p>
+<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210221220554.png" /></p>
+<p>针对上述第二种方案，为了将信息离散化到网格点上，不可避免地会带来精度损失。但在实际应用中，只要网格尺寸合理，这样的精度损失是可以接受的。事实上，离散化操作本身会在一定程度上降低学习难度从而带来性能的提升，有paper报告在Montezuma's Revenge游戏里通过离散化agent和环境的信息，DRL模型性能不仅没有下降，反倒提升了30%多。</p>
+<h4 id="逻辑统一">逻辑统一</h4>
+<p>状态空间只做到外在形式统一是不够的。比如我们把小车当前位置 <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B0%7D%2Cy_%7B0%7D%5Cright%29" alt="[公式]" class="lazyload"> 和终点位置坐标 <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B1%7D%2Cy_%7B1%7D%5Cright%29" alt="[公式]" class="lazyload"> 作为状态信息同时输入网络，按照DRL的过拟合天性，神经网络最终会记住这张地图每个坐标处的特征以及在这里通行的最佳路线，policy在这幅地图里测试性能会很高，但换幅地图就完全不能用了。通常情况下，我们并不希望DRL用这种方式获得高性能，而是希望它能学会应对不同地形的通用知识，即使换张地图也至少能达到“勉强能用”的地步，再通过在新地图中finetune即可快速具备实用价值。因此，更合理的方式是将两个绝对坐标合并为一个相对坐标<img data-fancybox="gallery" data-sizes="auto" data-src="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B1%7D-x_%7B0%7D%2Cy_%7B1%7D-y_%7B0%7D%5Cright%29" alt="[公式]" class="lazyload"> ，即终点位置在小车坐标系中的坐标，这样就可以使policy与具体地图“脱钩”，从而学习到更加通用的导航知识。可见，<strong>要想让网络学到我们希望它学到的知识，前提是输入正确形式的状态信息</strong>。</p>
+<p>再说回上一节的自动充电任务，如果输入的是绝对电量，而不包含低电量阈值（预警电量），DRL模型需要通过大量探索，根据当前电量与是否被惩罚的经验去摸索出预警电量是多少，并用于指导action的生成。这个隐性阈值会固化到网络参数中，如果客户后续希望提升预警电量，policy就又要用新阈值重新训练了。为了避免这种情况，我们可以把绝对电量改为相对电量（绝对电量/预警电量），能够直接反映当前电量与预警电量的关系，即使预警电量被改变也不影响模型的使用，因为此时固化到网络参数中的知识不再是某个电量阈值而是比例阈值。</p>
+<h3 id="效果验证">效果验证</h3>
+<p>当我们设计好状态空间或对原状态空间进行修改后，接下来需要通过实验验证其是否达到预期效果。验证方法可以分为三类：模仿学习验证，直接验证和缺省验证。</p>
+<h4 id="模仿学习验证">模仿学习验证</h4>
+<p>如果项目已经有一个较好的baseline，可以搭建一个policy网络，专门模仿该baseline在各种状态下的action，如果状态中包含了正确决策所需的相关信息，那么得到的policy性能就会越接近baseline。考虑到有监督学习的高效性，这是验证状态信息有效性的一种较快方式，尤其适用于项目初期一片懵懂的时候。</p>
+<h4 id="直接验证">直接验证</h4>
+<p>如果没有这样的baseline，那就只能用直接验证了，即用DRL训练一个policy并验证其效果。为了提升效率，可以只比较训练中途（固定步数、固定数据量）的性能，因为一般情况下好状态和差状态的won-lost关系在较早的时候就确定了。另外由于DQN收敛速度相对较快，可以优先考虑用来验证新状态。</p>
+<h4 id="缺省验证">缺省验证</h4>
+<p>当我们已经训练得到一个不错的policy时，可以用缺省的方式验证每个状态信息的作用大小，即正常输入其他信息，而将目标信息取合理区间内的定值（如区间中点），测试性能损失的百分比。损失越大说明该状态信息越关键，反之则说明作用越边缘化，有时候甚至会发现性能不降反升，说明该信息有干扰作用，还是去掉的好。缺省验证的意义在于，剔除那些无用或起反作用的状态，为进一步优化关键状态和弱作用状态提供指导。</p>
+<h2 id="总结">总结</h2>
+<p>与学术研究不同，在DRL落地工作中，状态空间设计是如此的重要，所以我用了很长的篇幅探讨了其中各种细节。此外，尽管我已经十分克制，但仍然不得不引入了大量关于回报函数（reward）的描述和设计理念，这是因为在实践中，状态空间和回报函数的设计几乎是水乳交融的，很难做到泾渭分明，往往修改了其中一个，另一个也需要相应做出改变。在下一篇中，我将集中介绍回报函数的设计，当然难免也会涉及到一些状态空间设计的内容，总之，一起服用效果更佳~</p>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>SuSu<br>
+    <strong>本文链接：</strong><a href="https://su-lemon.gitee.io/post/63561af6.html" title="https:&#x2F;&#x2F;su-lemon.gitee.io&#x2F;post&#x2F;63561af6.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;su-lemon.gitee.io&#x2F;post&#x2F;63561af6.html</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/RL/">RL</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/RL/" rel="tag">RL</a> <a class="nexmoefont icon-tag-fill -none-link" href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" rel="tag">方法论</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/effects/md5.min.js"></script>
+<div id="gitalk"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    // var gitalk = new Gitalk({
+    //   clientID: '2543206578680a1bdf99',
+    //   clientSecret: '24e25a0277329218d91186c354b4a9d3ec9eaf29',
+    //   repo: 'gittalk-comments',
+    //   owner: 'Su-Lemon',
+    //   admin: 'Su-Lemon',
+    //   id: 'location.pathname',
+    //   labels: 'Gitalk'.split(',').filter(l => l),
+    // //   perPage: '15',
+    //   pagerDirection: 'last',
+    //   createIssueManually: 'true',
+    //   distractionFreeMode: 'false'
+    // })
+    idCfg = "2543206578680a1bdf99"
+    secretCfg = "24e25a0277329218d91186c354b4a9d3ec9eaf29"
+    repoCfg = "gittalk-comments"
+    ownerCfg = "Su-Lemon"
+    adminCfg = "Su-Lemon"
+    var gitalk = new Gitalk({
+      clientID: idCfg,
+      clientSecret: secretCfg,
+      repo: repoCfg,
+      owner: ownerCfg,
+      admin: adminCfg,
+      id: md5(location.pathname),
+      labels: ['Gitalk'],
+      perPage: 15,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      distractionFreeMode: false
+    })
+    gitalk.render('gitalk')
+</script>
+    
+</section>
+
+  </div>
+</div>
+
+
+  
+  <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <!-- 给MathJax元素添加has-jax class -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        Tex: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+        "HTML-CSS": {linebreaks: {automatic: true}},
+        SVG: {linebreaks: {automatic: true}}
+    });
+  </script>
+  <!-- 通过连接CDN加载MathJax的js代码 -->
+  <script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+
+
+
+        <div class="nexmoe-post-right">
+          
+            <div class="nexmoe-fixed">
+              <div class="nexmoe-tool">
+                <a href="#" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+              </div>
+            </div>
+          
+        </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ <script src="/js/app.js?v=1616574549951"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+  
+
+
+
+
+
+    <!-- baidu Analytics -->
+<script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?539439c58f0ce65ba27b965cac9accab';
+    var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</body>
+
+</html>
