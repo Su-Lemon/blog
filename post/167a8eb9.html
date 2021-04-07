@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>【RL】深度强化学习、免模型强化学习接连被质疑，强化学习路在何方？ - 爱吃猫的小鱼干的 Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+    <!-- Site Verification -->
+    
+        <meta name="google-site-verification" content="tE-0DY7ep02Gyi-x9Q4QpuOhofuAEWa3QWrzBXLLHnk" />
+    
+        <meta name="google-site-verification" content="zgLg9-wvfHmxSHnfimcW10Mf9EO6uKCZGPMpRNXQNXo" />
+    
+
+
+    <!-- Site Verification -->
+    
+        <meta name="baidu-site-verification" content="code-99DmpaRiYX" />
+    
+
+  <link rel="shortcut icon" href="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/favicon1.png" type="image/png" />
+  <meta name="description" content="DRL 热潮背后隐藏着诸多的“坑”，本文分析了DRL存在的危机，并指出了DRL未来可能的出路。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【RL】深度强化学习、免模型强化学习接连被质疑，强化学习路在何方？">
+<meta property="og:url" content="https://su-lemon.gitee.io/post/167a8eb9.html">
+<meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
+<meta property="og:description" content="DRL 热潮背后隐藏着诸多的“坑”，本文分析了DRL存在的危机，并指出了DRL未来可能的出路。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407100726.png">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407102055.png">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407102229.png">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407103651.png">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407103841.png">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407103958.png">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407104452.png">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407105110.png">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407111329.png">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407110349.png">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407110542.png">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407111205.png">
+<meta property="article:published_time" content="2021-04-07T03:21:42.000Z">
+<meta property="article:modified_time" content="2021-04-07T03:24:35.671Z">
+<meta property="article:author" content="SuSu">
+<meta property="article:tag" content="RL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407100726.png">
+  <link rel="stylesheet" href="https://su-lemon.gitee.io/css/blog.css" type="text/css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
+  
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2432472_9kqdqg64gbn.css">
+  
+  <link rel="stylesheet" href="https://su-lemon.gitee.io/css/style.css?v=1617765883394">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/effects/jquery-3.1.1.min.js"></script>
+  <!--鼠标点击烟花爆炸效果，需要引入jQuery-->
+  
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/effects/firework1.js"></script>
+  
+
+  <a target="_blank" rel="noopener" href="https://github.com/Su-Lemon" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url(https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/background0.png)"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!--<a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>-->
+        <a href="/" title="SuSu" class="mdui-btn mdui-btn-icon"><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/avatar0.png" alt="SuSu"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="SuSu">
+            <img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/avatar0.png" alt="SuSu" alt="SuSu">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>17</div>
+        <div><span>标签</span>19</div>
+        <div><span>分类</span>8</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <!-- 站内搜索，需要引入jQuery -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/functions/search.js"></script>
+    <aside id="nexmoe-sidebar">
+  
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://su-lemon.gitee.io/apps/BVH_player.html" target="_blank" mdui-tooltip="{content: 'BVH-Player'}" style="color: rgb(243, 81, 11);background-color: rgba(243, 81, 11, .1);">
+            <i class="nexmoefont icon-app"></i>
+        </a>
+    </div>
+</div>
+  
+    <!-- 谷歌/百度搜索 -->
+<!-- <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:su-lemon.github.io/blog" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div> -->
+
+<!-- 站内搜索 -->
+<div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search" >
+        <form id="search-form">
+            <label><input type="text" id="local-search-input" name="q" results="0" placeholder="站内搜索" class="input form-control" autocomplete="off" autocorrect="off"/></label>
+            <!-- 清空/重置搜索框 -->
+            <i class="fa fa-times" onclick="resetSearch()"></i>
+        </form>
+    </div>
+    <div id="local-search-result"></div> <!-- 搜索结果区 -->
+    <!-- <p class='no-result'></p> 无匹配时显示，注意在 CSS 中设置默认隐藏 -->
+</div>
+
+  
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://jq.qq.com/?_wv=1027&k=MivHmcOi" target="_blank" mdui-tooltip="{content: 'QQ群'}" style="color: rgb(249, 174, 8);background-color: rgba(249, 174, 8, .1);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="https://space.bilibili.com/76586290" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/Su-Lemon/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Git/">Git</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/GitHub/">GitHub</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Hexo/">Hexo</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Latex/">Latex</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Mac/">Mac</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Python/">Python</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/RL/">RL</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Tools/">Tools</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/AC/" style="font-size: 10px;">AC</a> <a href="/tags/FFmpeg/" style="font-size: 10px;">FFmpeg</a> <a href="/tags/GUI/" style="font-size: 10px;">GUI</a> <a href="/tags/Git/" style="font-size: 10px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Latex/" style="font-size: 10px;">Latex</a> <a href="/tags/Mac/" style="font-size: 13.33px;">Mac</a> <a href="/tags/MacOS/" style="font-size: 10px;">MacOS</a> <a href="/tags/PG/" style="font-size: 10px;">PG</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RL/" style="font-size: 20px;">RL</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Tmux/" style="font-size: 10px;">Tmux</a> <a href="/tags/Tools/" style="font-size: 13.33px;">Tools</a> <a href="/tags/algorithm/" style="font-size: 10px;">algorithm</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">博客部署</a> <a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" style="font-size: 16.67px;">方法论</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">编程实践</a>
+    </div>
+    
+  </div>
+
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/post/167a8eb9.html">【RL】深度强化学习、免模型强化学习接连被质疑，强化学习路在何方？</a>
+          </li>
+        
+          <li>
+            <a href="/post/c71c7ed3.html">【Tools-FFmpeg】FFmpeg一个快速的音视频处理器</a>
+          </li>
+        
+          <li>
+            <a href="/post/73a19565.html">【Latex】数学符号-代码对照表</a>
+          </li>
+        
+          <li>
+            <a href="/post/223e533f.html">【Git】rebase</a>
+          </li>
+        
+          <li>
+            <a href="/post/6aa0d565.html">【RL落地方法论6】模型训练</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+    <div class="nexmoe-copyright">
+        &copy; 2021 SuSu
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/Su-Lemon" target="_blank">Su-Lemon</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 50%;"> 
+          <img data-src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/cover/postcover0.png" data-sizes="auto" alt="【RL】深度强化学习、免模型强化学习接连被质疑，强化学习路在何方？" class="lazyload">
+          <h1>【RL】深度强化学习、免模型强化学习接连被质疑，强化学习路在何方？</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月07日</a>
+    <a><i class="nexmoefont icon-areachart"></i>14.1k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 61 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                
+                
+                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%B3%A1%E6%B2%AB"><span class="toc-number">1.</span> <span class="toc-text">深度强化学习的泡沫</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#drl%E7%9A%84%E5%8F%AF%E5%A4%8D%E7%8E%B0%E6%80%A7%E5%8D%B1%E6%9C%BA"><span class="toc-number">1.1.</span> <span class="toc-text">DRL的可复现性危机</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#drl%E7%A0%94%E7%A9%B6%E5%AD%98%E5%9C%A8%E5%A4%9A%E5%B0%91%E5%9D%91"><span class="toc-number">1.2.</span> <span class="toc-text">DRL研究存在多少坑？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%8D%E6%A8%A1%E5%9E%8B%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%9C%AC%E8%B4%A8%E7%BC%BA%E9%99%B7"><span class="toc-number">2.</span> <span class="toc-text">免模型强化学习的本质缺陷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E6%88%96%E5%85%8D%E6%A8%A1%E5%9E%8B%E9%97%AE%E9%A2%98%E6%B2%A1%E9%82%A3%E4%B9%88%E7%AE%80%E5%8D%95"><span class="toc-number">3.</span> <span class="toc-text">基于模型或免模型，问题没那么简单</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E6%A8%A1%E5%9E%8B%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%AA%E6%9D%A5%E6%BD%9C%E5%8A%9B%E5%B7%A8%E5%A4%A7"><span class="toc-number">3.1.</span> <span class="toc-text">基于模型的方法，未来潜力巨大</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%8D%E6%A8%A1%E5%9E%8B%E6%96%B9%E6%B3%95%E4%BE%9D%E6%97%A7%E6%98%AF%E7%AC%AC%E4%B8%80%E9%80%89%E6%8B%A9"><span class="toc-number">3.2.</span> <span class="toc-text">免模型方法，依旧是第一选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E4%BB%85%E4%BB%85%E6%98%AF%E6%A8%A1%E5%9E%8B%E4%B8%8E%E5%90%A6%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">3.3.</span> <span class="toc-text">不仅仅是模型与否的问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E5%AE%A1%E8%A7%86%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0"><span class="toc-number">4.</span> <span class="toc-text">重新审视强化学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E5%AE%A1%E8%A7%86drl%E7%9A%84%E7%A0%94%E7%A9%B6%E4%B8%8E%E5%BA%94%E7%94%A8"><span class="toc-number">4.1.</span> <span class="toc-text">重新审视DRL的研究与应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E5%AE%A1%E8%A7%86rl%E7%9A%84%E7%A0%94%E7%A9%B6"><span class="toc-number">4.1.1.</span> <span class="toc-text">重新审视RL的研究</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E5%AE%A1%E8%A7%86rl%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">4.1.2.</span> <span class="toc-text">重新审视RL的应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E6%96%B0%E5%AE%A1%E8%A7%86rl%E7%9A%84%E4%BB%B7%E5%80%BC"><span class="toc-number">4.2.</span> <span class="toc-text">重新审视RL的价值</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%BF%E4%B9%89%E7%9A%84rl%E4%BB%8E%E5%8F%8D%E9%A6%88%E5%AD%A6%E4%B9%A0"><span class="toc-number">5.</span> <span class="toc-text">广义的RL——从反馈学习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BF%E4%B9%89%E7%9A%84rl%E6%98%AF%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E7%A0%94%E7%A9%B6%E7%9A%84%E6%9C%80%E7%BB%88%E7%9B%AE%E6%A0%87"><span class="toc-number">5.1.</span> <span class="toc-text">广义的RL，是人工智能研究的最终目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BF%E4%B9%89%E7%9A%84rl%E6%98%AF%E6%9C%AA%E6%9D%A5%E4%B8%80%E5%88%87%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%B3%BB%E7%BB%9F%E7%9A%84%E5%BD%A2%E5%BC%8F"><span class="toc-number">5.2.</span> <span class="toc-text">广义的RL，是未来一切机器学习系统的形式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B9%BF%E4%B9%89%E7%9A%84rl%E6%98%AF%E5%BE%88%E5%A4%9A%E9%A2%86%E5%9F%9F%E7%A0%94%E7%A9%B6%E7%9A%84%E5%85%B1%E5%90%8C%E7%9B%AE%E6%A0%87"><span class="toc-number">5.3.</span> <span class="toc-text">广义的RL，是很多领域研究的共同目标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%93%E8%AF%AD"><span class="toc-number">6.</span> <span class="toc-text">结语</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%87%B4%E8%B0%A2"><span class="toc-number">7.</span> <span class="toc-text">致谢</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E8%80%85%E7%AE%80%E4%BB%8B"><span class="toc-number">8.</span> <span class="toc-text">作者简介:</span></a></li></ol>
+                
+            </div>
+        </div>
+      </div>
+    
+  </div>
+
+  <article>
+    <p>DRL 热潮背后隐藏着诸多的“坑”，本文分析了DRL存在的危机，并指出了DRL未来可能的出路。</p>
+<a id="more"></a>
+<blockquote>
+<p>注：本文转载自中国自动化学会模式识别与机器智能 (Pattern Recognition and Machine Intelligence, PRMI，以下简称为CAA-PRMI) 专业委员会通讯2018年第2期。</p>
+</blockquote>
+<h2 id="深度强化学习的泡沫">深度强化学习的泡沫</h2>
+<p>2015年，DeepMind的Volodymyr Mnih等研究员在《自然》杂志上发表论文Human-level control through deep reinforcement learning[1]，该论文提出了一个结合深度学习（DL）技术和强化学习（RL）思想的模型Deep Q-Network(DQN)，在Atari游戏平台上展示出超越人类水平的表现。自此以后，结合DL与RL的深度强化学习（Deep Reinforcement Learning, DRL）迅速成为人工智能界的焦点。</p>
+<p>过去三年间，DRL算法在不同领域大显神通：在视频游戏[1]、棋类游戏上打败人类顶尖高手[2,3]；控制复杂的机械进行操作[4]；调配网络资源[5]；为数据中心大幅节能[6]；甚至对机器学习算法自动调参[7]。各大高校和企业纷纷参与其中，提出了眼花缭乱的DRL算法和应用。可以说，过去三年是DRL的爆红期。DeepMind负责AlphaGo项目的研究员David Silver喊出“AI = RL + DL”，认为结合了DL的表示能力与RL的推理能力的DRL将会是人工智能的终极答案。</p>
+<center>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:70%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407100726.png"/> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
+RL 论文数量迅速增长[8]
+</div>
+</center>
+<h3 id="drl的可复现性危机">DRL的可复现性危机</h3>
+<p>然而，研究人员在最近半年开始了对DRL的反思。由于发表的文献中往往不提供重要参数设置和工程解决方案的细节，很多算法都难以复现。2017年9月，著名RL专家Doina Precup和Joelle Pineau所领导的的研究组发表了论文Deep Reinforcement Learning that Matters[8]，直指当前DRL领域论文数量多却水分大、实验难以复现等问题。该文在学术界和工业界引发热烈反响。很多人对此表示认同，并对DRL的实际能力产生强烈怀疑。</p>
+<p>其实，这并非Precup&amp; Pineau研究组第一次对DRL发难。早在2个月前，该研究组就通过充足的实验对造成DRL算法难以复现的多个要素加以研究，并将研究成果撰写成文Reproducibility of Benchmarked Deep Reinforcement Learning Tasks for Continuous Control[9]。同年8月，他们在ICML 2017上作了题为“Reproducibility of Policy Gradient Methods for Continuous Control”的报告[10]，通过实例详细展示了在复现多个基于策略梯度的算法的过程中，由于种种不确定性因素导致的复现困难。12月，在万众瞩目的NIPS 2017 DRL专题研讨会上，Joelle Pineau受邀作了题为“Reproducibility of DRL and Beyond”的报告[11]。报告中，Pineau先介绍了当前科研领域的“可复现性危机” ：在《自然》杂志的一项调查中，90%的被访者认为“可复现性”问题是科研领域存在的危机，其中，52%的被访者认为这个问题很严重。在另一项调查中，不同领域的研究者几乎都有很高的比例无法复现他人甚至自己过去的实验。可见“可复现性危机”有多么严峻！Pineau针对机器学习领域发起的一项调研显示，同样有90%的研究者认识到了这个危机。</p>
+<center>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom: 80%" src=https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407101502.png> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
+机器学习领域存在严重的“可复现性危机”[11]
+</div>
+</center>
+<p>随后，针对DRL领域，Pineau展示了该研究组对当前不同DRL算法的大量可复现性实验。实验结果表明，不同DRL算法在不同任务、不同超参数、不同随机种子下的效果大相径庭。在报告后半段，Pineau呼吁学界关注“可复现性危机”这一问题，并根据她的调研结果，提出了12条检验算法“可复现性”的准则，宣布计划在ICLR 2018开始举办“可复现实验挑战赛”（“可复现危机”在其他机器学习领域也受到了关注，ICML 2017已经举办了Reproducibility in Machine Learning Workshop，并将在今年继续举办第二届），旨在鼓励研究者做出真正扎实的工作，抑制机器学习领域的泡沫。Pineau &amp; Precup研究组的这一系列研究获得了广泛关注。</p>
+<center>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom: 80%" src=https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407101633.png> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
+Pineau基于大量调查提出的检验算法“可复现性”准则[11]
+</div>
+</center>
+<h3 id="drl研究存在多少坑">DRL研究存在多少坑？</h3>
+<p>同样在12月，Reddit论坛上也开展了关于机器学习不正之风的热烈讨论[12]。有人点名指出，某些DRL代表性算法之所以在模拟器中取得了优秀却难以复现的表现，是因为作者们涉嫌在实验中修改模拟器的物理模型，却在论文中对此避而不谈。</p>
+<p>对现有DRL算法的批判浪潮仍旧不断涌来。2018年的情人节当天，曾经就读于伯克利人工智能研究实验室（Berkeley Artificial Intelligence Research Lab, BAIR）的Alexirpan通过一篇博文Deep Reinforcement Learning Doesn't Work Yet[13]给DRL圈送来了一份苦涩的礼物。他在文中通过多个例子，从实验角度总结了DRL算法存在的几大问题：</p>
+<p><strong>样本利用率非常低；</strong></p>
+<p><strong>最终表现不够好，经常比不过基于模型的方法；</strong></p>
+<p><strong>好的奖励函数难以设计；</strong></p>
+<p><strong>难以平衡</strong>“<strong>探索</strong>”<strong>和</strong>“<strong>利用</strong>”<strong>,以致算法陷入局部极小；</strong></p>
+<p><strong>对环境的过拟合；</strong></p>
+<p><strong>灾难性的不稳定性…</strong></p>
+<p>虽然作者在文章结尾试着提出DRL下一步应该解决的一系列问题，很多人还是把这篇文章看做DRL的“劝退文”。几天后，GIT的博士生Himanshu Sahni发表博文Reinforcement Learning never worked, and 'deep' only helped a bit与之呼应[14]，在赞同Alexirpan的观点同时，指出好的奖励函数难以设计和难以平衡“探索”和“利用”以致算法陷入局部极小是RL的固有缺陷。</p>
+<p>另一位DRL研究者Matthew Rahtz则通过讲述自己试图复现一个DRL算法的坎坷历程来回应Alexirpan，让大家深刻体会了复现DRL算法有多么难[15]。半年前，Rahtz出于研究兴趣，选择对OpenAI的论文Deep Reinforcement Learning from Human Preferences进行复现。在复现的过程中，几乎踩了Alexirpan总结的所有的坑。他认为复现DRL算法与其是一个工程问题，更不如说像一个数学问题。“它更像是你在解决一个谜题，没有规律可循，唯一的方法是不断尝试，直到灵感出现彻底搞明白。……很多看上去无关紧要的小细节成了唯一的线索……做好每次卡住好几周的准备。”Rahtz在复现的过程中积累了很多宝贵的工程经验，但整个过程的难度还是让他花费了大量的金钱以及时间。他充分调动不同的计算资源，包括学校的机房资源、Google云计算引擎和FloydHub，总共花费高达850美元。可就算这样，原定于3个月完成的项目，最终用了8个月，其中大量时间用在调试上。</p>
+<center>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom: 80%" src=https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407101905.png> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
+复现DRL算法的实际时间远多于预计时间[15]
+</div>
+</center>
+<p>Rahtz最终实现了复现论文的目标。他的博文除了给读者详细总结了一路走来的各种宝贵工程经验，更让大家从一个具体事例感受到了DRL研究实际上存在多大的泡沫、有多少的坑。有人评论到，“DRL的成功可能不是因为其真的有效，而是因为人们花了大力气。”</p>
+<p>很多著名学者也纷纷加入讨论。目前普遍的观点是，<strong>DRL可能有AI领域最大的泡沫。</strong>机器学习专家Jacob Andreas发了一条意味深长的tweet说：</p>
+<center>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407102055.png"/> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
+Jacob Andreas对DRL的吐槽
+</div>
+</center>
+<p>DRL的成功归因于它是机器学习界中唯一一种允许在测试集上训练的方法。</p>
+<p>从Pineau &amp; Precup打响第一枪到现在的1年多时间里，DRL被锤得千疮百孔，从万众瞩目到被普遍看衰。就在笔者准备投稿这篇文章的时候，Pineau又受邀在ICLR 2018上作了一个题为 Reproducibility, Reusability, and Robustness in DRL的报告[16]，并且正式开始举办“可复现实验挑战赛”。看来学界对DRL的吐槽将会持续，负面评论还将持续发酵。那么， DRL的问题根结在哪里？前景真的如此黯淡吗？如果不与深度学习结合，RL的出路又在哪里？</p>
+<p>在大家纷纷吐槽DRL的时候，著名的优化专家 Ben Recht，从另一个角度给出一番分析。</p>
+<h2 id="免模型强化学习的本质缺陷">免模型强化学习的本质缺陷</h2>
+<p>RL算法可以分为基于模型的方法（Model-based）与免模型的方法（Model-free）。前者主要发展自最优控制领域。通常先通过高斯过程（GP）或贝叶斯网络（BN）等工具针对具体问题建立模型，然后再通过机器学习的方法或最优控制的方法，如模型预测控制（MPC）、线性二次调节器（LQR）、线性二次高斯（LQG）、迭代学习控制（ICL）等进行求解。而后者更多地发展自机器学习领域，属于数据驱动的方法。算法通过大量采样，估计代理的状态、动作的值函数或回报函数，从而优化动作策略。</p>
+<p>从年初至今，Ben Recht连发了13篇博文，从控制与优化的视角，重点探讨了RL中的免模型方法[18]。Recht指出免模型方法自身存在以下几大缺陷：</p>
+<center>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407102229.png"/> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
+基于模型 vs. 免模型 [17]
+</div>
+</center>
+<ol type="1">
+<li>免模型方法无法从不带反馈信号的样本中学习，而反馈本身就是稀疏的，因此免模型方向样本利用率很低，而数据驱动的方法则需要大量采样。比如在Atari平台上的《Space Invader》和《Seaquest》游戏中，智能体所获得的分数会随训练数据增加而增加。利用免模型DRL方法可能需要 2 亿帧画面才能学到比较好的效果。AlphaGo 最早在 Nature 公布的版本也需要 3000 万个盘面进行训练。而但凡与机械控制相关的问题，训练数据远不如视频图像这样的数据容易获取，因此只能在模拟器中进行训练。而模拟器与现实世界间的Reality Gap，直接限制了训练自其中算法的泛化性能。另外，数据的稀缺性也影响了其与DL技术的结合。</li>
+<li>免模型方法不对具体问题进行建模，而是尝试用一个通用的算法解决所有问题。而基于模型的方法则通过针对特定问题建立模型，充分利用了问题固有的信息。免模型方法在追求通用性的同时放弃这些富有价值的信息。</li>
+<li>基于模型的方法针对问题建立动力学模型，这个模型具有解释性。而免模型方法因为没有模型，解释性不强，调试困难。</li>
+<li>相比基于模型的方法，尤其是基于简单线性模型的方法，免模型方法不够稳定，在训练中极易发散。</li>
+</ol>
+<p>为了证实以上观点，Recht将一个简单的基于LQR的随机搜索方法与最好的免模型方法在MuJoCo实验环境上进行了实验对比。在采样率相近的情况下，基于模型的随机搜索算法的计算效率至少比免模型方法高15倍[19]。</p>
+<center>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407103651.png"/> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
+基于模型的随机搜索方法ARS吊打一众免模型方法[19]
+</div>
+</center>
+<p>通过Recht的分析，我们似乎找到了DRL问题的根结。近三年在机器学习领域大火的DRL算法，多将免模型方法与DL结合，而免模型算法的天然缺陷，恰好与Alexirpan总结的DRL几大问题相对应（见上文）。</p>
+<p>看来，DRL的病根多半在采用了免模型方法上。为什么多数DRL的工作都是基于免模型方法呢？笔者认为有几个原因。第一，免模型的方法相对简单直观，开源实现丰富，比较容易上手，从而吸引了更多的学者进行研究，有更大可能做出突破性的工作，如DQN和AlphaGo系列。第二，当前RL的发展还处于初级阶段，学界的研究重点还是集中在环境是确定的、静态的，状态主要是离散的、静态的、完全可观察的，反馈也是确定的问题（如Atari游戏）上。针对这种相对“简单”、基础、通用的问题，免模型方法本身很合适。最后，在“AI = RL + DL”这一观点的鼓动下，学界高估了DRL的能力。DQN展示出的令人兴奋的能力使得很多人围绕着DQN进行拓展，创造出了一系列同样属于免模型的工作。</p>
+<center>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:90%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407103841.png"/> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
+绝大多数DRL方法是对DQN的扩展，属于免模型方法[20]
+</div>
+</center>
+<p>那么，DRL是不是应该抛弃免模型方法，拥抱基于模型的方法呢？</p>
+<h2 id="基于模型或免模型问题没那么简单">基于模型或免模型，问题没那么简单</h2>
+<h3 id="基于模型的方法未来潜力巨大">基于模型的方法，未来潜力巨大</h3>
+<p>基于模型的方法一般先从数据中学习模型，然后基于学到的模型对策略进行优化。学习模型的过程和控制论中的系统参数辨识类似。因为模型的存在，基于模型的方法可以充分利用每一个样本来逼近模型，数据利用率极大提高。基于模型的方法则在一些控制问题中，相比于免模型方法，通常有10^2级的采样率提升。此外，学到的模型往往对环境的变化鲁棒,当遇到新环境时，算法可以依靠已学到的模型做推理，具有很好的泛化性能。</p>
+<center>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407103958.png"/> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
+基于模型的方法具有更高采样率[22]
+</div>
+</center>
+<p>此外，基于模型的方法还与潜力巨大的预测学习（Predictive Learning）紧密相关。由于建立了模型，本身就可以通过模型预测未来，这与Predictive Learning的需求不谋而合。其实，Yann LeCun在广受关注的NIPS 2016主题报告上介绍Predictive Learning时，也是以基于模型的方法作为例子的[21]。笔者认为，基于模型的RL方法可能是实现Predictive Learning的重要技术之一。</p>
+<p>这样看来，基于模型的方法似乎更有前途。但天下没有免费的午餐，模型的存在也带来了若干问题。</p>
+<h3 id="免模型方法依旧是第一选择">免模型方法，依旧是第一选择</h3>
+<p>基于模型的DRL方法相对而言不那么简单直观，RL与DL的结合方式相对更复杂，设计难度更高。目前基于模型的DRL方法通常用高斯过程、贝叶斯网络或概率神经网络（PNN）来构建模型，典型的如David Silver在2016年提出的Predictron模型[23]。另外一些工作，如Probabilistic Inference for Learning COntrol (PILCO)[24]，本身不基于神经网络，不过有与BN结合的扩展版本。而Guided Policy Search (GPS) 虽然在最优控制器的优化中使用了神经网络，但模型并不依赖神经网络[25]。此外还有一些模型将神经网络与模型耦合在一起[26]。这些工作不像免模型DRL方法那样直观且自然，DL所起的作用也各有不同。</p>
+<p>除此之外，基于模型的方法也还存在若干自身缺陷：</p>
+<ol type="1">
+<li>针对无法建模的问题束手无策。有些领域，比如NLP，存在大量难以归纳成模型的任务。在这种场景下，只能通过诸如R-max算法这样的方法先与环境交互，计算出一个模型为后续使用。但是这种方法的复杂度一般很高。近期有一些工作结合预测学习建立模型，部分地解决了建模难的问题，这一思路逐渐成为了研究热点。</li>
+<li>建模会带来误差，而且误差往往随着算法与环境的迭代交互越来越大，使得算法难以保证收敛到最优解。</li>
+<li>模型缺乏通用性，每次换一个问题，就要重新建模。</li>
+</ol>
+<p>针对以上几点，免模型方法都有相对优势：对现实中非常多的无法建模的问题以及模仿学习问题，免模型算法仍是最好的选择。并且，免模型方法在理论上具备渐近收敛性，经过无数次与环境的交互可以保证得到最优解，这是基于模型的方法很难获得的结果。最后，免模型最大的优势就是具备非常好的通用性。事实上，在处理真正困难的问题时，免模型方法的效果通常更好。Recht也在博文中指出，控制领域很有效的MPC算法其实与Q-Learning这样的免模型方法非常相关[18]。</p>
+<p>基于模型的方法与免模型的方法的区别其实也可以看做基于知识的方法与基于统计的方法的区别。总体来讲，两种方法各有千秋，很难说其中一种方法优于另一种。在RL领域中，免模型算法只占很少一部分，但基于历史原因，当前免模型的DRL方法发展迅速数量庞大，而基于模型的DRL方法则相对较少。笔者认为，我们可以考虑多做一些基于模型的DRL方面的工作，克服当前DRL存在的诸多问题。此外，还可以多研究结合基于模型方法与免模型方法的半模型方法，兼具两种方法的优势。这方面经典的工作有RL泰斗Rich Sutton提出的Dyna框架 [27] 和其弟子David Silver提出的Dyna-2框架[28]。</p>
+<p>通过以上讨论，我们似乎对DRL目前的困境找到了出路。但其实，造成当前DRL困境的原因远不止这些。</p>
+<h3 id="不仅仅是模型与否的问题">不仅仅是模型与否的问题</h3>
+<p>上文提到Recht使用基于随机搜索的方法吊打了免模型方法，似乎宣判了免模型方法的死刑。但其实这个对比并不公平。</p>
+<p>2017年3月，机器学习专家Sham Kakade的研究组发表文章Towards Generalization and Simplicity in Continuous Control，试图探寻针对连续控制问题的简单通用的解法 [29] 。他们发现当前的模拟器存在非常大的问题，经过调试的线性策略就已经可以取得非常好的效果——这样的模拟器实在过于粗糙，难怪基于随机搜索的方法可以在同样的模拟器上战胜免模型方法！</p>
+<p>可见目前RL领域的实验平台还非常不成熟，在这样的测试环境中的实验实验结果没有足够的说服力。很多研究结论都未必可信，因为好性能的取得或许仅仅是因为利用了模拟器的bugs。此外，一些学者指出当前RL算法的性能评判准则也不科学。Ben Recht和Sham Kakade都对RL的发展提出了多项具体建议，包括测试环境、基准算法、衡量标准等[18,29]。可见RL领域还有太多需要改进和规范化。</p>
+<p>那么，RL接下来该如何突破呢？</p>
+<h2 id="重新审视强化学习">重新审视强化学习</h2>
+<p>对DRL和免模型RL的质疑与讨论，让我们可以重新审视RL，这对RL今后的发展大有裨益。</p>
+<h3 id="重新审视drl的研究与应用">重新审视DRL的研究与应用</h3>
+<p>DQN和AlphaGo系列工作给人留下深刻印象，但是这两种任务本质上其实相对“简单”。因为这些任务的环境是确定的、静态的，状态主要是离散的、静态的、完全可观察的，反馈是确定的，代理也是单一的。目前DRL在解决部分可见状态任务（如StarCraft），状态连续的任务（如机械控制任务），动态反馈任务和多代理任务中还没取得令人惊叹的突破。</p>
+<p>当前大量的DRL研究，尤其是应用于计算机视觉领域任务的研究中，很多都是将计算机视觉的某一个基于DL的任务强行构造成RL问题进行求解，其结果往往不如传统方法好。这样的研究方式造成DRL领域论文数量暴增、水分巨大。作为DRL的研究者，<strong>我们不应该找一个DL任务强行将其RL化，而是应该针对一些天然适合RL处理的任务，尝试通过引入DL来提升现有方法在目标识别环节或函数逼近环节上的能力</strong>。</p>
+<center>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407104452.png"/> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
+DRL取得成功的任务本质上相对简单[30]
+</div>
+</center>
+<p>在计算机视觉任务中，通过结合DL获得良好的特征表达或函数逼近是非常自然的思路。但在有些领域，DL未必能发挥强大的特征提取作用，也未必被用于函数逼近。比如DL至今在机器人领域最多起到感知作用，而无法取代基于力学分析的方法。虽然有一些将DRL应用于物体抓取等现实世界的机械控制任务上并取得成功的案例，如QT-Opt[70]，但往往需要大量的调试和训练时间。我们应该清晰地认识<strong>DRL算法的应用特点：因为其输出的随机性</strong>，当前的DRL算法更多地被用在模拟器而非真实环境中。而当前具有实用价值且只需运行于模拟器中的任务主要有三类，即视频游戏、棋类游戏和自动机器学习（AutoML，比如谷歌的AutoML Vision）。这并不是说DRL的应用被困在模拟器中——如果能针对某一具体问题，解决模拟器与真实世界间的差异，则可以发挥DRL的强大威力。最近Google的研究员就针对四足机器人运动问题，通过大力改进模拟器，使得在模拟器中训练的运动策略可以完美迁移到真实世界中，取得了令人惊艳的效果[71]。不过，考虑到RL算法的不稳定性，在实际应用中<strong>不应盲目追求端到端的解决方案，而可以考虑将特征提取（DL）与决策（RL）分开</strong>，从而获得更好的解释性与稳定性。此外，<strong>模块化RL</strong>（将RL算法封装成一个模块）以及将RL与其他模型融合，将在实际应用中有广阔前景。而<strong>如何通过DL学习一个合适于作为RL模块输入的表示</strong>，也值得研究。</p>
+<h4 id="重新审视rl的研究">重新审视RL的研究</h4>
+<p>机器学习是个跨学科的研究领域，而RL则是其中跨学科性质非常显著的一个分支。RL理论的发展受到生理学、神经科学和最优控制等领域的启发，现在依旧在很多相关领域被研究。在控制理论、机器人学、运筹学、经济学等领域内部，依旧有很多的学者投身RL的研究，类似的概念或算法往往在不同的领域被重新发明，起了不同的名字。</p>
+<center>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407105110.png"/> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
+RL的发展受到多个学科的影响[31]
+</div>
+</center>
+<p>Princeton大学著名的运筹学专家Warren Powell曾经写了一篇题为AI, OR and Control Theory: A Rosetta Stone for Stochastic Optimization的文章，整理了RL中同一个概念、算法在AI、OR（运筹学）和Control Theory（控制理论）中各自对应的名称，打通了不同领域间的隔阂 [32] 。由于各种学科各自的特点，不同领域的RL研究又独具特色，这使得RL的研究可以充分借鉴不同领域的思想精华。</p>
+<p>在这里，笔者根据自身对RL的理解，试着总结一些值得研究的方向：</p>
+<ol type="1">
+<li><strong>基于模型的方法</strong>。如上文所述，基于模型的方法不仅能大幅降低采样需求，还可以通过学习任务的动力学模型，为预测学习打下基础。</li>
+<li><strong>提高免模型方法的数据利用率和扩展性</strong>。这是免模型学习的两处硬伤，也是Rich Sutton的终极研究目标。这个领域很艰难，但是任何有意义的突破也将带来极大价值。</li>
+<li><strong>更高效的探索策略</strong>（Exploration Strategies）。平衡“探索”与“利用”是RL的本质问题，这需要我们设计更加高效的探索策略。除了若干经典的算法如Softmax、ϵ-Greedy[1]、UCB[72]和Thompson Sampling[73]等，近期学界陆续提出了大批新算法，如Intrinsic Motivation [74]、Curiosity-driven Exploration[75]、Count-based Exploration [76]等。其实这些“新”算法的思想不少早在80年代就已出现[77]，而与DL的有机结合使它们重新得到重视。此外，OpenAI与DeepMind先后提出通过在策略参数[78]和神经网络权重[79]上引入噪声来提升探索策略, 开辟了一个新方向。</li>
+<li><strong>与模仿学习（Imitation Learning, IL）结合</strong>。机器学习与自动驾驶领域最早的成功案例ALVINN[33]就是基于IL；当前RL领域最顶级的学者Pieter Abbeel在跟随Andrew Ng读博士时候,设计的通过IL控制直升机的算法[34]成为IL领域的代表性工作。2016年，英伟达提出的端到端自动驾驶系统也是通过IL进行学习[68]。而AlphaGo的学习方式也是IL。IL介于RL与监督学习之间，兼具两者的优势，既能更快地得到反馈、更快地收敛，又有推理能力，很有研究价值。关于IL的介绍，可以参见[35]这篇综述。</li>
+<li><strong>奖赏塑形</strong>（Reward Shaping）。奖赏即反馈，其对RL算法性能的影响是巨大的。Alexirpan的博文中已经展示了没有精心设计的反馈信号会让RL算法产生多么差的结果。设计好的反馈信号一直是RL领域的研究热点。近年来涌现出很多基于“好奇心”的RL算法和层级RL算法，这两类算法的思路都是在模型训练的过程中插入反馈信号，从而部分地克服了反馈过于稀疏的问题。另一种思路是学习反馈函数，这是逆强化学习（Inverse RL, IRL）的主要方式之一。近些年大火的GAN也是基于这个思路来解决生成建模问题, GAN的提出者Ian Goodfellow也认为GAN就是RL的一种方式 [36]。而将GAN于传统IRL结合的GAIL[37]已经吸引了很多学者的注意。</li>
+<li><strong>RL中的迁移学习与多任务学习</strong>。当前RL的采样效率极低，而且学到的知识不通用。迁移学习与多任务学习可以有效解决这些问题。通过将从原任务中学习的策略迁移至新任务中，避免了针对新任务从头开始学习，这样可以大大降低数据需求，同时也提升了算法的自适应能力。在真实环境中使用RL的一大困难在于RL的不稳定性，一个自然的思路是通过迁移学习将在模拟器中训练好的稳定策略迁移到真实环境中，策略在新环境中仅通过少量探索即可满足要求。然而，这一研究领域面临的一大问题就是现实鸿沟（Reality Gap），即模拟器的仿真环境与真实环境差异过大。好的模拟器不仅可以有效填补现实鸿沟，还同时满足RL算法大量采样的需求，因此可以极大促进RL的研究与开发，如上文提到的Sim-to-Real[71]。同时，这也是RL与VR技术的一个结合点。近期学术界和工业界纷纷在这一领域发力。在自动驾驶领域，Gazebo、EuroTruck Simulator、TORCS、Unity、Apollo、Prescan、Panosim和Carsim等模拟器各具特色，而英特尔研究院开发的CARLA模拟器[38]逐渐成为业界研究的标准。其他领域的模拟器开发也呈现百花齐放之势：在家庭环境模拟领域， MIT 和多伦多大学合力开发了功能丰富的VirturalHome模拟器；在无人机模拟训练领域，MIT也开发了Flight Goggles模拟器。</li>
+<li><strong>提升RL的的泛化能力</strong>。机器学习最重要的目标就是泛化能力, 而现有的RL方法大多在这一指标上表现糟糕[8]，无怪乎Jacob Andreas会批评RL的成功是来自“train on the test set”。这一问题已经引起了学界的广泛重视，研究者们试图通过学习环境的动力学模型[80]、降低模型复杂度[29]或模型无关学习[81]来提升泛化能力，这也促进了基于模型的方法与元学习（Meta-Learning）方法的发展。BAIR提出的著名的Dex-Net项目主要目标就是构建具有良好鲁棒性、泛化能力的机器人抓取模型[82]，而OpenAI也于2018年4月组织了OpenAI Retro Contest ，鼓励参与者开发具有良好泛化能力的RL算法[83]。</li>
+<li><strong>层级RL</strong>（Hierarchical RL, HRL）。周志华教授总结DL成功的三个条件为：有逐层处理、有特征的内部变化和有足够的模型复杂度[39]。而HRL不仅满足这三个条件，而且具备更强的推理能力，是一个非常潜力的研究领域。目前HRL已经在一些需要复杂推理的任务（如Atari平台上的《Montezuma's Revenge》游戏）中展示了强大的学习能力[40]。</li>
+<li><strong>与序列预测</strong>（Sequence Prediction）结合。Sequence Prediction与RL、IL解决的问题相似又不相同。三者间有很多思想可以互相借鉴。当前已有一些基于RL和IL的方法在 Sequence Prediction任务上取得了很好的结果 [41,42,43]。这一方向的突破对Video Prediction和NLP中的很多任务都会产生广泛影响。</li>
+<li>（<strong>免模型）方法探索行为的安全性</strong>（Safe RL）。相比于基于模型的方法，免模型方法缺乏预测能力，这使得其探索行为带有更多不稳定性。一种研究思路是结合贝叶斯方法为RL代理行为的不确定性建模，从而避免过于危险的探索行为。此外，为了安全地将RL应用于现实环境中，可以在模拟器中借助混合现实技术划定危险区域，通过限制代理的活动空间约束代理的行为。</li>
+<li><strong>关系RL</strong>。近期学习客体间关系从而进行推理与预测的“关系学习”受到了学界的广泛关注。关系学习往往在训练中构建的状态链，而中间状态与最终的反馈是脱节的。RL可以将最终的反馈回传给中间状态，实现有效学习，因而成为实现关系学习的最佳方式。2017年DeepMind提出的VIN[44]和Pridictron[23]均是这方面的代表作。2018年6月，DeepMind又接连发表了多篇关系学习方向的工作如关系归纳偏置[45]、关系RL[46]、关系RNN[47]、图网络[48]和已经在《科学》杂志发表的生成查询网络（Generative Query Network，GQN）[49]。这一系列引人注目的工作将引领关系RL的热潮。</li>
+<li><strong>对抗样本RL</strong>。RL被广泛应用于机械控制等领域，这些领域相比于图像识别语音识别等等，对鲁棒性和安全性的要求更高。因此针对RL的对抗攻击是一个非常重要的问题。近期有研究表明，会被对抗样本操控，很多经典模型如DQN等算法都经不住对抗攻击的扰动[50,51]。</li>
+<li><strong>处理其他模态的输入</strong>。在NLP领域，学界已经将RL应用于处理很多模态的数据上，如句子、篇章、知识库等等。但是在计算机视觉领域，RL算法主要还是通过神经网络提取图像和视频的特征，对其他模态的数据很少涉及。我们可以探索将RL应用于其他模态的数据的方法，比如处理RGB-D数据和激光雷达数据等。一旦某一种数据的特征提取难度大大降低，将其与RL有机结合后都可能取得AlphaGo级别的突破。英特尔研究院已经基于CARLA模拟器在这方面开展了一系列的工作。</li>
+</ol>
+<h4 id="重新审视rl的应用">重新审视RL的应用</h4>
+<p>当前的一种观点是“RL只能打游戏、下棋，其他的都做了”。而笔者认为，我们不应对RL过于悲观。其实能在视频游戏与棋类游戏中超越人类，已经证明了RL推理能力的强大。通过合理改进后，有希望得到广泛应用。往往，从研究到应用的转化并不直观。比如，IBM Watson® 系统以其对自然语言的理解能力和应答能力闻名世界，曾在2011年击败人类选手获得Jeopardy!冠军。而其背后的支撑技术之一竟然是当年Gerald Tesauro开发TD-Gammon程序[52]时使用的RL技术[53]。当年那个“只能用于”下棋的技术，已经在最好的问答系统中发挥不可或缺的作用了。今天的RL发展水平远高于当年，我们怎么能没有信心呢？</p>
+<center>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407111329.png"/> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
+强大的IBM Watson®背后也有RL发挥核心作用
+</div>
+</center>
+<p>通过调查，我们可以发现RL算法已经在各个领域被广泛使用：</p>
+<ol type="1">
+<li>控制领域。这是RL思想的发源地之一，也是RL技术应用最成熟的领域。控制领域和机器学习领域各自发展了相似的思想、概念与技术，可以互相借鉴。比如当前被广泛应用的MPC算法与Model-based RL中的planning部分紧密相关。在机器人领域，相比于DL只能用于感知，RL相比传统的法有自己的优势：传统方法如LQR等一般要对具体问题建立动力学模型，从而进行求解，复杂度较高，不适合用于做重规划；而RL方法学习到的则是状态-动作空间中的策略，具有更好的适应性。</li>
+<li>自动驾驶领域。驾驶就是一个序列决策过程，因此天然适合用RL来处理。从80年代的ALVINN、TORCS到如今的CARLA，业界一直在尝试用RL解决单车辆的自动驾驶问题以及多车辆的交通调度问题。类似的思想也广泛地应用在各种飞行器、水下无人机领域。</li>
+<li>NLP领域。相比于计算机视觉领域的任务，NLP领域的很多任务是多轮的，即需通过多次迭代交互来寻求最优解（如对话系统）；而且任务的反馈信号往往需要在一系列决策后才能获得（如机器写作）。这样的问题的特性自然适合用RL来解决，因而近年来RL被应用于NLP领域中的诸多任务中，如文本生成、文本摘要、序列标注、对话机器人（文字/语音）、机器翻译、关系抽取和知识图谱推理等等。成功的应用案例也有很多，如对话机器人领域中Yoshua Bengio 研究组开发的 MILABOT 的模型[54]、Facebook聊天机器人[55]等；机器翻译领域Microsoft Translator [56]等。此外，在一系列跨越NLP与计算机视觉两种模态的任务如VQA、Image/Video Caption、Image Grounding、Video Summarization等中，RL技术也都大显身手。</li>
+<li>推荐系统与检索系统领域。RL中的Bandits系列算法早已被广泛应用于商品推荐、新闻推荐和在线广告等领域。近年也有一系列的工作将RL应用于信息检索、排序的任务中[57]。</li>
+<li>金融领域。RL强大的序列决策能力已经被金融系统所关注。无论是华尔街巨头摩根大通还是创业公司如Kensho，都在其交易系统中引入了RL技术。</li>
+<li>对数据的选择。在数据足够多的情况下，如何选择数据来实现“快、好、省”地学习，具有非常大的应用价值。近期在这方面也涌现出一系列的工作，如UCSB的Jiawei Wu提出的Reinforced Co-Training [58]等。</li>
+<li>通讯、生产调度、规划和资源访问控制等运筹领域。这些领域的任务往往涉及“选择”动作的过程，而且带标签数据难以取得，因此广泛使用RL进行求解。</li>
+</ol>
+<p>关于RL的更全面的应用综述请参见文献 [59，60]。</p>
+<p>虽然有上文列举的诸多成功应用，但我们依旧要认识到，当前RL的发展还处于初级阶段，不能包打天下。目前还没有一个通用的RL解决方案像DL一样成熟到成为一种即插即用的算法。不同RL算法在各自领域各领风骚。在找到一个普适的方法之前，我们更应该针对特定问题设计专门的算法，比如在机器人领域，基于贝叶斯RL和演化算法的方法（如CMAES[61]）比DRL更合适。当然，不同的领域间应当互相借鉴与促进。RL算法的输出存在随机性，这是其“探索”哲学带来的本质问题，因此我们不能盲目 All in RL, 也不应该RL in All, 而是要找准RL适合解决的问题。</p>
+<center>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407110349.png"/> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
+针对不同问题应该使用的不同RL方法[22]
+</div>
+</center>
+<h3 id="重新审视rl的价值">重新审视RL的价值</h3>
+<p>在NIPS 2016上，Yan LeCun认为最有价值的问题是“Predictive Learning”问题，这其实类似于非监督学习问题。他的发言代表了学界近来的主流看法。而Ben Recht则认为，RL比监督学习（Supervised Learning, SL）和非监督学习（Unsupervised Learning, UL）更有价值。他把这三类学习方式分别与商业分析中的描述分析（UL）、预测分析（SL）和指导分析（RL）相对应[18]。</p>
+<p>描述分析是对已有的数据进行总结，从而获得更鲁棒和清晰的表示，这个问题最容易，但价值也最低。因为描述分析的价值更多地在于美学方面而非实际方面。比如，“用GAN将一个房间的图片渲染成何种风格”远没有“依据房间的图片预测该房间的价格”更重要。而后者则是预测分析问题——基于历史数据对当前数据进行预测。但是在描述分析和预测分析中，系统都是不受算法影响的，而指导分析则更进一步地对算法与系统间的交互进行建模，通过主动影响系统，最大化价值收益。类比以上两个例子，指导分析则是解决“如何通过对房间进行一系列改造来最大化提升房间价格”之类的问题。这种问题最难，因为涉及到了算法与系统的复杂交互，但也最有价值，因为指导性分析（RL）的天然目标就是价值最大化，也是人类解决问题的方式。并且，无论是描述分析还是预测分析，所处理的问题的环境都是静态的、不变的，这个假设对大多数实际的问题都不成立。而指导分析则被用来处理环境动态变化的问题，甚至还要考虑到与其他对手的合作或竞争，与人类面临的大多数实际问题更相似。</p>
+<center>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407110542.png"/> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
+指导分析问题最难，也最有价值[18]
+</div>
+</center>
+<p>在最后一节，笔者将试图在更广的范围内讨论类似于RL的从反馈中学习的方法，从而试图给读者介绍一种看待RL的新视角。</p>
+<h2 id="广义的rl从反馈学习">广义的RL——从反馈学习</h2>
+<p>本节使用“广义的RL”一词指代针对“从反馈学习”的横跨多个学科的研究。与上文中介绍的来自机器学习、控制论、经济学等领域的RL不同，本节涉及的学科更宽泛，一切涉及从反馈学习的系统，都暂且称为广义的RL。</p>
+<h3 id="广义的rl是人工智能研究的最终目标">广义的RL，是人工智能研究的最终目标</h3>
+<p>1950年，图灵在其划时代论文Computing Machinery and Intelligence[62]中提出了著名的“图灵测试”概念：如果一个人（代号C）使用测试对象皆理解的语言去询问两个他不能看见的对象任意一串问题。对象为：一个是正常<a href="https://link.zhihu.com/?target=https%3A//zh.wikipedia.org/wiki/%E6%80%9D%E7%BB%B4">思维</a>的人（代号B）、一个是机器（代号A）。如果经过若干询问以后，C不能得出实质的区别来分辨A与B的不同，则此机器A通过图灵测试。</p>
+<p>请注意，“图灵测试”的概念已经蕴含了“反馈”的概念——人类借由程序的反馈来进行判断，而人工智能程序则通过学习反馈来欺骗人类。同样在这篇论文中，图灵还说到“除了试图直接去建立一个可以模拟成人大脑的程序之外，为什么不试图建立一个可以模拟小孩大脑的程序呢？如果它接受适当的教育，就会获得成人的大脑。”——从反馈中逐渐提升能力，这不正是RL的学习方式么？可以看出，<strong>人工智能的概念从被提出时其最终目标就是构建一个足够好的从反馈学习的系统</strong>。</p>
+<p>1959年，人工智能先驱Arthur Samuel正式定义了“机器学习”这概念。也正是这位Samuel，在50年代开发了基于RL的的象棋程序，成为人工智能领域最早的成功案例[63]。为何人工智能先驱们的工作往往集中在RL相关的任务呢？经典巨著《人工智能：一种现代方法》里对RL的评论或许可以回答这一问题：可以认为RL囊括了人工智能的所有要素：一个智能体被置于一个环境中，并且必须学会在其间游刃有余（Reinforcement Learning might be considered to encompass all of AI: an agent is placed in an environment and must learn to behave successfully therein.） [64]。</p>
+<p>不仅仅在人工智能领域，哲学领域也强调了行为与反馈对智能形成的意义。生成论（Enactivism）认为行为是认知的基础，行为与感知是互相促进的，智能体通过感知获得行为的反馈，而行为则带给智能体对环境的真实有意义的经验[65]。</p>
+<center>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407111205.png"/> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
+行为和反馈是智能形成的基石[65]
+</div>
+</center>
+<p>看来，从反馈学习确实是实现智能的核心要素。</p>
+<p>回到人工智能领域。DL取得成功后，与RL结合成为DRL。知识库相关的研究取得成功后，RL算法中也逐渐加入了Memory机制。而变分推理也已经找到了与RL的结合点。近期学界开始了反思DL的热潮，重新燃起对因果推理与符号学习的兴趣，于是也出现了关系RL和符号RL[66]相关的工作。通过回顾学术的发展，我们也可以总结出人工智能发展的一个特点：每当一个相关方向取得突破，总是会回归到RL问题, 寻求与RL相结合。与其把DRL看作DL的拓展，不如看作RL的一次回归。因此我们不必特别担心DRL的泡沫，因为RL本就是人工智能的最终目标，有着旺盛的生命力，未来还会迎来一波又一波的发展。</p>
+<h3 id="广义的rl是未来一切机器学习系统的形式">广义的RL，是未来一切机器学习系统的形式</h3>
+<p>Recht在他的最后一篇博文中[67]中强调，只要一个机器学习系统会通过接收外部的反馈进行改进，这个系统就不仅仅是一个机器学习系统，而且是一个RL系统。当前在互联网领域广为使用的A/B测试就是RL的一种最简单的形式。而未来的机器学习系统，都要处理分布动态变化的数据并从反馈中学习。因此可以说，我们即将处于一个“一切机器学习都是RL”的时代，学界和工业界都亟需加大对RL的研究力度。Recht从社会与道德层面对这一问题进行了详细探讨[67]，并将他从控制与优化角度对RL的一系列思考总结成一篇综述文章供读者思考[69]。</p>
+<h3 id="广义的rl是很多领域研究的共同目标">广义的RL，是很多领域研究的共同目标</h3>
+<p>4.2节已经提到RL在机器学习相关的领域被分别发明与研究，其实这种从反馈中学习的思想，在很多其他领域也被不断地研究。仅举几例如下：</p>
+<p>在心理学领域，经典条件反射与操作性条件反射的对比，就如同SL和RL的对比；而著名心理学家Albert Bandura 提出的“观察学习”理论则与IL非常相似；精神分析大师Melanie Klein 提出的“投射性认同”其实也可以看做一个RL的过程。在心理学诸多领域中，与RL关联最近的则是行为主义学派（Behaviorism）。其代表人物John Broadus Watson将行为主义心理学应用于广告业，极大推动了广告业的发展。这很难不让人联想到，RL算法的一大成熟应用就是互联网广告。而行为主义受到认知科学影响而发展出的认知行为疗法则与RL中的策略迁移方法有异曲同工之妙。行为主义与RL的渊源颇深，甚至可以说是RL思想的另一个源头。本文限于篇幅无法详述，请感兴趣的读者参阅心理学方面的文献如[53]。</p>
+<p>在教育学领域，一直有关于“主动学习”与“被动学习”两种方式的对比与研究，代表性研究有Cone of Experience，其结论与机器学习领域关于RL与SL的对比非常相似。而教育学家杜威提倡的“探究式学习”就是指主动探索寻求反馈的学习方法；</p>
+<p>在组织行为学领域，学者们探究“主动性人格”与“被动性人格”的不同以及对组织的影响；</p>
+<p>在企业管理学领域，企业的“探索式行为”和“利用式行为”一直是一个研究热点；</p>
+<p>……</p>
+<p>可以说，一切涉及通过选择然后得到反馈，然后从反馈中学习的领域，几乎都有RL的思想以各种形式存在，因此笔者称之为广义的RL。这些学科为RL的发展提供了丰富的研究素材，积累了大量的思想与方法。同时，RL的发展不会仅仅对人工智能领域产生影响，也会推动广义的RL所包含的诸多学科共同前进。</p>
+<h2 id="结语">结语</h2>
+<p>虽然RL领域目前还存在诸多待解决的问题，在DRL这一方向上也出现不少泡沫，但我们应该看到RL领域本身在研究和应用领域取得的长足进步。这一领域值得持续投入研究，但在应用时需保持理性。而对基于反馈的学习的研究，不仅有望实现人工智能的最终目标，也对机器学习领域和诸多其他领域的发展颇有意义。这确实是通向人工智能的最佳路径。这条路上布满荆棘，但曙光已现。</p>
+<h2 id="致谢">致谢</h2>
+<p>在本文的写作过程中，得到了英特尔研究院郭怡文研究员、刘忠轩研究员和史雪松研究员的积极反馈。剑桥大学的Shane Gu博士、清华大学交叉信息学院的张崇洁教授和北京大学信息科学学院智能科学系的林宙辰教授分别在基于模型的方法、RL泛化性能和RL模型优化方法方面提供了很多非常有价值的指导意见。此外特别感谢强化学习研究者Flood Sung，为笔者介绍了RL领域多个最前沿的研究应用，并提供了这一研究交流平台。</p>
+<h2 id="作者简介">作者简介:</h2>
+<p><strong>侯宇清</strong></p>
+<p>博士，现为英特尔中国研究院认知计算实验室和清华大学计算机科学与技术系智能技术与系统国家重点实验室联合培养博士后研究员，研究兴趣为强化学习的理论以及应用，研究方向为基于深度强化学习的视觉信息处理以及元学习。2016年毕业于北京大学，研究方向为多模态学习。发表学术论文7篇，拥有5项美国/国际专利及申请。</p>
+<p><strong>陈玉荣</strong></p>
+<p>博士，现任英特尔首席研究员、英特尔中国研究院认知计算实验室主任。负责领导视觉认知和机器学习研究工作，推动基于英特尔平台的智能视觉数据处理技术创新。发表学术论文50余篇，拥有50余项美国/国际专利及申请。</p>
+<p><strong>参考文献</strong></p>
+<p>[1] Mnih, Volodymyr, et al. "Human-level control through deep reinforcement learning." Nature 518.7540 (2015): 529.</p>
+<p>[2] Silver, David, et al. "Mastering the game of Go with deep neural networks and tree search." Nature 529.7587 (2016): 484-489.</p>
+<p>[3] Silver, David, et al. "Mastering the game of go without human knowledge." Nature 550.7676 (2017): 354.</p>
+<p>[4] Levine, Sergey, et al. "End-to-end training of deep visuomotor policies." arXiv preprint arXiv:1504.00702, 2015.</p>
+<p>[5] Mao, Hongzi, et al. "Resource management with deep reinforcement learning." Proceedings of the 15th ACM Workshop on Hot Topics in Networks. ACM, 2016.</p>
+<p>[6] <a href="https://link.zhihu.com/?target=https%3A//deepmind.com/blog/deepmind-ai-reduces-google-data-centre-cooling-bill-40/">https://deepmind.com/blog/deepmind-ai-reduces-google-data-centre-cooling-bill-40/</a></p>
+<p>[7] Jaques, Natasha, et al. "Tuning recurrent neural networks with reinforcement learning." (2017).</p>
+<p>[8] Henderson, Peter, et al. "Deep reinforcement learning that matters." arXiv preprint arXiv:1709.06560 (2017).</p>
+<p>[9] Islam, Riashat, et al. "Reproducibility of benchmarked deep reinforcement learning tasks for continuous control." arXiv preprint arXiv:1708.04133 (2017).</p>
+<p>[10] <a href="https://link.zhihu.com/?target=https%3A//riashatislam.files.wordpress.com/2017/08/icml_rl_workshop_talk.pdf">https://riashatislam.files.wordpress.com/2017/08/icml_rl_workshop_talk.pdf</a></p>
+<p>[11] <a href="https://link.zhihu.com/?target=https%3A//sites.google.com/view/deeprl-symposium-nips2017/">https://sites.google.com/view/deeprl-symposium-nips2017/</a></p>
+<p>[12][https://www.reddit.com/r/MachineLearning/comments/7lq58j/d_what_ml_publication_hacks_are_you_familiar_with/](https://link.zhihu.com/?target=https%3A//www.reddit.com/r/MachineLearning/comments/7lq58j/d_what_ml_publication_hacks_are_you_familiar_with/)</p>
+<p>[13] <a href="https://link.zhihu.com/?target=https%3A//www.alexirpan.com/2018/02/14/rl-hard.html">https://www.alexirpan.com/2018/02/14/rl-hard.html</a></p>
+<p>[14] <a href="https://link.zhihu.com/?target=https%3A//himanshusahni.github.io/2018/02/23/reinforcement-learning-never-worked.html">https://himanshusahni.github.io/2018/02/23/reinforcement-learning-never-worked.html</a></p>
+<p>[15] <a href="https://link.zhihu.com/?target=http%3A//amid.fish/reproducing-deep-rl">http://amid.fish/reproducing-deep-rl</a></p>
+<p>[16] <a href="https://link.zhihu.com/?target=http%3A//rodeo.ai/2018/05/06/reproducibility-reusability-and-robustness-in-deep-reinforcement-learning/">http://rodeo.ai/2018/05/06/reproducibility-reusability-and-robustness-in-deep-reinforcement-learning/</a></p>
+<p>[17] Dayan, Peter, and Yael Niv. "Reinforcement learning: the good, the bad and the ugly." Current opinion in neurobiology 18.2 (2008): 185-196.</p>
+<p>[18] <a href="https://link.zhihu.com/?target=http%3A//www.argmin.net/2018/05/11/outsider-rl/">http://www.argmin.net/2018/05/11/outsider-rl/</a></p>
+<p>[19] Mania, Horia, Aurelia Guy, and Benjamin Recht. "Simple random search provides a competitive approach to reinforcement learning." arXiv preprint arXiv:1803.07055 (2018).</p>
+<p>[20] Justesen, Niels, et al. "Deep Learning for Video Game Playing." arXiv preprint arXiv:1708.07902 (2017).</p>
+<p>[21] <a href="https://link.zhihu.com/?target=https%3A//www.youtube.com/watch%3Fv%3DOunt2Y4qxQo">https://www.youtube.com/watch?v=Ount2Y4qxQo</a></p>
+<p>[22] <a href="https://link.zhihu.com/?target=https%3A//sites.google.com/view/icml17deeprl">https://sites.google.com/view/icml17deeprl</a></p>
+<p>[23] Silver, David, et al. "The predictron: End-to-end learning and planning." arXiv preprint arXiv:1612.08810 (2016).</p>
+<p>[24] Deisenroth, Marc, and Carl E. Rasmussen. "PILCO: A model-based and data-efficient approach to policy search." Proceedings of the 28th International Conference on machine learning (ICML-11). 2011.</p>
+<p>[25] Levine, Sergey, and Vladlen Koltun. "Guided policy search." International Conference on Machine Learning. 2013.</p>
+<p>[26] Weber, Théophane, et al. "Imagination-augmented agents for deep reinforcement learning." arXiv preprint arXiv:1707.06203 (2017).</p>
+<p>[27] Sutton, Richard S. "Dyna, an integrated architecture for learning, planning, and reacting." ACM SIGART Bulletin 2.4 (1991): 160-163.</p>
+<p>[28] Silver, David, Richard S. Sutton, and Martin Müller. "Sample-based learning and search with permanent and transient memories." Proceedings of the 25th international conference on Machine learning. ACM, 2008.</p>
+<p>[29] Rajeswaran, Aravind, et al. "Towards generalization and simplicity in continuous control." Advances in Neural Information Processing Systems. 2017.</p>
+<p>[30] <a href="https://link.zhihu.com/?target=http%3A//www.andreykurenkov.com/writing/is-alphago-zero-overrated/">http://www.andreykurenkov.com/writing/is-alphago-zero-overrated/</a></p>
+<p>[31] UCL Course on RL: <a href="https://link.zhihu.com/?target=http%3A//www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html">http://www0.cs.ucl.ac.uk/staff/d.silver/web/Teaching.html</a></p>
+<p>[32] Powell, Warren B. "AI, OR and control theory: A rosetta stone for stochastic optimization." Princeton University (2012).</p>
+<p>[33] Pomerleau, Dean A. "Alvinn: An autonomous land vehicle in a neural network." Advances in neural information processing systems. 1989.</p>
+<p>[34] Abbeel, Pieter, and Andrew Y. Ng. "Apprenticeship learning via inverse reinforcement learning." Proceedings of the twenty-first international conference on Machine learning. ACM, 2004.</p>
+<p>[35] Osa, Takayuki, et al. "An algorithmic perspective on imitation learning." Foundations and Trends® in Robotics 7.1-2 (2018): 1-179.</p>
+<p>[36] <a href="https://link.zhihu.com/?target=https%3A//fermatslibrary.com/arxiv_comments">https://fermatslibrary.com/arxiv_comments</a> url=https%3A%2F%2Farxiv.org%2Fpdf%2F1406.2661.pdf</p>
+<p>[37] Ho, Jonathan, and Stefano Ermon. "Generative adversarial imitation learning." Advances in Neural Information Processing Systems. 2016.</p>
+<p>[38] <a href="https://link.zhihu.com/?target=https%3A//github.com/carla-simulator/carla">https://github.com/carla-simulator/carla</a></p>
+<p>[39] <a href="https://link.zhihu.com/?target=https%3A//36kr.com/p/5129474.html">https://36kr.com/p/5129474.html</a></p>
+<p>[40] Vezhnevets, Alexander Sasha, et al. "Feudal networks for hierarchical reinforcement learning." arXiv preprint arXiv:1703.01161 (2017).</p>
+<p>[41] Ranzato, Marc'Aurelio, et al. "Sequence level training with recurrent neural networks." arXiv preprint arXiv:1511.06732 (2015).</p>
+<p>[42] Bahdanau, Dzmitry, et al. "An actor-critic algorithm for sequence prediction." arXiv preprint arXiv:1607.07086 (2016).</p>
+<p>[43] Keneshloo, Yaser, et al. "Deep Reinforcement Learning For Sequence to Sequence Models." arXiv preprint arXiv:1805.09461 (2018).</p>
+<p>[44] Watters, Nicholas, et al. "Visual interaction networks." arXiv preprint arXiv:1706.01433 (2017).</p>
+<p>[45] Hamrick, Jessica B., et al. "Relational inductive bias for physical construction in humans and machines." arXiv preprint arXiv:1806.01203 (2018).</p>
+<p>[46] Zambaldi, Vinicius, et al. "Relational Deep Reinforcement Learning." arXiv preprint arXiv:1806.01830 (2018).</p>
+<p>[47] Santoro, Adam, et al. "Relational recurrent neural networks." arXiv preprint arXiv:1806.01822 (2018).</p>
+<p>[48] Battaglia, Peter W., et al. "Relational inductive biases, deep learning, and graph networks." arXiv preprint arXiv:1806.01261 (2018).</p>
+<p>[49] Eslami, SM Ali, et al. "Neural scene representation and rendering." Science 360.6394 (2018): 1204-1210.</p>
+<p>[50] Huang, Sandy, et al. "Adversarial attacks on neural network policies." arXiv preprint arXiv:1702.02284 (2017).</p>
+<p>[51] Behzadan, Vahid, and Arslan Munir. "Vulnerability of deep reinforcement learning to policy induction attacks." International Conference on Machine Learning and Data Mining in Pattern Recognition. Springer, Cham, 2017.</p>
+<p>[52] Tesauro, Gerald. "Temporal difference learning and TD-Gammon." Communications of the ACM 38.3 (1995): 58-68.</p>
+<p>[53] Jones, Rebecca M., et al. "Behavioral and neural properties of social reinforcement learning."Journal of Neuroscience 31.37 (2011): 13039-13045.</p>
+<p>[54] <a href="https://link.zhihu.com/?target=https%3A//github.com/YBIGTA/DeepNLP-Study/wiki/MILABOT-%3A-A-Deep-Reinforcement-Learning-Chatbot">https://github.com/YBIGTA/DeepNLP-Study/wiki/MILABOT-:-A-Deep-Reinforcement-Learning-Chatbot</a></p>
+<p>[55] Lewis, Mike, et al. "Deal or no deal? end-to-end learning for negotiation dialogues." arXiv preprint arXiv:1706.05125 (2017).</p>
+<p>[56] <a href="https://link.zhihu.com/?target=https%3A//www.microsoft.com/zh-cn/translator/mt.aspx">https://www.microsoft.com/zh-cn/translator/mt.aspx</a></p>
+<p>[57] Derhami, Vali, et al. "Applying reinforcement learning for web pages ranking algorithms." Applied Soft Computing 13.4 (2013): 1686-1692.</p>
+<p>[58] Wu, Jiawei, Lei Li, and William Yang Wang. "Reinforced Co-Training." arXiv preprint arXiv:1804.06035 (2018).</p>
+<p>[59] Li, Yuxi. "Deep reinforcement learning: An overview." arXiv preprint arXiv:1701.07274 (2017).</p>
+<p>[60] Feinberg, Eugene A., and Adam Shwartz, eds. Handbook of Markov decision processes: methods and applications. Vol. 40. Springer Science &amp; Business Media, 2012.</p>
+<p>[61] <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/CMA-ES">https://en.wikipedia.org/wiki/CMA-ES</a></p>
+<p>[62] Turing, Alan M. "Computing machinery and intelligence." Parsing the Turing Test. Springer, Dordrecht, 2009. 23-65.</p>
+<p>[63] <a href="https://link.zhihu.com/?target=https%3A//en.wikipedia.org/wiki/Arthur_Samuel">https://en.wikipedia.org/wiki/Arthur_Samuel</a></p>
+<p>[64] Russell, Stuart J., and Peter Norvig. Artificial intelligence: a modern approach. Malaysia; Pearson Education Limited,, 2016.</p>
+<p>[65] Noë, Alva. Action in perception. MIT press, 2004.</p>
+<p>[66] Garnelo, Marta, Kai Arulkumaran, and Murray Shanahan. "Towards deep symbolic reinforcement learning." arXiv preprint arXiv:1609.05518 (2016).</p>
+<p>[67] <a href="https://link.zhihu.com/?target=http%3A//www.argmin.net/2018/04/16/ethical-rewards/">http://www.argmin.net/2018/04/16/ethical-rewards/</a></p>
+<p>[68] Bojarski, Mariusz, et al. "End to end learning for self-driving cars." arXiv preprint arXiv:1604.07316 (2016).</p>
+<p>[69] Recht, Benjamin . "A Tour of Reinforcement Learning:The View from Continuous Control." arXiv preprint arXiv: 1806.09460</p>
+<p>[70] Kalashnikov, Dmitry, et al. "QT-Opt: Scalable Deep Reinforcement Learning for Vision-Based Robotic Manipulation." arXiv preprint arXiv:1806.10293 (2018).</p>
+<p>[71] Tan, Jie, et al. "Sim-to-Real: Learning Agile Locomotion For Quadruped Robots." arXiv preprint arXiv:1804.10332 (2018).</p>
+<p>[72] Auer, Peter. "Using confidence bounds for exploitation-exploration trade-offs." Journal of Machine Learning Research 3.Nov (2002): 397-422.</p>
+<p>[73] Agrawal, Shipra, and Navin Goyal. "Thompson sampling for contextual bandits with linear payoffs." International Conference on Machine Learning. 2013.</p>
+<p>[74] Mohamed, Shakir, and Danilo Jimenez Rezende. "Variational information maximisation for intrinsically motivated reinforcement learning." Advances in neural information processing systems. 2015.</p>
+<p>[75] Pathak, Deepak, et al. "Curiosity-driven exploration by self-supervised prediction." International Conference on Machine Learning (ICML). Vol. 2017. 2017.</p>
+<p>[76] Tang, Haoran, et al. "# Exploration: A study of count-based exploration for deep reinforcement learning." Advances in Neural Information Processing Systems. 2017.</p>
+<p>[77] McFarlane, Roger. "A Survey of Exploration Strategies in Reinforcement Learning." McGill University, <a href="https://link.zhihu.com/?target=http%3A//www">http://www</a>. cs. mcgill. ca/∼ cs526/roger. pdf, accessed: April (2018).</p>
+<p>[78] Plappert, Matthias, et al. "Parameter space noise for exploration." arXiv preprint arXiv:1706.01905 (2017).</p>
+<p>[79] Fortunato, Meire, et al. "Noisy networks for exploration." arXiv preprint arXiv:1706.10295 (2017).</p>
+<p>[80] Kansky, Ken, et al. "Schema networks: Zero-shot transfer with a generative causal model of intuitive physics." arXiv preprint arXiv:1706.04317 (2017).</p>
+<p>[81] Li, Da, et al. "Learning to generalize: Meta-learning for domain generalization." arXiv preprint arXiv:1710.03463 (2017).</p>
+<p>[82] <a href="https://link.zhihu.com/?target=https%3A//berkeleyautomation.github.io/dex-net/">https://berkeleyautomation.github.io/dex-net/</a></p>
+<p>[83] <a href="https://link.zhihu.com/?target=https%3A//contest.openai.com/2018-1/">https://contest.openai.com/2018-1/</a></p>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>SuSu<br>
+    <strong>本文链接：</strong><a href="https://su-lemon.gitee.io/post/167a8eb9.html" title="https:&#x2F;&#x2F;su-lemon.gitee.io&#x2F;post&#x2F;167a8eb9.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;su-lemon.gitee.io&#x2F;post&#x2F;167a8eb9.html</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/RL/">RL</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/RL/" rel="tag">RL</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/js/effects/md5.min.js"></script>
+<div id="gitalk"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    // var gitalk = new Gitalk({
+    //   clientID: '2543206578680a1bdf99',
+    //   clientSecret: '24e25a0277329218d91186c354b4a9d3ec9eaf29',
+    //   repo: 'gittalk-comments',
+    //   owner: 'Su-Lemon',
+    //   admin: 'Su-Lemon',
+    //   id: 'location.pathname',
+    //   labels: 'Gitalk'.split(',').filter(l => l),
+    // //   perPage: '15',
+    //   pagerDirection: 'last',
+    //   createIssueManually: 'true',
+    //   distractionFreeMode: 'false'
+    // })
+    idCfg = "2543206578680a1bdf99"
+    secretCfg = "24e25a0277329218d91186c354b4a9d3ec9eaf29"
+    repoCfg = "gittalk-comments"
+    ownerCfg = "Su-Lemon"
+    adminCfg = "Su-Lemon"
+    var gitalk = new Gitalk({
+      clientID: idCfg,
+      clientSecret: secretCfg,
+      repo: repoCfg,
+      owner: ownerCfg,
+      admin: adminCfg,
+      id: md5(location.pathname),
+      labels: ['Gitalk'],
+      perPage: 15,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      distractionFreeMode: false
+    })
+    gitalk.render('gitalk')
+</script>
+    
+</section>
+
+  </div>
+</div>
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+  
+  <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <!-- 给MathJax元素添加has-jax class -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        Tex: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+        "HTML-CSS": {linebreaks: {automatic: true}},
+        SVG: {linebreaks: {automatic: true}}
+    });
+  </script>
+  <!-- 通过连接CDN加载MathJax的js代码 -->
+  <script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+
+
+
+        <div class="nexmoe-post-right">
+          
+            <div class="nexmoe-fixed">
+              <div class="nexmoe-tool">
+                <a href="#" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+              </div>
+            </div>
+          
+        </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ <script src="https://su-lemon.gitee.io/js/app.js?v=1617765883395"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+<script src="https://su-lemon.gitee.io/lib/google-code-prettify/src/prettify.js"></script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('pre').addClass('prettyprint linenums');
+		$('code').addClass('prettyprint');
+		prettyPrint();
+	})
+</script>
+
+  
+
+
+
+
+
+    <!-- baidu Analytics -->
+<script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?539439c58f0ce65ba27b965cac9accab';
+    var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</body>
+
+</html>
