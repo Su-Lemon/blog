@@ -4,7 +4,7 @@
 
 <head>
   
-  <title>【MAC】抹盘重装教程 - 爱吃猫的小鱼干的 Blog</title>
+  <title>【Linux】各种系统信息查询指令 - 爱吃猫的小鱼干的 Blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -24,27 +24,26 @@
     
 
   <link rel="shortcut icon" href="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/favicon1.png" type="image/png" />
-  <meta name="description" content="一年不抹盘就手痒痒系列&gt;_&lt; 在这里记录自己抹盘重装macOS Mojave的历程，引导器（USB启动磁盘）制作是一个大坑，目前的官方教程丢了一个小细节。">
+  <meta name="description" content="总结在Linux中，查询各种系统信息的常用指令">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【MAC】抹盘重装教程">
-<meta property="og:url" content="https://su-lemon.gitee.io/post/62abf324.html">
+<meta property="og:title" content="【Linux】各种系统信息查询指令">
+<meta property="og:url" content="https://su-lemon.gitee.io/post/fd1aadb2.html">
 <meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
-<meta property="og:description" content="一年不抹盘就手痒痒系列&gt;_&lt; 在这里记录自己抹盘重装macOS Mojave的历程，引导器（USB启动磁盘）制作是一个大坑，目前的官方教程丢了一个小细节。">
+<meta property="og:description" content="总结在Linux中，查询各种系统信息的常用指令">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2020030522060854.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JyZWFraW5nRGF3bjA=,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/2020030521355455.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JyZWFraW5nRGF3bjA=,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="article:published_time" content="2020-03-05T13:33:58.000Z">
-<meta property="article:modified_time" content="2021-02-25T07:31:04.523Z">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210410205050.png">
+<meta property="article:published_time" content="2021-04-10T12:36:47.000Z">
+<meta property="article:modified_time" content="2021-04-10T13:14:38.878Z">
 <meta property="article:author" content="SuSu">
-<meta property="article:tag" content="MacOS">
+<meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2020030522060854.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JyZWFraW5nRGF3bjA=,size_16,color_FFFFFF,t_70#pic_center">
+<meta name="twitter:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210410205050.png">
   <link rel="stylesheet" href="https://su-lemon.gitee.io/css/blog.css" type="text/css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2432472_9kqdqg64gbn.css">
   
-  <link rel="stylesheet" href="https://su-lemon.gitee.io/css/style.css?v=1618060485854">
+  <link rel="stylesheet" href="https://su-lemon.gitee.io/css/style.css?v=1618060485824">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -318,15 +317,15 @@
         <div class="nexmoe-post">
   
       <div class="nexmoe-post-cover" style="padding-bottom: 50%;"> 
-          <img data-src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/cover/cover8.jpeg" data-sizes="auto" alt="【MAC】抹盘重装教程" class="lazyload">
-          <h1>【MAC】抹盘重装教程</h1>
+          <img data-src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/cover/cover15.png" data-sizes="auto" alt="【Linux】各种系统信息查询指令" class="lazyload">
+          <h1>【Linux】各种系统信息查询指令</h1>
       </div>
   
   
   <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
-    <a><i class="nexmoefont icon-calendar-fill"></i>2020年03月05日</a>
-    <a><i class="nexmoefont icon-areachart"></i>950 字</a>
-    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 3 分钟</a>
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月10日</a>
+    <a><i class="nexmoefont icon-areachart"></i>1.7k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 7 分钟</a>
 </div>
 
   <div class="nexmoe-post-right">
@@ -336,7 +335,7 @@
             <div class="nexmoe-toc">
                 
                 
-                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%B6%E4%BD%9C%E5%8F%AF%E5%BC%95%E5%AF%BC%E7%9A%84macos%E5%AE%89%E8%A3%85%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">制作可引导的macOS安装器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDmacos"><span class="toc-number">1.1.</span> <span class="toc-text">下载macOS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E7%BB%88%E7%AB%AF%E4%B8%AD%E4%BD%BF%E7%94%A8createinstallmedia%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">在“终端”中使用“createinstallmedia”命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%BC%95%E5%AF%BC%E5%99%A8%E9%87%8D%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">使用引导器重装</span></a></li></ol>
+                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E8%AF%A2cpu%E4%BF%A1%E6%81%AF"><span class="toc-number">1.</span> <span class="toc-text">查询CPU信息</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#cpu%E4%B8%AA%E6%95%B0%E6%A0%B8%E6%95%B0%E7%AD%89"><span class="toc-number">1.1.</span> <span class="toc-text">CPU个数、核数等</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cpu%E5%8D%A0%E7%94%A8%E4%BF%A1%E6%81%AF"><span class="toc-number">1.2.</span> <span class="toc-text">CPU占用信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#top"><span class="toc-number">1.3.</span> <span class="toc-text">top</span></a></li></ol></li></ol>
                 
             </div>
         </div>
@@ -345,43 +344,113 @@
   </div>
 
   <article>
-    <p>一年不抹盘就手痒痒系列&gt;_&lt; 在这里记录自己抹盘重装macOS Mojave的历程，引导器（USB启动磁盘）制作是一个大坑，目前的官方教程丢了一个小细节。</p>
+    <p>总结在Linux中，查询各种系统信息的常用指令</p>
 <a id="more"></a>
-<h2 id="制作可引导的macos安装器">制作可引导的macOS安装器</h2>
-<h3 id="下载macos">下载macOS</h3>
-<p>各个 macOS 版本的下载链接移步官网，这里以我安装的Mojave为例，<a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/HT210190">Mojave</a>：</p>
+<h2 id="查询cpu信息">查询CPU信息</h2>
+<h3 id="cpu个数核数等">CPU个数、核数等</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="co"># 查看物理CPU个数</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="fu">cat</span> /proc/cpuinfo<span class="kw">|</span> <span class="fu">grep</span> <span class="st">&quot;physical id&quot;</span><span class="kw">|</span> <span class="fu">sort</span><span class="kw">|</span> <span class="fu">uniq</span><span class="kw">|</span> <span class="fu">wc</span> -l</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="co"># 查看 每个 物理CPU中core的个数(即核数)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="fu">cat</span> /proc/cpuinfo<span class="kw">|</span> <span class="fu">grep</span> <span class="st">&quot;cpu cores&quot;</span><span class="kw">|</span> <span class="fu">uniq</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a><span class="co"># 总核数 = 物理CPU个数 * 每个物理CPU的核数 </span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a><span class="co"># 总逻辑CPU数 = 物理CPU个数 * 每个物理CPU的核数 * 超线程数</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a><span class="co"># 查看逻辑CPU的个数</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a><span class="fu">cat</span> /proc/cpuinfo<span class="kw">|</span> <span class="fu">grep</span> <span class="st">&quot;processor&quot;</span><span class="kw">|</span> <span class="fu">wc</span> -l</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a><span class="co"># 查看CPU信息（型号）</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a><span class="fu">cat</span> /proc/cpuinfo <span class="kw">|</span> <span class="fu">grep</span> name <span class="kw">|</span> <span class="fu">cut</span> -f2 -d: <span class="kw">|</span> <span class="fu">uniq</span> -c</span></code></pre></div>
+<h3 id="cpu占用信息">CPU占用信息</h3>
+<h3 id="top"><strong>top</strong></h3>
+<p>top命令是Linux下常用的性能分析工具，能够实时显示系统中各个进程的资源占用状况，类似于Windows的任务管理器。</p>
+<p>top显示系统当前的进程和其他状况,是一个动态显示过程，即可以通过用户按键来不断刷新当前状态。如果在前台执行该命令，它将独占前台，直到用户终止该程序为止.。比较准确的说，top命令提供了实时的对系统处理器的状态监视。它将显示系统中CPU最“敏感”的任务列表。该命令可以按CPU使用、内存使用和执行时间对任务进行排序；而且该命令的很多特性都可以通过交互式命令或者在个人定制文件中进行设定。</p>
 <ul>
-<li><p>macOS High Sierra 以上的系统会以 App 的形式直接下载到“应用程序”文件夹，例如“安装 macOS Mojave”或“安装 macOS High Sierra”。</p></li>
-<li><p>其他版本可能会下载为.pkg文件，打开以后按指示操作，最终也会是xxx.app。</p></li>
+<li>命令使用</li>
 </ul>
-<h2 id="在终端中使用createinstallmedia命令">在“终端”中使用“createinstallmedia”命令</h2>
-<ol type="1">
-<li><p>连接要用于可引导安装器的U盘或其他可用磁盘。确保至少有 12GB 可用储存空间，并已格式化为“Mac OS 扩展”。</p></li>
-<li><p>这里大坑出现了，如果跳过这里操作完发现系统 <strong>无法将制作的引导器识别为启动磁盘</strong>，</p>
+<p><code>top [-] [d] [p] [q] [c] [C] [S] [s] [n]</code></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co"># d 指定每两次屏幕信息刷新之间的时间间隔。当然用户可以使用s交互命令来改变之。 </span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co"># p 通过指定监控进程ID来仅仅监控某个进程的状态。 </span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co"># q 该选项将使top没有任何延迟的进行刷新。如果调用程序有超级用户权限，那么top将以尽可能高的优先级运行。 </span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co"># S 指定累计模式 s 使top命令在安全模式中运行。这将去除交互命令所带来的潜在危险。 </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co"># i 使top不显示任何闲置或者僵死进程。 </span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co"># c 显示整个命令行而不只是显示命令名</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a><span class="co"># 示例，每隔1秒刷新显示信息</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true"></a><span class="ex">top</span> -d 1</span></code></pre></div>
+<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210410205050.png" /></p>
 <ul>
-<li>所以，在制作引导器之前，先在mac的磁盘工具里<strong>检查一下自己磁盘</strong>。</li>
-<li>选择左上角的 显示所有设备。（Mojave之后的APFS有了容器的概念，和图中不一样可以不管）</li>
-<li>接着选中要制作引导器的磁盘所在的的<strong>最上层名称</strong>，点击分区，<strong>需要GUID分区图</strong>，macOS扩展（日志式），然后确定。接着就可以愉快的制作引导器了。 <img data-fancybox="gallery" data-sizes="auto" data-src="https://img-blog.csdnimg.cn/2020030522060854.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JyZWFraW5nRGF3bjA=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" class="lazyload"></li>
-</ul></li>
-<li><p>打开“应用程序”文件夹内“实用工具”文件夹中的“终端”。在“终端”中键入或粘贴以下命令之一。这些命令假设安装器仍位于“应用程序”文件夹中，并且 MyVolume 是 制作引导器的磁盘（或其他）名。如果不是这个名称，替换 MyVolume 为自己的磁盘名称。</p>
-<p>Catalina：</p>
-<p><code>sudo /Applications/Install\ macOS\ Catalina.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume</code></p>
-<p>Mojave：</p>
-<p><code>sudo /Applications/Install\ macOS\ Mojave.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume</code></p></li>
-<li><p>键入相应的命令后，按下 Return 键。出现提示时，键入管理员密码，然后再次按下 Return 键。在键入密码时，“终端”不会显示任何字符。</p></li>
-<li><p>出现提示时，键入 Y 以确认要抹掉磁盘，然后按下 Return 键。创建可引导安装器过程中，“终端”将显示进度。</p></li>
-<li><p>当“终端”显示这个操作已完成时，该磁盘的名称将与下载的安装器名称相同，例如“安装 macOS Mojave”。现在可以退出“终端”并弹出宗卷。</p></li>
-</ol>
-<h2 id="使用引导器重装">使用引导器重装</h2>
-<ol type="1">
-<li>将可引导安装器插入兼容的 Mac，兼容性查看<a target="_blank" rel="noopener" href="https://support.apple.com/zh-cn/HT201686">官网</a>。</li>
-<li>使用“启动管理器”或“启动磁盘”偏好设置将可引导安装器选择为启动磁盘，然后从中启动。也可以重启时按住option进入选择启动磁盘界面，选择制作的引导器启动。</li>
-<li>如果要抹盘重装，则先选择列表里的磁盘工具，否则直接选择重装macOS进入自动安装。</li>
-<li>选择磁盘工具后，界面和正常mac磁盘工具相同，<strong>选择原来的系统磁盘，抹除，手残点到存放数据的磁盘喜闻乐见（本人老老老版mac，光驱拆了再装一块固态还挺舒服）</strong> <img data-fancybox="gallery" data-sizes="auto" data-src="https://img-blog.csdnimg.cn/2020030521355455.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L0JyZWFraW5nRGF3bjA=,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述" class="lazyload"></li>
-<li>抹除系统盘后，退出磁盘工具，返回刚才的界面，选择重装macOS。</li>
-<li>接着进入自动安装，都是傻瓜式安装，到了这一步几乎不会出问题了。</li>
-<li>本人安装最后还遇到一点小问题，在选择语言，选择输入法等等过去，到最后连接Wi-Fi时，<strong>卡卡卡住了</strong>，问题不大，重启就好，自动安装到选择语言系统已经完成了安装，重启重新跟着引导配置一次就可以了。</li>
-</ol>
+<li>输出信息含义</li>
+</ul>
+<p>如上图，统计信息区前五行是系统整体的统计信息。</p>
+<p>第一行是任务队列信息，同 uptime 命令的执行结果；</p>
+<p>第二、三行为进程和CPU的信息。当有多个CPU时，这些内容可能会超过两行；</p>
+<p>第四、五行为内存信息。</p>
+<p>每行每隔元素的具体含义是：</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co"># 第一行</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="ex">01</span>:06:48    当前时间</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="ex">up</span> 1:22    系统运行时间，格式为时:分</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="ex">1</span> user    当前登录用户数</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="ex">load</span> average: 0.06, 0.60, 0.48    系统负载，即任务队列的平均长度。三个数值分别为 1分钟、5分钟、15分钟前到现在的平均值。</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co"># 第二、三行</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="ex">total</span> 进程总数</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a><span class="ex">running</span> 正在运行的进程数</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a><span class="ex">sleeping</span> 睡眠的进程数</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="ex">stopped</span> 停止的进程数</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a><span class="ex">zombie</span> 僵尸进程数</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a><span class="ex">Cpu</span>(s)<span class="bu">:</span> </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="ex">0.3%</span> us 用户空间占用CPU百分比</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="ex">1.0%</span> sy 内核空间占用CPU百分比</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a><span class="ex">0.0%</span> ni 用户进程空间内改变过优先级的进程占用CPU百分比</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="ex">98.7%</span> id 空闲CPU百分比</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a><span class="ex">0.0%</span> wa 等待输入输出的CPU时间百分比</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a><span class="ex">0.0%hi</span>：硬件CPU中断占用百分比</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a><span class="ex">0.0%si</span>：软中断占用百分比</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a><span class="ex">0.0%st</span>：虚拟机占用百分比</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a><span class="co"># 第四、五行</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="ex">Mem</span>:</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a><span class="ex">191272k</span> total    物理内存总量</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a><span class="ex">173656k</span> used    使用的物理内存总量</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a><span class="ex">17616k</span> free    空闲内存总量</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a><span class="ex">22052k</span> buffers    用作内核缓存的内存量</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a><span class="ex">Swap</span>: </span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a><span class="ex">192772k</span> total    交换区总量</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a><span class="ex">0k</span> used    使用的交换区总量</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a><span class="ex">192772k</span> free    空闲交换区总量</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a><span class="ex">123988k</span> cached    缓冲的交换区总量,内存中的内容被换出到交换区，而后又被换入到内存，但使用过的交换区尚未被覆盖，该数值即为这些内容已存在于内存中的交换区的大小,相应的内存再次被换出时可不必再对交换区写入。</span></code></pre></div>
+<p>进程信息区统计信息区域的下方显示了各个进程的详细信息。各列的含义如下：</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>序号  列名    含义</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="ex">a</span>    PID     进程id</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a><span class="ex">b</span>    PPID    父进程id</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a><span class="ex">c</span>    RUSER   Real user name</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="ex">d</span>    UID     进程所有者的用户id</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a><span class="ex">e</span>    USER    进程所有者的用户名</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="ex">f</span>    GROUP   进程所有者的组名</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="ex">g</span>    TTY     启动进程的终端名。不是从终端启动的进程则显示为 ?</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="ex">h</span>    PR      优先级</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="ex">i</span>    NI      nice值。负值表示高优先级，正值表示低优先级</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="ex">j</span>    P       最后使用的CPU，仅在多CPU环境下有意义</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true"></a><span class="ex">k</span>    %CPU    上次更新到现在的CPU时间占用百分比</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true"></a><span class="ex">l</span>    TIME    进程使用的CPU时间总计，单位秒</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true"></a><span class="ex">m</span>    TIME+   进程使用的CPU时间总计，单位1/100秒</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true"></a><span class="ex">n</span>    %MEM    进程使用的物理内存百分比</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true"></a><span class="ex">o</span>    VIRT    进程使用的虚拟内存总量，单位kb。VIRT=SWAP+RES</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true"></a><span class="ex">p</span>    SWAP    进程使用的虚拟内存中，被换出的大小，单位kb。</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true"></a><span class="ex">q</span>    RES     进程使用的、未被换出的物理内存大小，单位kb。RES=CODE+DATA</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true"></a><span class="ex">r</span>    CODE    可执行代码占用的物理内存大小，单位kb</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true"></a><span class="ex">s</span>    DATA    可执行代码以外的部分(数据段+栈)占用的物理内存大小，单位<span class="ex">kb</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true"></a><span class="ex">t</span>    SHR     共享内存大小，单位kb</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true"></a><span class="ex">u</span>    nFLT    页面错误次数</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true"></a><span class="ex">v</span>    nDRT    最后一次写入到现在，被修改过的页面数。</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true"></a><span class="fu">w</span>    S       进程状态(D=不可中断的睡眠状态,R=运行,S=睡眠,T=跟踪/停止,Z=僵尸进程)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true"></a><span class="ex">x</span>    COMMAND 命令名/命令行</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true"></a><span class="ex">y</span>    WCHAN   若该进程在睡眠，则显示睡眠中的系统函数名</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true"></a><span class="ex">z</span>    Flags   任务标志，参考 sched.h</span></code></pre></div>
+<p>默认情况下仅显示比较重要的 PID、USER、PR、NI、VIRT、RES、SHR、S、%CPU、%MEM、TIME+、COMMAND 列。可以通过下面的快捷键来更改显示内容。</p>
+<p>更改显示内容通过 <strong>f</strong> 键可以选择显示的内容。按 f 键之后会显示列的列表，按 <strong>a-z</strong> 即可显示或隐藏对应的列，最后按回车键确定。 按 <strong>o</strong> 键可以改变列的显示顺序。按小写的 a-z 可以将相应的列向右移动，而大写的 A-Z 可以将相应的列向左移动。最后按回车键确定。 按大写的 <strong>F</strong> 或 <strong>O</strong> 键，然后按 a-z 可以将进程按照相应的列进行排序。而大写的 <strong>R</strong> 键可以将当前的排序倒转。</p>
 
   </article>
 
@@ -389,7 +458,7 @@
     
   <div class="nexmoe-post-copyright">
     <strong>本文作者：</strong>SuSu<br>
-    <strong>本文链接：</strong><a href="https://su-lemon.gitee.io/post/62abf324.html" title="https:&#x2F;&#x2F;su-lemon.gitee.io&#x2F;post&#x2F;62abf324.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;su-lemon.gitee.io&#x2F;post&#x2F;62abf324.html</a><br>
+    <strong>本文链接：</strong><a href="https://su-lemon.gitee.io/post/fd1aadb2.html" title="https:&#x2F;&#x2F;su-lemon.gitee.io&#x2F;post&#x2F;fd1aadb2.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;su-lemon.gitee.io&#x2F;post&#x2F;fd1aadb2.html</a><br>
     
       <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
     
@@ -400,10 +469,10 @@
   
   <div class="nexmoe-post-meta nexmoe-rainbow">
     
-        <a class="nexmoefont icon-appstore-fill -link" href="/categories/Mac/">Mac</a>
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/Linux/">Linux</a>
     
     
-        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/MacOS/" rel="tag">MacOS</a>
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/Linux/" rel="tag">Linux</a>
     
 </div>
 
@@ -532,7 +601,7 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
- <script src="https://su-lemon.gitee.io/js/app.js?v=1618060485854"></script>
+ <script src="https://su-lemon.gitee.io/js/app.js?v=1618060485825"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
