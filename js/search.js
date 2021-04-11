@@ -5,24 +5,22 @@ var searchFunc = function(path, search_id, content_id) {
         dataType: "xml",
         success: function( xmlResponse ) {
             // get the contents from search data
-
             var datas = $( "entry", xmlResponse ).map(function() {
                 return {
                     title: $( "title", this ).text(),
                     content: $("content",this).text(),
-                    url: $( "link" , this).attr("href")
+                    url: $( "url" , this).text()
                 };
             }).get();
             var $input = document.getElementById(search_id);
             var $resultContent = document.getElementById(content_id);
             $input.addEventListener('input', function(){
-                var str='<ul class=\"search-result-list\">';
+                var str='<ul class=\"search-result-list\">';                
                 var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
                 $resultContent.innerHTML = "";
                 if (this.value.trim().length <= 0) {
                     return;
                 }
-
                 // perform local searching
                 datas.forEach(function(data) {
                     var isMatch = true;
@@ -52,44 +50,64 @@ var searchFunc = function(path, search_id, content_id) {
                     }
                     // show search results
                     if (isMatch) {
-
-                        str += "<li><a href='"+ data_url  +"' class='search-result-title'>"+ data_title +"</a>";
-                       console.log(data_url);
-                        console.log("=====命中=====", data);
-
-
+                        str += "<li><a href='"+ data_url +"' class='search-result-title' target='_blank'>"+ "> " + data_title +"</a>";
                         var content = data.content.trim().replace(/<[^>]+>/g,"");
                         if (first_occur >= 0) {
-                            // cut out 100 characters
-                            var start = first_occur - 20;
-                            var end = first_occur + 80;
+                            // cut out characters
+                            var start = first_occur - 6;
+                            var end = first_occur + 6;
                             if(start < 0){
                                 start = 0;
                             }
                             if(start == 0){
-                                end = 100;
+                                end = 10;
                             }
                             if(end > content.length){
                                 end = content.length;
                             }
-                            var match_content = content.substr(start, end);
+                            var match_content = content.substr(start, end); 
                             // highlight all keywords
                             keywords.forEach(function(keyword){
                                 var regS = new RegExp(keyword, "gi");
                                 match_content = match_content.replace(regS, "<em class=\"search-keyword\">"+keyword+"</em>");
-                            });
-
+                            })
                             str += "<p class=\"search-result\">" + match_content +"...</p>"
                         }
-                        str += "</li>";
                     }
-                });
-                str += "</ul>";
+                })
                 $resultContent.innerHTML = str;
-            });
+            })
         }
     });
-};
+}
 
-var path = "/blog/search.xml";
-searchFunc(path, 'local-search-input', 'local-search-result');
+// 点击搜索框激活搜索
+var inputArea = document.querySelector("#local-search-input");
+var getSearchFile = function(){
+    var path = "/search.xml";
+    searchFunc(path, 'local-search-input', 'local-search-result');
+}
+inputArea.onfocus = function(){ getSearchFile() }
+
+// 搜索重置
+var $resetButton = $("#search-form .fa-times");
+var $resultArea = $("#local-search-result");
+inputArea.oninput = function(){ $resetButton.show(); }
+resetSearch = function(){
+    $resultArea.html("");
+    document.querySelector("#search-form").reset();
+    $resetButton.hide();
+    $(".no-result").hide();
+}
+
+// 屏蔽回车
+inputArea.onkeydown = function(){ if(event.keyCode==13) return false}
+
+// 无搜索结果
+$resultArea.bind("DOMNodeRemoved DOMNodeInserted", function(e) {
+    if (!$(e.target).text()) {
+        $(".no-result").show(200); 
+    } else {
+      $(".no-result").hide();
+    }
+})
