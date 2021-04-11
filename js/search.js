@@ -87,7 +87,7 @@ var getSearchFile = function(){
     var path = "/search.xml";
     searchFunc(path, 'local-search-input', 'local-search-result');
 }
-inputArea.onfocus = function(){ getSearchFile() }
+inputArea.focus = function(){ getSearchFile() }
 
 // 搜索重置
 var $resetButton = $("#search-form .fa-times");
