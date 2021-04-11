@@ -172,14 +172,21 @@
 
   
   <url>
-    <loc>https://su-lemon.gitee.io/tags/Git/</loc>
+    <loc>https://su-lemon.gitee.io/tags/GitHub/</loc>
     <lastmod>2021-04-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.gitee.io/tags/Latex/</loc>
+    <loc>https://su-lemon.gitee.io/tags/Mac/</loc>
+    <lastmod>2021-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://su-lemon.gitee.io/tags/Git/</loc>
     <lastmod>2021-04-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -200,6 +207,13 @@
   </url>
   
   <url>
+    <loc>https://su-lemon.gitee.io/tags/Latex/</loc>
+    <lastmod>2021-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://su-lemon.gitee.io/tags/Linux/</loc>
     <lastmod>2021-04-11</lastmod>
     <changefreq>daily</changefreq>
@@ -207,14 +221,7 @@
   </url>
   
   <url>
-    <loc>https://su-lemon.gitee.io/tags/GitHub/</loc>
-    <lastmod>2021-04-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://su-lemon.gitee.io/tags/Mac/</loc>
+    <loc>https://su-lemon.gitee.io/tags/MacOS/</loc>
     <lastmod>2021-04-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -236,13 +243,6 @@
   
   <url>
     <loc>https://su-lemon.gitee.io/tags/GUI/</loc>
-    <lastmod>2021-04-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://su-lemon.gitee.io/tags/MacOS/</loc>
     <lastmod>2021-04-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -321,14 +321,14 @@
 
   
   <url>
-    <loc>https://su-lemon.gitee.io/categories/Git/</loc>
+    <loc>https://su-lemon.gitee.io/categories/GitHub/</loc>
     <lastmod>2021-04-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.gitee.io/categories/Latex/</loc>
+    <loc>https://su-lemon.gitee.io/categories/Git/</loc>
     <lastmod>2021-04-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -342,6 +342,13 @@
   </url>
   
   <url>
+    <loc>https://su-lemon.gitee.io/categories/Latex/</loc>
+    <lastmod>2021-04-11</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://su-lemon.gitee.io/categories/Linux/</loc>
     <lastmod>2021-04-11</lastmod>
     <changefreq>daily</changefreq>
@@ -349,7 +356,7 @@
   </url>
   
   <url>
-    <loc>https://su-lemon.gitee.io/categories/GitHub/</loc>
+    <loc>https://su-lemon.gitee.io/categories/Mac/</loc>
     <lastmod>2021-04-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -357,13 +364,6 @@
   
   <url>
     <loc>https://su-lemon.gitee.io/categories/Python/</loc>
-    <lastmod>2021-04-11</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://su-lemon.gitee.io/categories/Mac/</loc>
     <lastmod>2021-04-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
