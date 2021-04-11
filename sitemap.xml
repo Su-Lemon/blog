@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://su-lemon.gitee.io/404.html</loc>
+    
+    <lastmod>2021-04-11</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://su-lemon.gitee.io/post/fd1aadb2.html</loc>
     
     <lastmod>2021-04-10</lastmod>
@@ -31,13 +38,6 @@
   
   <url>
     <loc>https://su-lemon.gitee.io/post/c71c7ed3.html</loc>
-    
-    <lastmod>2021-03-24</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://su-lemon.gitee.io/404.html</loc>
     
     <lastmod>2021-03-24</lastmod>
     
@@ -207,14 +207,14 @@
   </url>
   
   <url>
-    <loc>https://su-lemon.gitee.io/tags/Latex/</loc>
+    <loc>https://su-lemon.gitee.io/tags/Linux/</loc>
     <lastmod>2021-04-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.gitee.io/tags/Linux/</loc>
+    <loc>https://su-lemon.gitee.io/tags/Latex/</loc>
     <lastmod>2021-04-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -342,14 +342,14 @@
   </url>
   
   <url>
-    <loc>https://su-lemon.gitee.io/categories/Latex/</loc>
+    <loc>https://su-lemon.gitee.io/categories/Linux/</loc>
     <lastmod>2021-04-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://su-lemon.gitee.io/categories/Linux/</loc>
+    <loc>https://su-lemon.gitee.io/categories/Latex/</loc>
     <lastmod>2021-04-11</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
