@@ -1,17 +1,21 @@
 var searchFunc = function(path, search_id, content_id) {
     'use strict';
-    $.ajax({url: path, dataType: "xml", cache:false, success: function( xmlResponse ) {
-        // get the contents from search data
-        var datas = $( "entry", xmlResponse ).map(function() {
-            return {
-                title: $( "title", this ).text(),
-                content: $("content",this).text(),
-                url: $( "url" , this).text()
-            };
-        }).get();
-        var $input = document.getElementById(search_id);
-        var $resultContent = document.getElementById(content_id);
-        $input.addEventListener('input', function(){
+    $.ajax({
+        url: path, 
+        dataType: "xml", 
+        cache:false, 
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
             var str='<ul class=\"search-result-list\">';                
             var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
             $resultContent.innerHTML = "";
@@ -75,7 +79,7 @@ var searchFunc = function(path, search_id, content_id) {
             $resultContent.innerHTML = str;
         })
         }
-    });
+    })
 }
 
 // 点击搜索框激活搜索
@@ -104,6 +108,6 @@ $resultArea.bind("DOMNodeRemoved DOMNodeInserted", function(e) {
     if (!$(e.target).text()) {
         $(".no-result").show(200); 
     } else {
-      $(".no-result").hide();
+        $(".no-result").hide();
     }
 })
