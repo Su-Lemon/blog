@@ -409,8 +409,8 @@ article > ol > li::before {
   color: #ff4e6a;
 }
 article li {
-  font-size: 18px;
-  line-height: 28px;
+  font-size: 16px;
+  line-height: 24px;
 }
 article li p {
   margin: 0 !important;
@@ -736,25 +736,39 @@ body {
   display: block;
 }
 #nexmoe-header .input {
-  border: none !important;
+  width: 75%;
+  height: 16px;
+  margin-top: 1px;
+  margin-left: 1px;
+  padding: 18px;
+  font-family: inherit;
+  border: 2px solid transparent;
+  border-bottom: 2px solid #d3d3d3;
+  border-radius: 2px;
+  opacity: 0.65;
+  background: none;
   background-color: transparent;
-  padding: 20px;
   box-sizing: border-box;
   outline: none;
 }
+#nexmoe-header .input:hover {
+  border: 2px solid #d3d3d3;
+  opacity: 1;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
 #nexmoe-header #search-form .fa-times {
   display: none;
-  padding: 1px 0.7em;
+  padding: 0.2em 0.7em;
   box-shadow: 0 0 3px rgba(0,0,0,0.15);
   cursor: pointer;
-  color: #808080;
+  color: #ff4e6a;
 }
 #nexmoe-header #search-form .fa-times:active {
   background: #d3d3d3;
 }
 #nexmoe-header #search-form .fa-times:hover {
   zoom: 1.1;
-  padding: 1px 0.6em;
+  padding: 0.2 0.6em;
   border: 1px solid #d3d3d3;
   box-shadow: 0 0 6px rgba(0,0,0,0.25);
 }
@@ -764,7 +778,14 @@ body {
   text-align: left;
   word-break: break-all;
 }
-#nexmoe-header #local-search-result ul.search-result-list li:hover {
+#nexmoe-header #local-search-result ul {
+  padding: 0em 0.5em 0em 0.5em;
+  list-style-type: none;
+}
+#nexmoe-header #local-search-result ul li {
+  white-space: normal;
+}
+#nexmoe-header #local-search-result ul .search-result-list li:hover {
   font-weight: normal;
 }
 #nexmoe-header #local-search-result li {
@@ -776,9 +797,10 @@ body {
   box-shadow: 0 0 5px rgba(0,0,0,0.2);
 }
 #nexmoe-header #local-search-result a.search-result-title {
+  padding: 2px 0;
   line-height: 1.2;
   font-weight: bold;
-  color: #708090;
+  color: #e8701f;
 }
 #nexmoe-header #local-search-result p.search-result {
   margin: 0.4em auto;
@@ -797,11 +819,11 @@ body {
 }
 #nexmoe-header p.no-result {
   display: none;
-  margin: 2em 0 2em 6%;
+  margin: 1em 0 1em 6%;
   padding-bottom: 0.5em;
   text-align: left;
   color: #808080;
-  font-family: font-serif serif;
+  font-family: serif;
   border-bottom: 2px solid #d3d3d3;
 }
 #nexmoe-header .nexmoe-social {
