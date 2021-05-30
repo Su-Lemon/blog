@@ -4,7 +4,7 @@
 
 <head>
   
-  <title>分类：Tools - 爱吃猫的小鱼干的 Blog</title>
+  <title>【Latex】在latex中添加notes - 爱吃猫的小鱼干的 Blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -24,12 +24,17 @@
     
 
   <link rel="shortcut icon" href="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/favicon1.png" type="image/png" />
-  <meta property="og:type" content="website">
-<meta property="og:title" content="爱吃猫的小鱼干的 Blog">
-<meta property="og:url" content="https://su-lemon.gitee.io/categories/Tools/index.html">
+  <meta name="description" content="有时候对于一个未完成的tex文件，为了方便与他人交流，或者为了给自己提个醒，我们希望能够在生成的pdf文件中加入醒目的注释。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Latex】在latex中添加notes">
+<meta property="og:url" content="https://su-lemon.gitee.io/post/e32aaa71.html">
 <meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
+<meta property="og:description" content="有时候对于一个未完成的tex文件，为了方便与他人交流，或者为了给自己提个醒，我们希望能够在生成的pdf文件中加入醒目的注释。">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-30T03:12:00.000Z">
+<meta property="article:modified_time" content="2021-05-30T03:22:07.582Z">
 <meta property="article:author" content="SuSu">
+<meta property="article:tag" content="Latex">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="/css/blog.css" type="text/css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
@@ -37,7 +42,7 @@
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2432472_9kqdqg64gbn.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1622344947484">
+  <link rel="stylesheet" href="/css/style.css?v=1622344947425">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -310,78 +315,196 @@
   </div>
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
-        <section class="nexmoe-posts">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 50%;"> 
+          <img data-src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/cover/cover10.png" data-sizes="auto" alt="【Latex】在latex中添加notes" class="lazyload">
+          <h1>【Latex】在latex中添加notes</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年05月30日</a>
+    <a><i class="nexmoefont icon-areachart"></i>327 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
     
-    <div class="nexmoe-post">
-        <a href="/post/bfad3f82.html">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 50%;"> 
-                    <img data-src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/cover/cover14.png" data-sizes="auto" alt="【Tools-Mujoco】创建自定义的Mujoco模型" class="lazyload">
-                    <h1>【Tools-Mujoco】创建自定义的Mujoco模型</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年04月07日</a>
-            <a><i class="nexmoefont icon-areachart"></i>3.2k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 14 分钟</a>
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                
+                
+                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9C%A8%E9%A1%B5%E9%9D%A2%E4%B8%A4%E4%BE%A7%E7%A9%BA%E7%99%BD%E5%A4%84%E6%B7%BB%E5%8A%A0notes"><span class="toc-number">1.</span> <span class="toc-text">在页面两侧空白处添加notes</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9C%A8%E6%96%87%E7%AB%A0%E4%B8%AD%E4%BD%BF%E7%94%A8"><span class="toc-number">1.2.</span> <span class="toc-text">在文章中使用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8todonotes%E5%AE%9E%E7%8E%B0inline-notes"><span class="toc-number">2.</span> <span class="toc-text">使用todonotes实现inline notes</span></a></li></ol>
+                
+            </div>
         </div>
-
-        <article>
-            
-                <p>Mujoco是一个很好的仿真工具。你可能对它很熟悉，因为它强化学习领域受到众多学者的青睐，在OpenAI Gym中也有Mujoco的使用。 Mujoco提供了超快的动力学模拟，重点是接触动力学。它对于模拟机器人手臂和抓取任务特别有效，在模型预测控制和机器人模仿学习研究的文章中也颇具价值。</p>
-            
-        </article>
-    </div>
+      </div>
     
-    <div class="nexmoe-post">
-        <a href="/post/c71c7ed3.html">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 50%;"> 
-                    <img data-src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/cover/cover12.png" data-sizes="auto" alt="【Tools-FFmpeg】FFmpeg一个快速的音视频处理器" class="lazyload">
-                    <h1>【Tools-FFmpeg】FFmpeg一个快速的音视频处理器</h1>
-                </div>
-            
-        </a>
+  </div>
 
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年03月22日</a>
-            <a><i class="nexmoefont icon-areachart"></i>6k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 26 分钟</a>
-        </div>
+  <article>
+    <p>有时候对于一个未完成的tex文件，为了方便与他人交流，或者为了给自己提个醒，我们希望能够在生成的pdf文件中加入醒目的注释。 <a id="more"></a></p>
+<p>使用<code>todonotes</code>和<code>marginnote</code>都可以实现这样的功能。</p>
+<h2 id="在页面两侧空白处添加notes">在页面两侧空白处添加notes</h2>
+<h3 id="定义">定义</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode tex"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="bu">\usepackage</span>[textsize=tiny]&#123;<span class="ex">todonotes</span>&#125;</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="bu">\usepackage</span>&#123;<span class="ex">marginnote</span>&#125;</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">\paperwidth</span>=<span class="fu">\dimexpr</span> <span class="fu">\paperwidth</span> + 6cm<span class="fu">\relax</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="fu">\oddsidemargin</span>=<span class="fu">\dimexpr\oddsidemargin</span> + 3cm<span class="fu">\relax</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="fu">\evensidemargin</span>=<span class="fu">\dimexpr\evensidemargin</span> + 3cm<span class="fu">\relax</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="fu">\marginparwidth</span>=<span class="fu">\dimexpr</span> <span class="fu">\marginparwidth</span> + 3cm<span class="fu">\relax</span></span></code></pre></div>
+<p>其中最后四行是为了保持原来排版不变的情况下增加边距。 因为默认的边距往往较小，显示出来的效果比较糟糕，所以往往需要增加边距，以容纳注释文本。 在最终版本中应该将这四行删除。</p>
+<h3 id="在文章中使用">在文章中使用</h3>
+<ul>
+<li><p>使用todonotes</p>
+<pre><code>\todo&#123;Don&#39;t forget to put an introduction here.&#125;</code></pre></li>
+<li><p>使用marginnote</p>
+<pre><code>\marginnote&#123;This is a margin note&#125;[3cm]</code></pre></li>
+</ul>
+<p>这里的3cm定义了这个注释显示在页面中的高度。 关于使用marginnote的更详细用法可以参考 <a target="_blank" rel="noopener" href="https://www.overleaf.com/learn/latex/Margin_notes">Marginnotes</a> 。</p>
+<h2 id="使用todonotes实现inline-notes">使用todonotes实现inline notes</h2>
+<p>行内的notes会占据正文的空间，这种方法的好处是不用考虑额外的边距问题，也更加方便阅读。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode tex"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="bu">\usepackage</span>[textsize=small]&#123;<span class="ex">todonotes</span>&#125;</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>.</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>.</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>.</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="fu">\todo</span>[inline,caption=&#123;&#125;]&#123;</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>  <span class="kw">\begin</span>&#123;<span class="ex">itemize</span>&#125;</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    <span class="fu">\item</span> Bla bla bla</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>  <span class="kw">\end</span>&#123;<span class="ex">itemize</span>&#125;</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>&#125;</span></code></pre></div>
 
-        <article>
-            
-                <p><code>ffmpeg</code> 是一个快速的音视频转码器，并且可是从实时的音视频源中抓取数据。他可以通过一个高质量的多相滤波器转换任意音频的采样频率，缩放任意视频的尺寸。</p>
-            
-        </article>
-    </div>
+  </article>
+
+  
     
-    <div class="nexmoe-post">
-        <a href="/post/cc4db011.html">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 50%;"> 
-                    <img data-src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/cover/cover11.png" data-sizes="auto" alt="【Tools-Tmux】Tmux技巧" class="lazyload">
-                    <h1>【Tools-Tmux】Tmux技巧</h1>
-                </div>
-            
-        </a>
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>SuSu<br>
+    <strong>本文链接：</strong><a href="https://su-lemon.gitee.io/post/e32aaa71.html" title="https:&#x2F;&#x2F;su-lemon.gitee.io&#x2F;post&#x2F;e32aaa71.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;su-lemon.gitee.io&#x2F;post&#x2F;e32aaa71.html</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
 
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2020年10月12日</a>
-            <a><i class="nexmoefont icon-areachart"></i>1k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 4 分钟</a>
-        </div>
 
-        <article>
-            
-                <p>tmux 是一款终端复用命令行工具，一般用于 Terminal 的窗口管理。</p>
-            
-        </article>
-    </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/Latex/">Latex</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/Latex/" rel="tag">Latex</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="/js/md5.min.js"></script>
+<div id="gitalk"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    // var gitalk = new Gitalk({
+    //   clientID: '2543206578680a1bdf99',
+    //   clientSecret: '24e25a0277329218d91186c354b4a9d3ec9eaf29',
+    //   repo: 'gittalk-comments',
+    //   owner: 'Su-Lemon',
+    //   admin: 'Su-Lemon',
+    //   id: 'location.pathname',
+    //   labels: 'Gitalk'.split(',').filter(l => l),
+    // //   perPage: '15',
+    //   pagerDirection: 'last',
+    //   createIssueManually: 'true',
+    //   distractionFreeMode: 'false'
+    // })
+    idCfg = "2543206578680a1bdf99"
+    secretCfg = "24e25a0277329218d91186c354b4a9d3ec9eaf29"
+    repoCfg = "gittalk-comments"
+    ownerCfg = "Su-Lemon"
+    adminCfg = "Su-Lemon"
+    var gitalk = new Gitalk({
+      clientID: idCfg,
+      clientSecret: secretCfg,
+      repo: repoCfg,
+      owner: ownerCfg,
+      admin: adminCfg,
+      id: md5(location.pathname),
+      labels: ['Gitalk'],
+      perPage: 15,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      distractionFreeMode: false
+    })
+    gitalk.render('gitalk')
+</script>
     
 </section>
+
+  </div>
+</div>
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+  
+  <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <!-- 给MathJax元素添加has-jax class -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        Tex: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+        "HTML-CSS": {linebreaks: {automatic: true}},
+        SVG: {linebreaks: {automatic: true}}
+    });
+  </script>
+  <!-- 通过连接CDN加载MathJax的js代码 -->
+  <script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+
+
 
         <div class="nexmoe-post-right">
           
@@ -402,7 +525,7 @@
 <!-- <script src="<= theme.cdn.jquery.js "></script> -->
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
- <script src="https://su-lemon.gitee.io/js/app.js?v=1622344947485"></script>
+ <script src="https://su-lemon.gitee.io/js/app.js?v=1622344947426"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>

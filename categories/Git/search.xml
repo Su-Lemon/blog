@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>【Latex】在latex中添加notes</title>
+      <link href="post/e32aaa71.html"/>
+      <url>post/e32aaa71.html</url>
+      
+        <content type="html"><![CDATA[<p>有时候对于一个未完成的tex文件，为了方便与他人交流，或者为了给自己提个醒，我们希望能够在生成的pdf文件中加入醒目的注释。 <a id="more"></a></p><p>使用<code>todonotes</code>和<code>marginnote</code>都可以实现这样的功能。</p><h2 id="在页面两侧空白处添加notes">在页面两侧空白处添加notes</h2><h3 id="定义">定义</h3><div class="sourceCode" id="cb1"><pre class="sourceCode tex"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="bu">\usepackage</span>[textsize=tiny]&#123;<span class="ex">todonotes</span>&#125;</span><span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a><span class="bu">\usepackage</span>&#123;<span class="ex">marginnote</span>&#125;</span><span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a><span class="fu">\paperwidth</span>=<span class="fu">\dimexpr</span> <span class="fu">\paperwidth</span> + 6cm<span class="fu">\relax</span></span><span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a><span class="fu">\oddsidemargin</span>=<span class="fu">\dimexpr\oddsidemargin</span> + 3cm<span class="fu">\relax</span></span><span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a><span class="fu">\evensidemargin</span>=<span class="fu">\dimexpr\evensidemargin</span> + 3cm<span class="fu">\relax</span></span><span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a><span class="fu">\marginparwidth</span>=<span class="fu">\dimexpr</span> <span class="fu">\marginparwidth</span> + 3cm<span class="fu">\relax</span></span></code></pre></div><p>其中最后四行是为了保持原来排版不变的情况下增加边距。 因为默认的边距往往较小，显示出来的效果比较糟糕，所以往往需要增加边距，以容纳注释文本。 在最终版本中应该将这四行删除。</p><h3 id="在文章中使用">在文章中使用</h3><ul><li><p>使用todonotes</p><pre><code>\todo&#123;Don&#39;t forget to put an introduction here.&#125;</code></pre></li><li><p>使用marginnote</p><pre><code>\marginnote&#123;This is a margin note&#125;[3cm]</code></pre></li></ul><p>这里的3cm定义了这个注释显示在页面中的高度。 关于使用marginnote的更详细用法可以参考 <a href="https://www.overleaf.com/learn/latex/Margin_notes">Marginnotes</a> 。</p><h2 id="使用todonotes实现inline-notes">使用todonotes实现inline notes</h2><p>行内的notes会占据正文的空间，这种方法的好处是不用考虑额外的边距问题，也更加方便阅读。</p><div class="sourceCode" id="cb4"><pre class="sourceCode tex"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="bu">\usepackage</span>[textsize=small]&#123;<span class="ex">todonotes</span>&#125;</span><span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a>.</span><span id="cb4-3"><a href="#cb4-3" aria-hidden="true"></a>.</span><span id="cb4-4"><a href="#cb4-4" aria-hidden="true"></a>.</span><span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a><span class="fu">\todo</span>[inline,caption=&#123;&#125;]&#123;</span><span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>  <span class="kw">\begin</span>&#123;<span class="ex">itemize</span>&#125;</span><span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a>    <span class="fu">\item</span> Bla bla bla</span><span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a>  <span class="kw">\end</span>&#123;<span class="ex">itemize</span>&#125;</span><span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a>&#125;</span></code></pre></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> Latex </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Latex </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【Linux】各种系统信息查询指令</title>
       <link href="post/fd1aadb2.html"/>
       <url>post/fd1aadb2.html</url>
