@@ -4,7 +4,7 @@
 
 <head>
   
-  <title>标签：Algorithm - 爱吃猫的小鱼干的 Blog</title>
+  <title>【Git】Git分支创建与合并那些事儿 - 爱吃猫的小鱼干的 Blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -24,12 +24,15 @@
     
 
   <link rel="shortcut icon" href="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/favicon1.png" type="image/png" />
-  <meta property="og:type" content="website">
-<meta property="og:title" content="爱吃猫的小鱼干的 Blog">
-<meta property="og:url" content="https://su-lemon.gitee.io/tags/Algorithm/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="【Git】Git分支创建与合并那些事儿">
+<meta property="og:url" content="https://su-lemon.gitee.io/post/35724789.html">
 <meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-06-10T03:50:55.000Z">
+<meta property="article:modified_time" content="2021-06-10T04:02:51.188Z">
 <meta property="article:author" content="SuSu">
+<meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
   <link rel="stylesheet" href="/css/blog.css" type="text/css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
@@ -37,7 +40,7 @@
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2432472_9kqdqg64gbn.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1623297787296">
+  <link rel="stylesheet" href="/css/style.css?v=1623297787215">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -310,32 +313,201 @@
   </div>
   <div id="nexmoe-content">
     <div class="nexmoe-primary">
-        <section class="nexmoe-posts">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 50%;"> 
+          <img data-src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/cover/cover9.png" data-sizes="auto" alt="【Git】Git分支创建与合并那些事儿" class="lazyload">
+          <h1>【Git】Git分支创建与合并那些事儿</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年06月10日</a>
+    <a><i class="nexmoefont icon-areachart"></i>226 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 1 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
     
-    <div class="nexmoe-post">
-        <a href="/post/46d87670.html">
-            
-                <div class="nexmoe-post-cover mdui-ripple" style="padding-bottom: 50%;"> 
-                    <img data-src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/cover/cover6.jpg" data-sizes="auto" alt="【RL算法】VPG与AC的思想和推导" class="lazyload">
-                    <h1>【RL算法】VPG与AC的思想和推导</h1>
-                </div>
-            
-        </a>
-
-        <div class="nexmoe-post-meta nexmoe-rainbow">
-            <a><i class="nexmoefont icon-calendar-fill"></i>2021年02月17日</a>
-            <a><i class="nexmoefont icon-areachart"></i>3k 字</a>
-            <a><i class="nexmoefont icon-time-circle-fill"></i>大概 14 分钟</a>
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                
+                
+                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#dev%E5%88%86%E6%94%AF%E4%B8%8Emain%E5%90%88%E5%B9%B6%E6%8E%A8%E9%80%81%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93%E6%B5%81%E7%A8%8B"><span class="toc-number">1.</span> <span class="toc-text">dev分支与main合并，推送远程仓库流程</span></a></li></ol>
+                
+            </div>
         </div>
+      </div>
+    
+  </div>
 
-        <article>
-            
-                <p>策略梯度与Actor-Critic的思想和推导</p>
-            
-        </article>
-    </div>
+  <article>
+    <p><更多内容待完善></p>
+<a id="more"></a>
+<h2 id="dev分支与main合并推送远程仓库流程">dev分支与main合并，推送远程仓库流程</h2>
+<p>假如我们现在在dev分支上，可以用下面命令查看当前分支</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">git</span> branch</span></code></pre></div>
+<p>刚开发完项目，执行了下列命令</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">git</span>  add .</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">git</span>  commit -m <span class="st">&#39;dev&#39;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="fu">git</span> push -u origin dev</span></code></pre></div>
+<p>然后我们要把dev分支的代码合并到main分支上。</p>
+<ul>
+<li>切换到main分支上</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="fu">git</span>  checkout main</span></code></pre></div>
+<ul>
+<li>如果是多人开发，需要把远程main上的代码pull下来</li>
+</ul>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="fu">git</span> pull origin main</span></code></pre></div>
+<ul>
+<li>如果是自己一个开发就没有必要了，为了安全还是pull一下。 然后把dev分支的代码合并到main上</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="fu">git</span>  merge dev</span></code></pre></div>
+<ul>
+<li>然后查看状态</li>
+</ul>
+<pre><code>git status
+
+On branch main
+Your branch is ahead of &#39;origin/main&#39; by 12 commits.
+  (use &quot;git push&quot; to publish your local commits)
+nothing to commit, working tree clean</code></pre>
+<ul>
+<li>上面的意思就是你有12个commit，需要push到远程main上 执行下面命令即可</li>
+</ul>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="fu">git</span> push origin main</span></code></pre></div>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>SuSu<br>
+    <strong>本文链接：</strong><a href="https://su-lemon.gitee.io/post/35724789.html" title="https:&#x2F;&#x2F;su-lemon.gitee.io&#x2F;post&#x2F;35724789.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;su-lemon.gitee.io&#x2F;post&#x2F;35724789.html</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/Git/">Git</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/Git/" rel="tag">Git</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="/js/md5.min.js"></script>
+<div id="gitalk"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    // var gitalk = new Gitalk({
+    //   clientID: '2543206578680a1bdf99',
+    //   clientSecret: '24e25a0277329218d91186c354b4a9d3ec9eaf29',
+    //   repo: 'gittalk-comments',
+    //   owner: 'Su-Lemon',
+    //   admin: 'Su-Lemon',
+    //   id: 'location.pathname',
+    //   labels: 'Gitalk'.split(',').filter(l => l),
+    // //   perPage: '15',
+    //   pagerDirection: 'last',
+    //   createIssueManually: 'true',
+    //   distractionFreeMode: 'false'
+    // })
+    idCfg = "2543206578680a1bdf99"
+    secretCfg = "24e25a0277329218d91186c354b4a9d3ec9eaf29"
+    repoCfg = "gittalk-comments"
+    ownerCfg = "Su-Lemon"
+    adminCfg = "Su-Lemon"
+    var gitalk = new Gitalk({
+      clientID: idCfg,
+      clientSecret: secretCfg,
+      repo: repoCfg,
+      owner: ownerCfg,
+      admin: adminCfg,
+      id: md5(location.pathname),
+      labels: ['Gitalk'],
+      perPage: 15,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      distractionFreeMode: false
+    })
+    gitalk.render('gitalk')
+</script>
     
 </section>
+
+  </div>
+</div>
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+  
+  <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <!-- 给MathJax元素添加has-jax class -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        Tex: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+        "HTML-CSS": {linebreaks: {automatic: true}},
+        SVG: {linebreaks: {automatic: true}}
+    });
+  </script>
+  <!-- 通过连接CDN加载MathJax的js代码 -->
+  <script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+
+
 
         <div class="nexmoe-post-right">
           
@@ -356,7 +528,7 @@
 <!-- <script src="<= theme.cdn.jquery.js "></script> -->
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
- <script src="https://su-lemon.gitee.io/js/app.js?v=1623297787299"></script>
+ <script src="https://su-lemon.gitee.io/js/app.js?v=1623297787216"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>

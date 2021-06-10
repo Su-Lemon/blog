@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>【Git】Git分支创建与合并那些事儿</title>
+      <link href="post/35724789.html"/>
+      <url>post/35724789.html</url>
+      
+        <content type="html"><![CDATA[<p><更多内容待完善></p><a id="more"></a><h2 id="dev分支与main合并推送远程仓库流程">dev分支与main合并，推送远程仓库流程</h2><p>假如我们现在在dev分支上，可以用下面命令查看当前分支</p><div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">git</span> branch</span></code></pre></div><p>刚开发完项目，执行了下列命令</p><div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="fu">git</span>  add .</span><span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">git</span>  commit -m <span class="st">&#39;dev&#39;</span></span><span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="fu">git</span> push -u origin dev</span></code></pre></div><p>然后我们要把dev分支的代码合并到main分支上。</p><ul><li>切换到main分支上</li></ul><div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="fu">git</span>  checkout main</span></code></pre></div><ul><li>如果是多人开发，需要把远程main上的代码pull下来</li></ul><div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a><span class="fu">git</span> pull origin main</span></code></pre></div><ul><li>如果是自己一个开发就没有必要了，为了安全还是pull一下。 然后把dev分支的代码合并到main上</li></ul><div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="fu">git</span>  merge dev</span></code></pre></div><ul><li>然后查看状态</li></ul><pre><code>git statusOn branch mainYour branch is ahead of &#39;origin/main&#39; by 12 commits.  (use &quot;git push&quot; to publish your local commits)nothing to commit, working tree clean</code></pre><ul><li>上面的意思就是你有12个commit，需要push到远程main上 执行下面命令即可</li></ul><div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="fu">git</span> push origin main</span></code></pre></div>]]></content>
+      
+      
+      <categories>
+          
+          <category> Git </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Git </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【Latex】在latex中添加notes</title>
       <link href="post/e32aaa71.html"/>
       <url>post/e32aaa71.html</url>
