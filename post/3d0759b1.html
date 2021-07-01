@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+
+<head>
+  
+  <title>【Robotics】空间姿态表示法，旋转矩阵、欧拉角和四元数 - 爱吃猫的小鱼干的 Blog</title>
+  <meta charset="UTF-8">
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+  
+  
+    <!-- Site Verification -->
+    
+        <meta name="google-site-verification" content="tE-0DY7ep02Gyi-x9Q4QpuOhofuAEWa3QWrzBXLLHnk" />
+    
+        <meta name="google-site-verification" content="zgLg9-wvfHmxSHnfimcW10Mf9EO6uKCZGPMpRNXQNXo" />
+    
+
+
+    <!-- Site Verification -->
+    
+        <meta name="baidu-site-verification" content="code-99DmpaRiYX" />
+    
+
+  <link rel="shortcut icon" href="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/favicon1.png" type="image/png" />
+  <meta name="description" content="本文介绍空间姿态的各种表示方法。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Robotics】空间姿态表示法，旋转矩阵、欧拉角和四元数">
+<meta property="og:url" content="https://su-lemon.gitee.io/post/3d0759b1.html">
+<meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
+<meta property="og:description" content="本文介绍空间姿态的各种表示方法。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701214800.jpeg">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701215911.gif">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701220910.gif">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701222124.gif">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701222457.gif">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701222521.gif">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701223138.gif">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701223149.gif">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701223408.gif">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701223418.gif">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701232240.jpeg">
+<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701233708.jpeg">
+<meta property="article:published_time" content="2021-07-01T12:57:06.000Z">
+<meta property="article:modified_time" content="2021-07-01T15:45:59.836Z">
+<meta property="article:author" content="SuSu">
+<meta property="article:tag" content="Robotics">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701214800.jpeg">
+  <link rel="stylesheet" href="/css/blog.css" type="text/css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
+  <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
+  
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_2432472_9kqdqg64gbn.css">
+  
+  <link rel="stylesheet" href="/css/style.css?v=1625154380239">
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.3.0"></head>
+
+<body class="mdui-drawer-body-left">
+  <script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+
+  <!--鼠标点击烟花爆炸效果，需要引入jQuery-->
+  
+    <script type="text/javascript" src="/js/firework1.js"></script>
+  
+
+  <a target="_blank" rel="noopener" href="https://github.com/Su-Lemon" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+  
+  <div id="nexmoe-background">
+    <div class="nexmoe-bg" style="background-image: url('https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/background0.png')"></div>
+    <div class="mdui-appbar mdui-shadow-0">
+      <div class="mdui-toolbar">
+        <a mdui-drawer="{target: '#drawer', swipe: true}" title="menu" class="mdui-btn mdui-btn-icon mdui-ripple"><i class="mdui-icon nexmoefont icon-menu"></i></a>
+        <div class="mdui-toolbar-spacer"></div>
+        <!-- <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a> -->
+        <a href="/" title="SuSu" class="mdui-btn mdui-btn-icon"><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/avatar0.png" alt="SuSu"></a>
+       </div>
+    </div>
+  </div>
+  <div id="nexmoe-header">
+      <div class="nexmoe-drawer mdui-drawer" id="drawer">
+    <div class="nexmoe-avatar mdui-ripple">
+        <a href="/" title="SuSu">
+            <img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/avatar0.png" alt="SuSu" alt="SuSu">
+        </a>
+    </div>
+    <div class="nexmoe-count">
+        <div><span>文章</span>22</div>
+        <div><span>标签</span>22</div>
+        <div><span>分类</span>10</div>
+    </div>
+    <div class="nexmoe-list mdui-list" mdui-collapse="{accordion: true}">
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/" title="回到首页">
+            <i class="mdui-list-item-icon nexmoefont icon-home"></i>
+            <div class="mdui-list-item-content">
+                回到首页
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/archives.html" title="文章归档">
+            <i class="mdui-list-item-icon nexmoefont icon-container"></i>
+            <div class="mdui-list-item-content">
+                文章归档
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/about.html" title="关于博客">
+            <i class="mdui-list-item-icon nexmoefont icon-info-circle"></i>
+            <div class="mdui-list-item-content">
+                关于博客
+            </div>
+        </a>
+        
+        <a class="nexmoe-list-item mdui-list-item mdui-ripple" href="/PY.html" title="我的朋友">
+            <i class="mdui-list-item-icon nexmoefont icon-unorderedlist"></i>
+            <div class="mdui-list-item-content">
+                我的朋友
+            </div>
+        </a>
+        
+    </div>
+    <aside id="nexmoe-sidebar">
+  
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://su-lemon.gitee.io/apps/BVH_player.html" target="_blank" mdui-tooltip="{content: 'BVH-Player'}" style="color: rgb(243, 81, 11);background-color: rgba(243, 81, 11, .1);">
+            <i class="nexmoefont icon-app"></i>
+        </a>
+    </div>
+</div>
+  
+    <!-- 谷歌/百度搜索 -->
+<!-- <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search">
+        <form id="search_form" action_e="https://cn.bing.com/search?q=site:su-lemon.github.io/blog" onsubmit="return search();">
+            <label><input id="search_value" name="q" type="search" placeholder="搜索"></label>
+        </form>
+    </div>
+</div> -->
+
+<!-- 站内搜索，需要引入jQuery -->
+
+<div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-search" >
+        <form id="search-form">
+                <input type="text" id="local-search-input" name="q" results="0" placeholder="站内搜索" class="input form-control" autocomplete="off" autocorrect="off"/>
+                <!-- 清空/重置搜索框 -->
+                <i class="fa fa-times" onclick="resetSearch()"></i>            
+        </form>
+        <div id="local-search-result"></div> <!-- 搜索结果区 -->
+        <p class='no-result'>没有任何发现喵</p> <!-- 无匹配时显示，注意在 CSS 中设置默认隐藏 -->
+    </div>
+    
+</div>
+
+  
+    <div class="nexmoe-widget-wrap">
+    <div class="nexmoe-widget nexmoe-social">
+        <a class="mdui-ripple" href="https://jq.qq.com/?_wv=1027&k=MivHmcOi" target="_blank" mdui-tooltip="{content: 'QQ群'}" style="color: rgb(249, 174, 8);background-color: rgba(249, 174, 8, .1);">
+            <i class="nexmoefont icon-QQ"></i>
+        </a><a class="mdui-ripple" href="https://space.bilibili.com/76586290" target="_blank" mdui-tooltip="{content: '哔哩哔哩'}" style="color: rgb(231, 106, 141);background-color: rgba(231, 106, 141, .15);">
+            <i class="nexmoefont icon-bilibili"></i>
+        </a><a class="mdui-ripple" href="https://github.com/Su-Lemon/" target="_blank" mdui-tooltip="{content: 'GitHub'}" style="color: rgb(25, 23, 23);background-color: rgba(25, 23, 23, .15);">
+            <i class="nexmoefont icon-github"></i>
+        </a>
+    </div>
+</div>
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章分类</h3>
+    <div class="nexmoe-widget">
+
+      <ul class="category-list">
+
+        
+
+
+        
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Git/">Git</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/GitHub/">GitHub</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Hexo/">Hexo</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Latex/">Latex</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Linux/">Linux</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Mac/">Mac</a>
+          <span class="category-list-count">2</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Python/">Python</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/RL/">RL</a>
+          <span class="category-list-count">8</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Robotics/">Robotics</a>
+          <span class="category-list-count">1</span>
+        </li>
+
+        
+
+        <li class="category-list-item">
+          <a class="category-list-link" href="/categories/Tools/">Tools</a>
+          <span class="category-list-count">3</span>
+        </li>
+
+        
+      </ul>
+
+    </div>
+  </div>
+
+
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
+      <a href="/tags/AC/" style="font-size: 10px;">AC</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/FFmpeg/" style="font-size: 10px;">FFmpeg</a> <a href="/tags/GUI/" style="font-size: 10px;">GUI</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Latex/" style="font-size: 12.5px;">Latex</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12.5px;">Mac</a> <a href="/tags/MacOS/" style="font-size: 10px;">MacOS</a> <a href="/tags/Mujoco/" style="font-size: 10px;">Mujoco</a> <a href="/tags/PG/" style="font-size: 10px;">PG</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RL/" style="font-size: 20px;">RL</a> <a href="/tags/Robotics/" style="font-size: 10px;">Robotics</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Tmux/" style="font-size: 10px;">Tmux</a> <a href="/tags/Tools/" style="font-size: 15px;">Tools</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">博客部署</a> <a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" style="font-size: 17.5px;">方法论</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">编程实践</a>
+    </div>
+    
+  </div>
+
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">文章归档</h3>
+    <div class="nexmoe-widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+<style>
+.nexmoe-widget .archive-list-count{
+	position : absolute;
+	right: 15px;
+	top:9px;
+	color: #DDD;
+}
+</style>
+
+  
+    
+  <div class="nexmoe-widget-wrap">
+    <h3 class="nexmoe-widget-title">最新文章</h3>
+    <div class="nexmoe-widget">
+      <ul>
+        
+          <li>
+            <a href="/post/3d0759b1.html">【Robotics】空间姿态表示法，旋转矩阵、欧拉角和四元数</a>
+          </li>
+        
+          <li>
+            <a href="/post/35724789.html">【Git】Git分支创建与合并那些事儿</a>
+          </li>
+        
+          <li>
+            <a href="/post/e32aaa71.html">【Latex】在latex中添加notes</a>
+          </li>
+        
+          <li>
+            <a href="/post/fd1aadb2.html">【Linux】各种系统信息查询指令</a>
+          </li>
+        
+          <li>
+            <a href="/post/bfad3f82.html">【Tools-Mujoco】创建自定义的Mujoco模型</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+    <script type="text/javascript" src="/js/search.js"></script>
+    <div class="nexmoe-copyright">
+        &copy; 2021 SuSu
+        Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+        & <a href="https://github.com/Su-Lemon" target="_blank">Su-Lemon</a>
+        
+    </div>
+</div><!-- .nexmoe-drawer -->
+  </div>
+  <div id="nexmoe-content">
+    <div class="nexmoe-primary">
+        <div class="nexmoe-post">
+  
+      <div class="nexmoe-post-cover" style="padding-bottom: 50%;"> 
+          <img data-src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/cover/cover16.jpeg" data-sizes="auto" alt="【Robotics】空间姿态表示法，旋转矩阵、欧拉角和四元数" class="lazyload">
+          <h1>【Robotics】空间姿态表示法，旋转矩阵、欧拉角和四元数</h1>
+      </div>
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow" style="margin:10px 0!important;">
+    <a><i class="nexmoefont icon-calendar-fill"></i>2021年07月01日</a>
+    <a><i class="nexmoefont icon-areachart"></i>3.2k 字</a>
+    <a><i class="nexmoefont icon-time-circle-fill"></i>大概 14 分钟</a>
+</div>
+
+  <div class="nexmoe-post-right">
+    
+      <div class="nexmoe-fixed">
+        <div class="nexmoe-valign">
+            <div class="nexmoe-toc">
+                
+                
+                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5rotation"><span class="toc-number">1.</span> <span class="toc-text">旋转矩阵（Rotation）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E8%A7%92euler"><span class="toc-number">2.</span> <span class="toc-text">欧拉角（Euler）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E8%A7%92%E7%9A%84%E5%A7%BF%E6%80%81%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.1.</span> <span class="toc-text">欧拉角的姿态表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%87%E5%90%91%E9%94%81"><span class="toc-number">2.2.</span> <span class="toc-text">万向锁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E5%85%83%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">四元数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E8%A7%84%E5%BE%8B"><span class="toc-number">3.1.</span> <span class="toc-text">基本运算规律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E5%85%83%E6%95%B0%E7%9A%84%E5%A7%BF%E6%80%81%E8%A1%A8%E7%A4%BA"><span class="toc-number">3.2.</span> <span class="toc-text">四元数的姿态表示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E6%AC%A7%E6%8B%89%E8%A7%92%E5%9B%9B%E5%85%83%E6%95%B0%E7%9A%84%E5%8F%98%E6%8D%A2"><span class="toc-number">4.</span> <span class="toc-text">旋转矩阵、欧拉角、四元数的变换</span></a></li></ol>
+                
+            </div>
+        </div>
+      </div>
+    
+  </div>
+
+  <article>
+    <p>本文介绍空间姿态的各种表示方法。</p>
+<a id="more"></a>
+<h2 id="旋转矩阵rotation">旋转矩阵（Rotation）</h2>
+<p>首先复习一下旋转矩阵： <span class="math display">\[
+{ }_{\mathrm{B}}^{\mathrm{A}} \mathrm{R} = \left[\begin{array}{ccc} { }^{A}\vec{x}_{B} &amp; { }^{A}\vec{y}_{B} &amp; { }^{A}\vec{z}_{B} \end{array}\right] = \left[\begin{array}{c} { }^{B}\vec{x}_{A} { }^{T} \\ { }^{B}\vec{y}_{A} { }^{T} \\ { }^{B}\vec{z}_{A} { }^{T}\end{array}\right]
+\]</span></p>
+<p>这个式子表示，有A、B两个坐标系，从B坐标到A坐标（ <span class="math inline">\(B\rightarrow A\)</span> ）的旋转变换可以由这个 <span class="math inline">\(R\)</span> 矩阵表示；其中，<strong><span class="math inline">\(R\)</span> 矩阵的每一列分别是B坐标的 <span class="math inline">\(x, y, z\)</span> 轴在A坐标中的表示</strong>；而由于旋转矩阵的转置是它的逆，<strong><span class="math inline">\(R\)</span> 矩阵的每一行则分别是A坐标的 <span class="math inline">\(x, y, z\)</span> 轴在B坐标中的表示</strong>。</p>
+<p>例如下图，从B到A坐标系的旋转，我们可以直接把R写出来：</p>
+<ul>
+<li><p>第一列，因为 <span class="math inline">\(X_B\)</span> 轴与 <span class="math inline">\(Z_A\)</span> 轴重合，所以是[0; 0; 1]；</p></li>
+<li><p>第二列，<span class="math inline">\(Y_B\)</span>轴与<span class="math inline">\(Y_A\)</span>轴方向正好相反，所以是[0; -1; 0]；</p></li>
+<li><p>同理，第三列是[1; 0; 0]。</p></li>
+</ul>
+<p>如果按照每一行来写，则第一行是与ZB重合的XA轴[0，0，1]，第二行是与YB轴反方向的YA轴[0, -1, 0]，第三行则是与XB轴重合的ZA轴[1, 0, 0]。</p>
+<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701214800.jpeg" style="zoom:75%;" /></p>
+<p>例如，某个点绕Z轴旋转α角，也就是说旋转后的Z坐标是不变的，变化的只是X、Y坐标。因此甚至可以基于2D公式，不用推导的写出下面这个式子，因为为了满足相等关系，必须补充系数矩阵元素。 <span class="math display">\[
+\left(\begin{array}{c}
+x^{\prime} \\
+y^{\prime} \\
+z
+\end{array}\right)=\left(\begin{array}{ccc}
+\cos \alpha &amp; -\sin \alpha &amp; 0 \\
+\sin \alpha &amp; \cos \alpha &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{array}\right)\left(\begin{array}{l}
+x \\
+y \\
+z
+\end{array}\right)
+\]</span> 用旋转矩阵表示两个坐标系之间的旋转变换固然方便，但我们不禁要问，明明只是三个自由度的变换，为什么要用到九个数呢？假如你在操控一架飞机，要向左倾斜机身15度，拉升机头10度，是不是还要先把这样的指令转为旋转矩阵呢？在控制系统中，已知物体当前的姿态和理想的姿态，我们又要怎么计算姿态误差呢？</p>
+<p>因为这种种的需求，我们需要了解和学习其他空间姿态表示方法。</p>
+<h2 id="欧拉角euler">欧拉角（Euler）</h2>
+<h3 id="欧拉角的姿态表示">欧拉角的姿态表示</h3>
+<p>欧拉角是欧拉引入用来描述刚体姿态的三个角，在所有空间姿态表示方法中，欧拉角可以说是最直观的一种。它用<strong>三个数</strong>描述从一个坐标系到另一个坐标系的变换，<strong>每个数分别是绕某一个坐标轴转动的角度</strong>。</p>
+<p>欧拉角有静态和动态两种，</p>
+<ul>
+<li><strong>静态的</strong>是绕静止的惯性坐标系三个轴进行旋转；</li>
+<li><strong>动态的</strong>在<strong>旋转过程中旋转坐标轴会发生变化</strong>，除了第一次旋转是绕惯性系的坐标轴进行之外，后续两次旋转都是动态的，并且前面旋转的角度对后面的旋转轴是有影响的，按照不同的轴顺序进行旋转得到的欧拉角也是不同的，旋转变换可以归结为若干个沿着坐标轴旋转的组合，组合个数不超过三个并且两个相邻的旋转必须沿着不同坐标轴，总共有12种旋转方式，分别是XYZ、XZY、XYX、XZX、YXZ、YZX、YXY、YZY、ZXY、ZYX、ZXZ、ZYZ。虽然存在12种旋转方式，但是每一种旋转方式都存在<strong>万向锁</strong>现象，我们会在后面内容中进行描述。</li>
+</ul>
+<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701215911.gif" /></p>
+<p>航空领域通常采用的旋转方式是ZYX顺序，下图是一架飞机按照ZYX组合进行旋转产生欧拉角的过程，其中，<span class="math inline">\(\psi\)</span>为<strong>偏航角</strong>，<span class="math inline">\(\theta\)</span> 为<strong>俯仰角</strong>，<span class="math inline">\(\phi\)</span> 为<strong>滚转角</strong>。首先，我们绕机体NED系的Z轴旋转<span class="math inline">\(\psi\)</span>角度，得到中间坐标系1，然后绕中间坐标系1的Y轴旋转<span class="math inline">\(\theta\)</span>角得到中间坐标系2，之后再绕中间坐标系2的X轴旋转角度<span class="math inline">\(\phi\)</span>就得到了机体轴坐标系，所有旋转都按照右手螺旋定则进行。</p>
+<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701220910.gif" /></p>
+<p>我们上面描述的三个旋转虽然在三维笛卡尔直角坐标系下进行，但都是平面旋转，他们的旋转矩阵分别是: <span class="math display">\[
+\begin{array}{l}
+R_{\psi}=\left[\begin{array}{ccc}
+\cos \psi &amp; \sin \psi &amp; 0 \\
+-\sin \psi &amp; \cos \psi &amp; 0 \\
+0 &amp; 0 &amp; 1
+\end{array}\right] \\
+R_{\theta}=\left[\begin{array}{ccc}
+\cos \theta &amp; 0 &amp; -\sin \theta \\
+0 &amp; 1 &amp; 0 \\
+\sin \theta &amp; 0 &amp; \cos \theta
+\end{array}\right] \\
+R_{\phi}=\left[\begin{array}{ccc}
+1 &amp; 0 &amp; 0 \\
+0 &amp; \cos \varphi &amp; \sin \varphi \\
+0 &amp; -\sin \varphi &amp; \cos \varphi
+\end{array}\right]
+\end{array}
+\]</span> 根据作用的顺序，则从机载NED坐标系到机体轴坐标系的欧拉转换矩阵是： <span class="math display">\[
+R_{b / m v}=R_{\phi} R_{\theta} R_{\psi}=\left[\begin{array}{ccc}
+\cos \theta \cos \psi &amp; \cos \theta \sin \psi &amp; -\sin \theta \\
+\sin \varphi \sin \theta \cos \psi-\cos \varphi \sin \psi &amp; \sin \varphi \sin \theta \sin \psi+\cos \varphi \cos \psi &amp; \sin \varphi \cos \theta \\
+\cos \varphi \sin \theta \cos \psi+\sin \varphi \sin \psi &amp; \cos \varphi \sin \theta \sin \psi-\sin \varphi \cos \psi &amp; \cos \varphi \cos \theta
+\end{array}\right]
+\]</span> 只要<span class="math inline">\(\theta \neq \pm 90°\)</span>，欧拉角可以描述清楚任何刚体的姿态以及角运动信息，而对于大部分飞行器来说，俯仰角也不会到90°，所以，使用欧拉角进行姿态控制完全可以满足使用要求。但对于一些要求变态机动能力的飞行器来说，为了防止俯仰角90°时出现奇点，使用四元数替代欧拉角进行姿态控制是必须的，另外，对于姿态解算时欧拉角描述方法也会出现问题，所以使用四元数进行姿态解算也是上上之策。</p>
+<h3 id="万向锁">万向锁</h3>
+<p>欧拉角在俯仰角为±90°时会出现万向锁现象，这是欧拉角表征飞行器姿态的一个局限性。</p>
+<p>为了能够清晰得看到欧拉旋转产生的万向锁现象，我们来观察一个三轴的万向节装置——一个陀螺仪：</p>
+<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701222124.gif" /></p>
+<p>可以看到中间是一根竖轴穿过一个盘子，而盘子处于高速旋转状态，是陀螺的转子，根据陀螺的定轴性，竖轴也就是陀螺的自转轴在惯性空间内的方向保持不变。</p>
+<p>我们先来看看这个陀螺仪的旋转状态。首先解释一下陀螺仪的三个环是怎么旋转的：每一个环都连有一根或者两根轴，这根轴就是每个环的旋转轴。我们可以看到最外面那个环旋转不会影响里面两个环的位置；中间那个环的旋转不会影响最里面那个环的位置，但是最外面的那个环会跟着动；而最里面那个环旋转会影响到外面两个环的位置，这种现象跟我们上面讲的欧拉旋转里的三次旋转是一样的，这也是我们拿陀螺仪来解释欧拉角万向锁现象的原因。</p>
+<p>我们先来看一下最外侧那个环的旋转情况，我们上次采用的是ZYX的顺序进行旋转，所以：</p>
+<p>最外面绿色环对应的就是绕Z轴的旋转，对应的是飞行器的偏航运动：</p>
+<table>
+<tr>
+<td>
+<img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701222457.gif" style="zoom:80%;" border=0>
+</td>
+<td>
+<img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701222521.gif" style="zoom:80%;" border=0>
+</td>
+</tr>
+</table>
+<p>中间的红色环对应的就是绕Y轴的旋转，对应的是飞机的俯仰运动：</p>
+<table>
+<tr>
+<td>
+<img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701223138.gif" style="zoom:80%;" border=0>
+</td>
+<td>
+<img  src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701223149.gif" style="zoom:80%;" border=0>
+</td>
+</tr>
+</table>
+<p>最里面的蓝色环对应的就是绕X轴的旋转，对应的是飞机的滚转运动：</p>
+<table>
+<tr>
+<td>
+<img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701223408.gif" style="zoom:80%;" border=0>
+</td>
+<td>
+<img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701223418.gif" style="zoom:60%;" border=0>
+</td>
+</tr>
+</table>
+<p>但是如果飞机俯仰角到达±90°时，会发现此时绿色代表的滚转运动和蓝色代表的偏航运动他们的<strong>旋转轴重合</strong>了，这时候你必须要改变最里面自转轴的角度才能够达到你需要的空间位置，而这是违背陀螺定轴性规律的。所以最下面的图（滚转）陀螺仪中运动的那个方向其实是被锁住了的，在俯仰角达到±90°时就不可能有这个方向的运动（万向锁时不会有滚转的运动），这是因为当俯仰角达到±90°时，改变了第三个要旋转的轴的方向，它与第一次旋转的Z轴重合了，所以在空间中失去了一个自由度（此时蓝环绕X轴的旋转结果等同于绿环绕Z轴旋转的结果，即都是偏航运动，失去了一个自由度）。</p>
+<p>这就是欧拉角的万向锁现象，为了更好的理解这个现象，我们再用自己的手机做一个试验，你把手机屏幕朝上，手机的长边为X轴，短边为Y轴，Z轴垂直屏幕向下，那你先绕Z轴旋转一下手机，假设旋转30度，然后再把手机绕X轴旋转90度。这时候你再绕手机的短边旋转，你会发现手机的长边一直定在桌面上不可能脱离桌面，这就是万向锁现象。</p>
+<p>最后，再让我们用数据公式来解释一下万向锁现象产生的原因，我们来回顾一下上面提到的旋转矩阵： <span class="math display">\[
+R_{b / m v}=R_{\phi} R_{\theta} R_{\psi}=\left[\begin{array}{ccc}
+\cos \theta \cos \psi &amp; \cos \theta \sin \psi &amp; -\sin \theta \\
+\sin \varphi \sin \theta \cos \psi-\cos \varphi \sin \psi &amp; \sin \varphi \sin \theta \sin \psi+\cos \varphi \cos \psi &amp; \sin \varphi \cos \theta \\
+\cos \varphi \sin \theta \cos \psi+\sin \varphi \sin \psi &amp; \cos \varphi \sin \theta \sin \psi-\sin \varphi \cos \psi &amp; \cos \varphi \cos \theta
+\end{array}\right]
+\]</span> 如果俯仰角为±90°，那么公式就变成了： <span class="math display">\[
+R_{b / n v}=R_{\phi} R_{\theta} R_{\psi}=\left[\begin{array}{ccc}
+0 &amp; 0 &amp; -1 \\
+\sin (\varphi-\psi) &amp; \cos (\varphi-\psi) &amp; 0 \\
+\cos (\varphi-\psi) &amp; -\sin (\varphi-\psi) &amp; 0
+\end{array}\right]
+\]</span> 这说明改变 <span class="math inline">\(\phi\)</span> 和 <span class="math inline">\(\psi\)</span> 的值都是一个效果，而矩阵的第一行和最后一列始终是保持不变，这说明无论你怎么改变 <span class="math inline">\(\phi\)</span> 和 <span class="math inline">\(\psi\)</span> ，你的旋转轴一直是Z轴不变，要想改变 <span class="math inline">\(\phi\)</span> 和 <span class="math inline">\(\psi\)</span> 有不同的效果，你只能是去改变 <span class="math inline">\(\theta\)</span> 的值，以上就是用数学方法来解释为什么俯仰角在±90°时欧拉角出现万向锁的过程。</p>
+<h2 id="四元数">四元数</h2>
+<p>欧拉角表示姿态时会遇到万向锁的问题，这会导致同一种空间状态欧拉角的表示方式不唯一，当出现万向锁现象时，同一种旋转有无数种欧拉角表示形式，从而导致了欧拉角差值时出现问题，因为当你俯仰角接近90°时，两组千差万别的欧拉角表示可以是同一种旋转。所以为了解决这些问题，数学上想出了用四元数的形式来表征姿态的方法。（四元数是由爱尔兰数学家Hamilton发明的，是发明的不是发现的。）</p>
+<h3 id="基本运算规律">基本运算规律</h3>
+<p>四元数是由1个实数加上3个复数组合而成，通常可以表示成 <span class="math inline">\(w+xi+yj+zk\)</span> 或者 <span class="math inline">\((w,(x,y,z))\)</span> ，其中 <span class="math inline">\(w、x、y、z\)</span> 都是实数，而 <span class="math inline">\(i^2 = j^2 =k^2 = -1， i^0 = j^0 = k^0 = 1\)</span> 。对于四元数的运算法则，我们要清楚的有以下几个：</p>
+<p>假设有两个四元数分别为 <span class="math inline">\(q1=(w1,(x1,y1,z1))\)</span> 和 <span class="math inline">\(q2=(w2,(x2,y2,z2))\)</span> ，令 <span class="math inline">\(v1 = (x1,y1,z1),v2= (x2,y2,z2)\)</span> ，则：</p>
+<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701232240.jpeg" /></p>
+<h3 id="四元数的姿态表示">四元数的姿态表示</h3>
+<p>了解了四元数的基本运算规律后，我们来看下它如何表征姿态，假设存在一根旋转轴 <span class="math inline">\(u\)</span> ，有一个绕 <span class="math inline">\(u\)</span> 轴旋转 <span class="math inline">\(\sigma\)</span> 角度的旋转，那这时候代表这个旋转的四元数是： <span class="math display">\[
+q=\left(\cos \frac{\sigma}{2}, u\mathrm{sin} \frac{\sigma}{2}\right)
+\]</span> 其中 <span class="math inline">\(u\)</span> 是旋转轴的单位向量，<span class="math inline">\(q\)</span> 是一个单位四元数。</p>
+<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701233708.jpeg" /></p>
+<p>上述这个四元数的作用就是，它对任意 <span class="math inline">\(v\)</span> 向量施加以下算子运算后可以得到该向量绕 <span class="math inline">\(u\)</span> 轴旋转 <span class="math inline">\(\sigma\)</span> 角度后的向量 <span class="math inline">\(w\)</span> ： <span class="math display">\[
+w = qvq^{*}
+\]</span> 至于为什么会有这个结果，这儿就不展开证明了，思路就是要证明v和w之间的夹角是 <span class="math inline">\(\sigma\)</span> 就可以。</p>
+<p>我们只需要知道四元数这么写可以用来表征姿态，其实是表征旋转关系，跟旋转矩阵的表示方法类似，只不过它只需要4个元素，而旋转矩阵需要9个元素。</p>
+<h2 id="旋转矩阵欧拉角四元数的变换">旋转矩阵、欧拉角、四元数的变换</h2>
+
+  </article>
+
+  
+    
+  <div class="nexmoe-post-copyright">
+    <strong>本文作者：</strong>SuSu<br>
+    <strong>本文链接：</strong><a href="https://su-lemon.gitee.io/post/3d0759b1.html" title="https:&#x2F;&#x2F;su-lemon.gitee.io&#x2F;post&#x2F;3d0759b1.html" target="_blank" rel="noopener">https:&#x2F;&#x2F;su-lemon.gitee.io&#x2F;post&#x2F;3d0759b1.html</a><br>
+    
+      <strong>版权声明：</strong>本文采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/cn/deed.zh" target="_blank">CC BY-NC-SA 3.0 CN</a> 协议进行许可
+    
+  </div>
+
+
+  
+  
+  <div class="nexmoe-post-meta nexmoe-rainbow">
+    
+        <a class="nexmoefont icon-appstore-fill -link" href="/categories/Robotics/">Robotics</a>
+    
+    
+        <a class="nexmoefont icon-tag-fill -none-link" href="/tags/Robotics/" rel="tag">Robotics</a>
+    
+</div>
+
+  <div class="nexmoe-post-footer">
+    <section class="nexmoe-comment">
+    
+        <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="/js/md5.min.js"></script>
+<div id="gitalk"></div>
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+<script type="text/javascript">
+    // var gitalk = new Gitalk({
+    //   clientID: '2543206578680a1bdf99',
+    //   clientSecret: '24e25a0277329218d91186c354b4a9d3ec9eaf29',
+    //   repo: 'gittalk-comments',
+    //   owner: 'Su-Lemon',
+    //   admin: 'Su-Lemon',
+    //   id: 'location.pathname',
+    //   labels: 'Gitalk'.split(',').filter(l => l),
+    // //   perPage: '15',
+    //   pagerDirection: 'last',
+    //   createIssueManually: 'true',
+    //   distractionFreeMode: 'false'
+    // })
+    idCfg = "2543206578680a1bdf99"
+    secretCfg = "24e25a0277329218d91186c354b4a9d3ec9eaf29"
+    repoCfg = "gittalk-comments"
+    ownerCfg = "Su-Lemon"
+    adminCfg = "Su-Lemon"
+    var gitalk = new Gitalk({
+      clientID: idCfg,
+      clientSecret: secretCfg,
+      repo: repoCfg,
+      owner: ownerCfg,
+      admin: adminCfg,
+      id: md5(location.pathname),
+      labels: ['Gitalk'],
+      perPage: 15,
+      pagerDirection: 'last',
+      createIssueManually: true,
+      distractionFreeMode: false
+    })
+    gitalk.render('gitalk')
+</script>
+    
+</section>
+
+  </div>
+</div>
+
+<script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+  
+  <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+  </script>
+
+  <!-- 给MathJax元素添加has-jax class -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        Tex: {equationNumbers: {autoNumber: ["AMS"], useLabelIds: true}},
+        "HTML-CSS": {linebreaks: {automatic: true}},
+        SVG: {linebreaks: {automatic: true}}
+    });
+  </script>
+  <!-- 通过连接CDN加载MathJax的js代码 -->
+  <script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+
+
+
+
+        <div class="nexmoe-post-right">
+          
+            <div class="nexmoe-fixed">
+              <div class="nexmoe-tool">
+                <a href="#" aria-label="回到顶部" title="top"><button class="mdui-fab mdui-ripple"><i class="nexmoefont icon-caret-top"></i></button></a>
+              </div>
+            </div>
+          
+        </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/combine/npm/lazysizes@5.1.0/lazysizes.min.js,gh/highlightjs/cdn-release@9.15.8/build/highlight.min.js,npm/mdui@0.4.3/dist/js/mdui.min.js?v=1"></script>
+<script>
+	hljs.initHighlightingOnLoad();
+</script>
+
+<!-- <script src="<= theme.cdn.jquery.js "></script> -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+ <script src="https://su-lemon.gitee.io/js/app.js?v=1625154380240"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
+<script>
+	$(".justified-gallery").justifiedGallery({
+		rowHeight: 160,
+		margins: 10,
+	});
+</script>
+
+<!--  -->
+<script src="https://su-lemon.gitee.io/lib/google-code-prettify/src/prettify.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('pre').addClass('prettyprint linenums').attr('style', 'overflow:scroll;');;
+		$('code').addClass('prettyprint');
+		prettyPrint();
+	})
+</script>
+
+  
+
+
+
+
+
+    <!-- baidu Analytics -->
+<script>
+    var _hmt = _hmt || [];
+    (function() {var hm = document.createElement('script');
+    hm.src = 'https://hm.baidu.com/hm.js?539439c58f0ce65ba27b965cac9accab';
+    var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+</body>
+
+</html>
