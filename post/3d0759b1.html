@@ -4,7 +4,7 @@
 
 <head>
   
-  <title>【Robotics】空间姿态表示法，旋转矩阵、欧拉角和四元数 - 爱吃猫的小鱼干的 Blog</title>
+  <title>【Robotics】空间姿态表示法：旋转矩阵、欧拉角和四元数 - 爱吃猫的小鱼干的 Blog</title>
   <meta charset="UTF-8">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
@@ -26,7 +26,7 @@
   <link rel="shortcut icon" href="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog_style/favicon1.png" type="image/png" />
   <meta name="description" content="本文介绍空间姿态的各种表示方法。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【Robotics】空间姿态表示法，旋转矩阵、欧拉角和四元数">
+<meta property="og:title" content="【Robotics】空间姿态表示法：旋转矩阵、欧拉角和四元数">
 <meta property="og:url" content="https://su-lemon.gitee.io/post/3d0759b1.html">
 <meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
 <meta property="og:description" content="本文介绍空间姿态的各种表示方法。">
@@ -44,7 +44,7 @@
 <meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701232240.jpeg">
 <meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210701233708.jpeg">
 <meta property="article:published_time" content="2021-07-01T12:57:06.000Z">
-<meta property="article:modified_time" content="2021-07-01T15:45:59.836Z">
+<meta property="article:modified_time" content="2021-07-01T15:50:21.344Z">
 <meta property="article:author" content="SuSu">
 <meta property="article:tag" content="Robotics">
 <meta name="twitter:card" content="summary">
@@ -55,7 +55,7 @@
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2432472_9kqdqg64gbn.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1625154380239">
+  <link rel="stylesheet" href="/css/style.css?v=1636010699440">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -92,7 +92,7 @@
         </a>
     </div>
     <div class="nexmoe-count">
-        <div><span>文章</span>22</div>
+        <div><span>文章</span>23</div>
         <div><span>标签</span>22</div>
         <div><span>分类</span>10</div>
     </div>
@@ -232,7 +232,7 @@
 
         <li class="category-list-item">
           <a class="category-list-link" href="/categories/Python/">Python</a>
-          <span class="category-list-count">1</span>
+          <span class="category-list-count">2</span>
         </li>
 
         
@@ -267,7 +267,7 @@
     
   <div class="nexmoe-widget-wrap">
     <div id="randomtagcloud" class="nexmoe-widget tagcloud nexmoe-rainbow">
-      <a href="/tags/AC/" style="font-size: 10px;">AC</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/FFmpeg/" style="font-size: 10px;">FFmpeg</a> <a href="/tags/GUI/" style="font-size: 10px;">GUI</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Latex/" style="font-size: 12.5px;">Latex</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12.5px;">Mac</a> <a href="/tags/MacOS/" style="font-size: 10px;">MacOS</a> <a href="/tags/Mujoco/" style="font-size: 10px;">Mujoco</a> <a href="/tags/PG/" style="font-size: 10px;">PG</a> <a href="/tags/Python/" style="font-size: 10px;">Python</a> <a href="/tags/RL/" style="font-size: 20px;">RL</a> <a href="/tags/Robotics/" style="font-size: 10px;">Robotics</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Tmux/" style="font-size: 10px;">Tmux</a> <a href="/tags/Tools/" style="font-size: 15px;">Tools</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">博客部署</a> <a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" style="font-size: 17.5px;">方法论</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">编程实践</a>
+      <a href="/tags/AC/" style="font-size: 10px;">AC</a> <a href="/tags/Algorithm/" style="font-size: 10px;">Algorithm</a> <a href="/tags/FFmpeg/" style="font-size: 10px;">FFmpeg</a> <a href="/tags/GUI/" style="font-size: 10px;">GUI</a> <a href="/tags/Git/" style="font-size: 12.5px;">Git</a> <a href="/tags/GitHub/" style="font-size: 10px;">GitHub</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/Latex/" style="font-size: 12.5px;">Latex</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/Mac/" style="font-size: 12.5px;">Mac</a> <a href="/tags/MacOS/" style="font-size: 10px;">MacOS</a> <a href="/tags/Mujoco/" style="font-size: 10px;">Mujoco</a> <a href="/tags/PG/" style="font-size: 10px;">PG</a> <a href="/tags/Python/" style="font-size: 12.5px;">Python</a> <a href="/tags/RL/" style="font-size: 20px;">RL</a> <a href="/tags/Robotics/" style="font-size: 10px;">Robotics</a> <a href="/tags/Shell/" style="font-size: 10px;">Shell</a> <a href="/tags/Tmux/" style="font-size: 10px;">Tmux</a> <a href="/tags/Tools/" style="font-size: 15px;">Tools</a> <a href="/tags/%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2/" style="font-size: 10px;">博客部署</a> <a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/" style="font-size: 17.5px;">方法论</a> <a href="/tags/%E7%BC%96%E7%A8%8B%E5%AE%9E%E8%B7%B5/" style="font-size: 10px;">编程实践</a>
     </div>
     
   </div>
@@ -277,7 +277,7 @@
   <div class="nexmoe-widget-wrap">
     <h3 class="nexmoe-widget-title">文章归档</h3>
     <div class="nexmoe-widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">14</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/">2021</a><span class="archive-list-count">15</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/">2019</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -299,7 +299,11 @@
       <ul>
         
           <li>
-            <a href="/post/3d0759b1.html">【Robotics】空间姿态表示法，旋转矩阵、欧拉角和四元数</a>
+            <a href="/post/43f5a85.html">【Python】Python加速运行技巧</a>
+          </li>
+        
+          <li>
+            <a href="/post/3d0759b1.html">【Robotics】空间姿态表示法：旋转矩阵、欧拉角和四元数</a>
           </li>
         
           <li>
@@ -312,10 +316,6 @@
         
           <li>
             <a href="/post/fd1aadb2.html">【Linux】各种系统信息查询指令</a>
-          </li>
-        
-          <li>
-            <a href="/post/bfad3f82.html">【Tools-Mujoco】创建自定义的Mujoco模型</a>
           </li>
         
       </ul>
@@ -338,8 +338,8 @@
         <div class="nexmoe-post">
   
       <div class="nexmoe-post-cover" style="padding-bottom: 50%;"> 
-          <img data-src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/cover/cover16.jpeg" data-sizes="auto" alt="【Robotics】空间姿态表示法，旋转矩阵、欧拉角和四元数" class="lazyload">
-          <h1>【Robotics】空间姿态表示法，旋转矩阵、欧拉角和四元数</h1>
+          <img data-src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/cover/cover16.jpeg" data-sizes="auto" alt="【Robotics】空间姿态表示法：旋转矩阵、欧拉角和四元数" class="lazyload">
+          <h1>【Robotics】空间姿态表示法：旋转矩阵、欧拉角和四元数</h1>
       </div>
   
   
@@ -356,7 +356,7 @@
             <div class="nexmoe-toc">
                 
                 
-                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5rotation"><span class="toc-number">1.</span> <span class="toc-text">旋转矩阵（Rotation）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E8%A7%92euler"><span class="toc-number">2.</span> <span class="toc-text">欧拉角（Euler）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E8%A7%92%E7%9A%84%E5%A7%BF%E6%80%81%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.1.</span> <span class="toc-text">欧拉角的姿态表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%87%E5%90%91%E9%94%81"><span class="toc-number">2.2.</span> <span class="toc-text">万向锁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E5%85%83%E6%95%B0"><span class="toc-number">3.</span> <span class="toc-text">四元数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E8%A7%84%E5%BE%8B"><span class="toc-number">3.1.</span> <span class="toc-text">基本运算规律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E5%85%83%E6%95%B0%E7%9A%84%E5%A7%BF%E6%80%81%E8%A1%A8%E7%A4%BA"><span class="toc-number">3.2.</span> <span class="toc-text">四元数的姿态表示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E6%AC%A7%E6%8B%89%E8%A7%92%E5%9B%9B%E5%85%83%E6%95%B0%E7%9A%84%E5%8F%98%E6%8D%A2"><span class="toc-number">4.</span> <span class="toc-text">旋转矩阵、欧拉角、四元数的变换</span></a></li></ol>
+                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5rotation"><span class="toc-number">1.</span> <span class="toc-text">旋转矩阵（Rotation）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E8%A7%92euler"><span class="toc-number">2.</span> <span class="toc-text">欧拉角（Euler）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AC%A7%E6%8B%89%E8%A7%92%E7%9A%84%E5%A7%BF%E6%80%81%E8%A1%A8%E7%A4%BA"><span class="toc-number">2.1.</span> <span class="toc-text">欧拉角的姿态表示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%87%E5%90%91%E9%94%81"><span class="toc-number">2.2.</span> <span class="toc-text">万向锁</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E5%85%83%E6%95%B0quaternion"><span class="toc-number">3.</span> <span class="toc-text">四元数（Quaternion）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E8%BF%90%E7%AE%97%E8%A7%84%E5%BE%8B"><span class="toc-number">3.1.</span> <span class="toc-text">基本运算规律</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E5%85%83%E6%95%B0%E7%9A%84%E5%A7%BF%E6%80%81%E8%A1%A8%E7%A4%BA"><span class="toc-number">3.2.</span> <span class="toc-text">四元数的姿态表示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC%E7%9F%A9%E9%98%B5%E6%AC%A7%E6%8B%89%E8%A7%92%E5%9B%9B%E5%85%83%E6%95%B0%E7%9A%84%E5%8F%98%E6%8D%A2"><span class="toc-number">4.</span> <span class="toc-text">旋转矩阵、欧拉角、四元数的变换</span></a></li></ol>
                 
             </div>
         </div>
@@ -487,7 +487,7 @@ R_{b / n v}=R_{\phi} R_{\theta} R_{\psi}=\left[\begin{array}{ccc}
 \cos (\varphi-\psi) &amp; -\sin (\varphi-\psi) &amp; 0
 \end{array}\right]
 \]</span> 这说明改变 <span class="math inline">\(\phi\)</span> 和 <span class="math inline">\(\psi\)</span> 的值都是一个效果，而矩阵的第一行和最后一列始终是保持不变，这说明无论你怎么改变 <span class="math inline">\(\phi\)</span> 和 <span class="math inline">\(\psi\)</span> ，你的旋转轴一直是Z轴不变，要想改变 <span class="math inline">\(\phi\)</span> 和 <span class="math inline">\(\psi\)</span> 有不同的效果，你只能是去改变 <span class="math inline">\(\theta\)</span> 的值，以上就是用数学方法来解释为什么俯仰角在±90°时欧拉角出现万向锁的过程。</p>
-<h2 id="四元数">四元数</h2>
+<h2 id="四元数quaternion">四元数（Quaternion）</h2>
 <p>欧拉角表示姿态时会遇到万向锁的问题，这会导致同一种空间状态欧拉角的表示方式不唯一，当出现万向锁现象时，同一种旋转有无数种欧拉角表示形式，从而导致了欧拉角差值时出现问题，因为当你俯仰角接近90°时，两组千差万别的欧拉角表示可以是同一种旋转。所以为了解决这些问题，数学上想出了用四元数的形式来表征姿态的方法。（四元数是由爱尔兰数学家Hamilton发明的，是发明的不是发现的。）</p>
 <h3 id="基本运算规律">基本运算规律</h3>
 <p>四元数是由1个实数加上3个复数组合而成，通常可以表示成 <span class="math inline">\(w+xi+yj+zk\)</span> 或者 <span class="math inline">\((w,(x,y,z))\)</span> ，其中 <span class="math inline">\(w、x、y、z\)</span> 都是实数，而 <span class="math inline">\(i^2 = j^2 =k^2 = -1， i^0 = j^0 = k^0 = 1\)</span> 。对于四元数的运算法则，我们要清楚的有以下几个：</p>
@@ -653,7 +653,7 @@ w = qvq^{*}
 <!-- <script src="<= theme.cdn.jquery.js "></script> -->
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
- <script src="https://su-lemon.gitee.io/js/app.js?v=1625154380240"></script>
+ <script src="https://su-lemon.gitee.io/js/app.js?v=1636010699441"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
