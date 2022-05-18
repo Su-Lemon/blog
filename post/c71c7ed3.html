@@ -32,7 +32,7 @@
 <meta property="og:description" content="ffmpeg 是一个快速的音视频转码器，并且可是从实时的音视频源中抓取数据。他可以通过一个高质量的多相滤波器转换任意音频的采样频率，缩放任意视频的尺寸。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-22T05:00:21.000Z">
-<meta property="article:modified_time" content="2021-03-24T12:45:10.368Z">
+<meta property="article:modified_time" content="2022-05-18T13:02:33.719Z">
 <meta property="article:author" content="SuSu">
 <meta property="article:tag" content="Tools">
 <meta property="article:tag" content="FFmpeg">
@@ -43,7 +43,7 @@
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2432472_9kqdqg64gbn.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1652865998616">
+  <link rel="stylesheet" href="/css/style.css?v=1652878993920">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -340,7 +340,7 @@
         <div class="nexmoe-post">
   
       <div class="nexmoe-post-cover" style="padding-bottom: 50%;"> 
-          <img data-src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/cover/cover12.png" data-sizes="auto" alt="【Tools-FFmpeg】FFmpeg一个快速的音视频处理器" class="lazyload">
+          <img data-src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources/imgs/cover/cover12.png" data-sizes="auto" alt="【Tools-FFmpeg】FFmpeg一个快速的音视频处理器" class="lazyload">
           <h1>【Tools-FFmpeg】FFmpeg一个快速的音视频处理器</h1>
       </div>
   
@@ -384,6 +384,7 @@
 <p>假设原始视频尺寸是 1080p（即 1920×1080 px，16:9），使用下面命令可以缩小到 480p：</p>
 <pre><code>ffmpeg -i a.mov -vf scale=-1:480 -acodec aac -vcodec h264 out.mp4
 ffmpeg -i a.mov -vf scale=-1:480 out.mp4</code></pre>
+<p>```</p>
 <ul>
 <li><code>-i a.mov</code> 指定待处理视频的文件名</li>
 <li><code>-vf scale=853:480</code> vf 参数用于指定视频滤镜，其中 scale 表示缩放，后面的数字表示缩放至 853×480 px，其中的 853px 是计算而得，因为原始视频的宽高比为 16:9，所以为了让目标视频的高度为 480px，则宽度 = 480 x 9 / 16 = 853</li>
@@ -392,8 +393,9 @@ ffmpeg -i a.mov -vf scale=-1:480 out.mp4</code></pre>
 <li>上面的参数 scale=853:480 当中的宽度和高度实际应用场景中通常只需指定一个，比如指定高度为 480 或者 720，至于宽度则可以传入 “-1” 表示由原始视频的宽高比自动计算而得。即参数可以写为：<strong>scale=-1:480</strong>，当然也可以 scale=480:-1</li>
 </ul></li>
 <li><p><strong>裁剪视频</strong></p>
-<p>有时可能只需要视频的正中一块，而两头的内容不需要，这时可以对视频进行裁剪（crop），比如有一个<strong>竖向</strong>的视频 1080 x 1920，如果指向保留中间 1080×1080 部分，可以使用下面的命令：</p>
-<pre><code>ffmpeg -i a.mov -strict -2 -vf crop=1080:1080:0:420 out.mp4</code></pre>
+<p>有时可能只需要视频的正中一块，而两头的内容不需要，这时可以对视频进行裁剪（crop），比如有一个<strong>竖向</strong>的视频 1080 x 1920，如果指向保留中间 1080×1080 部分，可以使用下面的命令：</p></li>
+</ul>
+<pre><code>  ffmpeg -i a.mov -strict -2 -vf crop=1080:1080:0:420 out.mp4</code></pre>
 <p>其中的 crop=1080:1080:0:420 是裁剪参数，含义是 crop=width:height: x:y，其中:</p>
 <ul>
 <li><p>width 和 height 表示裁剪后的尺寸，</p></li>
@@ -401,7 +403,8 @@ ffmpeg -i a.mov -vf scale=-1:480 out.mp4</code></pre>
 </ul>
 <p>比如当前这个示例，我们只需要保留竖向视频的中间部分，所以 x 不用偏移，故传入0，而 y 则需要向下偏移：(1920 – 1080) / 2 = 420</p>
 <p>视频缩放和裁剪是可以同时进行的，如下命令则为将视频缩小至 853×480，然后裁剪保留横向中间部分：</p>
-<pre><code>ffmpeg -i input.mov -strict -2 -vf scale=853:480,crop=480:480:186:0 out.mp4</code></pre></li>
+<pre><code>ffmpeg -i input.mov -strict -2 -vf scale=853:480,crop=480:480:186:0 out.mp4</code></pre>
+<ul>
 <li><p><strong>剪辑视频</strong></p>
 <p>如果有一段很长的视频只需保留其中的一段，可以使用下面命令对视频进行剪辑。</p>
 <pre><code>ffmpeg -i input.mov -ss 00:00:21 -t 00:00:10 -acodec aac -vcodec h264 -strict -2 out.mov</code></pre>
@@ -433,8 +436,10 @@ ffmpeg -i input.jpg -vf “scale=iw/2:ih/2” input_half_size.png</code></pre></
 <p>通用规则是，所有选项作用于其后边的第一个文件。因此，顺序是非常重要的，你可以在命令行中重复指定相同的选项，只是指定的文件不同。那些全局的选项需要在命令行中优先指定。</p>
 <p>千万不要输入文件和输出文件交叉出现在命令行中，先统一指定所有的输入文件，然后再指定所有的输入文件。同时也不要把指定给不同文件的选项弄混了。</p>
 <ul>
-<li><p>设置输出文件的视频码率为64kbit/s:</p>
-<pre><code>ffmpeg -i input.avi -b:v 64k -bufsize 64k output.avi</code></pre></li>
+<li>设置输出文件的视频码率为64kbit/s:</li>
+</ul>
+<pre><code>  ffmpeg -i input.avi -b:v 64k -bufsize 64k output.avi</code></pre>
+<ul>
 <li><p>指定输出文件的帧率为24：</p>
 <pre><code>ffmpeg -i input.avi -r 24 output.avi</code></pre></li>
 <li><p>强制指定输入文件的帧率为1，输出文件的帧率为24</p>
@@ -765,7 +770,7 @@ ffmpeg -cpuflags 0 ...</code></pre>
 <pre><code>ffmpeg -i myfile.avi -target vcd /tmp/vcd.mpg</code></pre>
 <p>尽管如此，只要不跟相应的标准冲突，你也可以指定其他的选项，例如:</p>
 <pre><code>ffmpeg -i myfile.avi -target vcd -bf 2 /tmp/vcd.mpg</code></pre>
-<p>未完待续。。。</p>
+<p>未完待续。。。 ```</p>
 
   </article>
 
@@ -916,7 +921,7 @@ ffmpeg -cpuflags 0 ...</code></pre>
 <!-- <script src="<= theme.cdn.jquery.js "></script> -->
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
- <script src="https://su-lemon.gitee.io/js/app.js?v=1652865998617"></script>
+ <script src="https://su-lemon.gitee.io/js/app.js?v=1652878993922"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
