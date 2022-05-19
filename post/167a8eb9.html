@@ -31,31 +31,31 @@
 <meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
 <meta property="og:description" content="DRL 热潮背后隐藏着诸多的“坑”，本文分析了DRL存在的危机，并指出了DRL未来可能的出路。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407100726.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407102055.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407102229.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407103651.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407103841.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407103958.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407104452.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407105110.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407111329.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407110349.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407110542.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407111205.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407100726.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407102055.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407102229.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407103651.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407103841.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407103958.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407104452.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407105110.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407111329.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407110349.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407110542.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407111205.png">
 <meta property="article:published_time" content="2021-04-07T03:21:42.000Z">
-<meta property="article:modified_time" content="2022-05-18T13:01:01.855Z">
+<meta property="article:modified_time" content="2022-05-19T09:30:53.750Z">
 <meta property="article:author" content="SuSu">
 <meta property="article:tag" content="RL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407100726.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407100726.png">
   <link rel="stylesheet" href="/css/blog.css" type="text/css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2432472_9kqdqg64gbn.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1652878993916">
+  <link rel="stylesheet" href="/css/style.css?v=1652952700986">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -388,7 +388,7 @@
 <p>2015年，DeepMind的Volodymyr Mnih等研究员在《自然》杂志上发表论文Human-level control through deep reinforcement learning[1]，该论文提出了一个结合深度学习（DL）技术和强化学习（RL）思想的模型Deep Q-Network(DQN)，在Atari游戏平台上展示出超越人类水平的表现。自此以后，结合DL与RL的深度强化学习（Deep Reinforcement Learning, DRL）迅速成为人工智能界的焦点。</p>
 <p>过去三年间，DRL算法在不同领域大显神通：在视频游戏[1]、棋类游戏上打败人类顶尖高手[2,3]；控制复杂的机械进行操作[4]；调配网络资源[5]；为数据中心大幅节能[6]；甚至对机器学习算法自动调参[7]。各大高校和企业纷纷参与其中，提出了眼花缭乱的DRL算法和应用。可以说，过去三年是DRL的爆红期。DeepMind负责AlphaGo项目的研究员David Silver喊出“AI = RL + DL”，认为结合了DL的表示能力与RL的推理能力的DRL将会是人工智能的终极答案。</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:70%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407100726.png"/> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:70%" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407100726.png"/> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 RL 论文数量迅速增长[8]
 </div>
@@ -397,14 +397,14 @@ RL 论文数量迅速增长[8]
 <p>然而，研究人员在最近半年开始了对DRL的反思。由于发表的文献中往往不提供重要参数设置和工程解决方案的细节，很多算法都难以复现。2017年9月，著名RL专家Doina Precup和Joelle Pineau所领导的的研究组发表了论文Deep Reinforcement Learning that Matters[8]，直指当前DRL领域论文数量多却水分大、实验难以复现等问题。该文在学术界和工业界引发热烈反响。很多人对此表示认同，并对DRL的实际能力产生强烈怀疑。</p>
 <p>其实，这并非Precup&amp; Pineau研究组第一次对DRL发难。早在2个月前，该研究组就通过充足的实验对造成DRL算法难以复现的多个要素加以研究，并将研究成果撰写成文Reproducibility of Benchmarked Deep Reinforcement Learning Tasks for Continuous Control[9]。同年8月，他们在ICML 2017上作了题为“Reproducibility of Policy Gradient Methods for Continuous Control”的报告[10]，通过实例详细展示了在复现多个基于策略梯度的算法的过程中，由于种种不确定性因素导致的复现困难。12月，在万众瞩目的NIPS 2017 DRL专题研讨会上，Joelle Pineau受邀作了题为“Reproducibility of DRL and Beyond”的报告[11]。报告中，Pineau先介绍了当前科研领域的“可复现性危机” ：在《自然》杂志的一项调查中，90%的被访者认为“可复现性”问题是科研领域存在的危机，其中，52%的被访者认为这个问题很严重。在另一项调查中，不同领域的研究者几乎都有很高的比例无法复现他人甚至自己过去的实验。可见“可复现性危机”有多么严峻！Pineau针对机器学习领域发起的一项调研显示，同样有90%的研究者认识到了这个危机。</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom: 80%" src=https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407101502.png> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom: 80%" src=https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407101502.png> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 机器学习领域存在严重的“可复现性危机”[11]
 </div>
 </center>
 <p>随后，针对DRL领域，Pineau展示了该研究组对当前不同DRL算法的大量可复现性实验。实验结果表明，不同DRL算法在不同任务、不同超参数、不同随机种子下的效果大相径庭。在报告后半段，Pineau呼吁学界关注“可复现性危机”这一问题，并根据她的调研结果，提出了12条检验算法“可复现性”的准则，宣布计划在ICLR 2018开始举办“可复现实验挑战赛”（“可复现危机”在其他机器学习领域也受到了关注，ICML 2017已经举办了Reproducibility in Machine Learning Workshop，并将在今年继续举办第二届），旨在鼓励研究者做出真正扎实的工作，抑制机器学习领域的泡沫。Pineau &amp; Precup研究组的这一系列研究获得了广泛关注。</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom: 80%" src=https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407101633.png> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom: 80%" src=https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407101633.png> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 Pineau基于大量调查提出的检验算法“可复现性”准则[11]
 </div>
@@ -421,7 +421,7 @@ Pineau基于大量调查提出的检验算法“可复现性”准则[11]
 <p>虽然作者在文章结尾试着提出DRL下一步应该解决的一系列问题，很多人还是把这篇文章看做DRL的“劝退文”。几天后，GIT的博士生Himanshu Sahni发表博文Reinforcement Learning never worked, and 'deep' only helped a bit与之呼应[14]，在赞同Alexirpan的观点同时，指出好的奖励函数难以设计和难以平衡“探索”和“利用”以致算法陷入局部极小是RL的固有缺陷。</p>
 <p>另一位DRL研究者Matthew Rahtz则通过讲述自己试图复现一个DRL算法的坎坷历程来回应Alexirpan，让大家深刻体会了复现DRL算法有多么难[15]。半年前，Rahtz出于研究兴趣，选择对OpenAI的论文Deep Reinforcement Learning from Human Preferences进行复现。在复现的过程中，几乎踩了Alexirpan总结的所有的坑。他认为复现DRL算法与其是一个工程问题，更不如说像一个数学问题。“它更像是你在解决一个谜题，没有规律可循，唯一的方法是不断尝试，直到灵感出现彻底搞明白。……很多看上去无关紧要的小细节成了唯一的线索……做好每次卡住好几周的准备。”Rahtz在复现的过程中积累了很多宝贵的工程经验，但整个过程的难度还是让他花费了大量的金钱以及时间。他充分调动不同的计算资源，包括学校的机房资源、Google云计算引擎和FloydHub，总共花费高达850美元。可就算这样，原定于3个月完成的项目，最终用了8个月，其中大量时间用在调试上。</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom: 80%" src=https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407101905.png> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom: 80%" src=https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407101905.png> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 复现DRL算法的实际时间远多于预计时间[15]
 </div>
@@ -429,7 +429,7 @@ Pineau基于大量调查提出的检验算法“可复现性”准则[11]
 <p>Rahtz最终实现了复现论文的目标。他的博文除了给读者详细总结了一路走来的各种宝贵工程经验，更让大家从一个具体事例感受到了DRL研究实际上存在多大的泡沫、有多少的坑。有人评论到，“DRL的成功可能不是因为其真的有效，而是因为人们花了大力气。”</p>
 <p>很多著名学者也纷纷加入讨论。目前普遍的观点是，<strong>DRL可能有AI领域最大的泡沫。</strong>机器学习专家Jacob Andreas发了一条意味深长的tweet说：</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407102055.png"/> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407102055.png"/> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 Jacob Andreas对DRL的吐槽
 </div>
@@ -441,7 +441,7 @@ Jacob Andreas对DRL的吐槽
 <p>RL算法可以分为基于模型的方法（Model-based）与免模型的方法（Model-free）。前者主要发展自最优控制领域。通常先通过高斯过程（GP）或贝叶斯网络（BN）等工具针对具体问题建立模型，然后再通过机器学习的方法或最优控制的方法，如模型预测控制（MPC）、线性二次调节器（LQR）、线性二次高斯（LQG）、迭代学习控制（ICL）等进行求解。而后者更多地发展自机器学习领域，属于数据驱动的方法。算法通过大量采样，估计代理的状态、动作的值函数或回报函数，从而优化动作策略。</p>
 <p>从年初至今，Ben Recht连发了13篇博文，从控制与优化的视角，重点探讨了RL中的免模型方法[18]。Recht指出免模型方法自身存在以下几大缺陷：</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407102229.png"/> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407102229.png"/> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 基于模型 vs. 免模型 [17]
 </div>
@@ -454,7 +454,7 @@ Jacob Andreas对DRL的吐槽
 </ol>
 <p>为了证实以上观点，Recht将一个简单的基于LQR的随机搜索方法与最好的免模型方法在MuJoCo实验环境上进行了实验对比。在采样率相近的情况下，基于模型的随机搜索算法的计算效率至少比免模型方法高15倍[19]。</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407103651.png"/> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407103651.png"/> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 基于模型的随机搜索方法ARS吊打一众免模型方法[19]
 </div>
@@ -462,7 +462,7 @@ Jacob Andreas对DRL的吐槽
 <p>通过Recht的分析，我们似乎找到了DRL问题的根结。近三年在机器学习领域大火的DRL算法，多将免模型方法与DL结合，而免模型算法的天然缺陷，恰好与Alexirpan总结的DRL几大问题相对应（见上文）。</p>
 <p>看来，DRL的病根多半在采用了免模型方法上。为什么多数DRL的工作都是基于免模型方法呢？笔者认为有几个原因。第一，免模型的方法相对简单直观，开源实现丰富，比较容易上手，从而吸引了更多的学者进行研究，有更大可能做出突破性的工作，如DQN和AlphaGo系列。第二，当前RL的发展还处于初级阶段，学界的研究重点还是集中在环境是确定的、静态的，状态主要是离散的、静态的、完全可观察的，反馈也是确定的问题（如Atari游戏）上。针对这种相对“简单”、基础、通用的问题，免模型方法本身很合适。最后，在“AI = RL + DL”这一观点的鼓动下，学界高估了DRL的能力。DQN展示出的令人兴奋的能力使得很多人围绕着DQN进行拓展，创造出了一系列同样属于免模型的工作。</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:90%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407103841.png"/> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:90%" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407103841.png"/> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 绝大多数DRL方法是对DQN的扩展，属于免模型方法[20]
 </div>
@@ -472,7 +472,7 @@ Jacob Andreas对DRL的吐槽
 <h3 id="基于模型的方法未来潜力巨大">基于模型的方法，未来潜力巨大</h3>
 <p>基于模型的方法一般先从数据中学习模型，然后基于学到的模型对策略进行优化。学习模型的过程和控制论中的系统参数辨识类似。因为模型的存在，基于模型的方法可以充分利用每一个样本来逼近模型，数据利用率极大提高。基于模型的方法则在一些控制问题中，相比于免模型方法，通常有10^2级的采样率提升。此外，学到的模型往往对环境的变化鲁棒,当遇到新环境时，算法可以依靠已学到的模型做推理，具有很好的泛化性能。</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407103958.png"/> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407103958.png"/> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 基于模型的方法具有更高采样率[22]
 </div>
@@ -501,7 +501,7 @@ Jacob Andreas对DRL的吐槽
 <p>DQN和AlphaGo系列工作给人留下深刻印象，但是这两种任务本质上其实相对“简单”。因为这些任务的环境是确定的、静态的，状态主要是离散的、静态的、完全可观察的，反馈是确定的，代理也是单一的。目前DRL在解决部分可见状态任务（如StarCraft），状态连续的任务（如机械控制任务），动态反馈任务和多代理任务中还没取得令人惊叹的突破。</p>
 <p>当前大量的DRL研究，尤其是应用于计算机视觉领域任务的研究中，很多都是将计算机视觉的某一个基于DL的任务强行构造成RL问题进行求解，其结果往往不如传统方法好。这样的研究方式造成DRL领域论文数量暴增、水分巨大。作为DRL的研究者，<strong>我们不应该找一个DL任务强行将其RL化，而是应该针对一些天然适合RL处理的任务，尝试通过引入DL来提升现有方法在目标识别环节或函数逼近环节上的能力</strong>。</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407104452.png"/> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407104452.png"/> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 DRL取得成功的任务本质上相对简单[30]
 </div>
@@ -510,7 +510,7 @@ DRL取得成功的任务本质上相对简单[30]
 <h4 id="重新审视rl的研究">重新审视RL的研究</h4>
 <p>机器学习是个跨学科的研究领域，而RL则是其中跨学科性质非常显著的一个分支。RL理论的发展受到生理学、神经科学和最优控制等领域的启发，现在依旧在很多相关领域被研究。在控制理论、机器人学、运筹学、经济学等领域内部，依旧有很多的学者投身RL的研究，类似的概念或算法往往在不同的领域被重新发明，起了不同的名字。</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407105110.png"/> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407105110.png"/> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 RL的发展受到多个学科的影响[31]
 </div>
@@ -535,7 +535,7 @@ RL的发展受到多个学科的影响[31]
 <h4 id="重新审视rl的应用">重新审视RL的应用</h4>
 <p>当前的一种观点是“RL只能打游戏、下棋，其他的都做了”。而笔者认为，我们不应对RL过于悲观。其实能在视频游戏与棋类游戏中超越人类，已经证明了RL推理能力的强大。通过合理改进后，有希望得到广泛应用。往往，从研究到应用的转化并不直观。比如，IBM Watson® 系统以其对自然语言的理解能力和应答能力闻名世界，曾在2011年击败人类选手获得Jeopardy!冠军。而其背后的支撑技术之一竟然是当年Gerald Tesauro开发TD-Gammon程序[52]时使用的RL技术[53]。当年那个“只能用于”下棋的技术，已经在最好的问答系统中发挥不可或缺的作用了。今天的RL发展水平远高于当年，我们怎么能没有信心呢？</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407111329.png"/> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407111329.png"/> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 强大的IBM Watson®背后也有RL发挥核心作用
 </div>
@@ -553,7 +553,7 @@ RL的发展受到多个学科的影响[31]
 <p>关于RL的更全面的应用综述请参见文献 [59，60]。</p>
 <p>虽然有上文列举的诸多成功应用，但我们依旧要认识到，当前RL的发展还处于初级阶段，不能包打天下。目前还没有一个通用的RL解决方案像DL一样成熟到成为一种即插即用的算法。不同RL算法在各自领域各领风骚。在找到一个普适的方法之前，我们更应该针对特定问题设计专门的算法，比如在机器人领域，基于贝叶斯RL和演化算法的方法（如CMAES[61]）比DRL更合适。当然，不同的领域间应当互相借鉴与促进。RL算法的输出存在随机性，这是其“探索”哲学带来的本质问题，因此我们不能盲目 All in RL, 也不应该RL in All, 而是要找准RL适合解决的问题。</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407110349.png"/> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407110349.png"/> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 针对不同问题应该使用的不同RL方法[22]
 </div>
@@ -562,7 +562,7 @@ RL的发展受到多个学科的影响[31]
 <p>在NIPS 2016上，Yan LeCun认为最有价值的问题是“Predictive Learning”问题，这其实类似于非监督学习问题。他的发言代表了学界近来的主流看法。而Ben Recht则认为，RL比监督学习（Supervised Learning, SL）和非监督学习（Unsupervised Learning, UL）更有价值。他把这三类学习方式分别与商业分析中的描述分析（UL）、预测分析（SL）和指导分析（RL）相对应[18]。</p>
 <p>描述分析是对已有的数据进行总结，从而获得更鲁棒和清晰的表示，这个问题最容易，但价值也最低。因为描述分析的价值更多地在于美学方面而非实际方面。比如，“用GAN将一个房间的图片渲染成何种风格”远没有“依据房间的图片预测该房间的价格”更重要。而后者则是预测分析问题——基于历史数据对当前数据进行预测。但是在描述分析和预测分析中，系统都是不受算法影响的，而指导分析则更进一步地对算法与系统间的交互进行建模，通过主动影响系统，最大化价值收益。类比以上两个例子，指导分析则是解决“如何通过对房间进行一系列改造来最大化提升房间价格”之类的问题。这种问题最难，因为涉及到了算法与系统的复杂交互，但也最有价值，因为指导性分析（RL）的天然目标就是价值最大化，也是人类解决问题的方式。并且，无论是描述分析还是预测分析，所处理的问题的环境都是静态的、不变的，这个假设对大多数实际的问题都不成立。而指导分析则被用来处理环境动态变化的问题，甚至还要考虑到与其他对手的合作或竞争，与人类面临的大多数实际问题更相似。</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407110542.png"/> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407110542.png"/> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 指导分析问题最难，也最有价值[18]
 </div>
@@ -576,7 +576,7 @@ RL的发展受到多个学科的影响[31]
 <p>1959年，人工智能先驱Arthur Samuel正式定义了“机器学习”这概念。也正是这位Samuel，在50年代开发了基于RL的的象棋程序，成为人工智能领域最早的成功案例[63]。为何人工智能先驱们的工作往往集中在RL相关的任务呢？经典巨著《人工智能：一种现代方法》里对RL的评论或许可以回答这一问题：可以认为RL囊括了人工智能的所有要素：一个智能体被置于一个环境中，并且必须学会在其间游刃有余（Reinforcement Learning might be considered to encompass all of AI: an agent is placed in an environment and must learn to behave successfully therein.） [64]。</p>
 <p>不仅仅在人工智能领域，哲学领域也强调了行为与反馈对智能形成的意义。生成论（Enactivism）认为行为是认知的基础，行为与感知是互相促进的，智能体通过感知获得行为的反馈，而行为则带给智能体对环境的真实有意义的经验[65]。</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407111205.png"/> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407111205.png"/> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 行为和反馈是智能形成的基石[65]
 </div>
@@ -836,7 +836,7 @@ RL的发展受到多个学科的影响[31]
 <!-- <script src="<= theme.cdn.jquery.js "></script> -->
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
- <script src="https://su-lemon.gitee.io/js/app.js?v=1652878993917"></script>
+ <script src="https://su-lemon.gitee.io/js/app.js?v=1652952700988"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>

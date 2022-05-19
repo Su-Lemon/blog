@@ -33,14 +33,14 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-01caa34cfa02775aea2338356345965f_1440w.png">
 <meta property="og:image" content="https://pic4.zhimg.com/80/v2-693ce767b89268e291f373e7f1baa443_1440w.jpg">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210221220441.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210221220745.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210221220554.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210221220441.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210221220745.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210221220554.png">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B0%7D%2Cy_%7B0%7D%5Cright%29">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B1%7D%2Cy_%7B1%7D%5Cright%29">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B1%7D-x_%7B0%7D%2Cy_%7B1%7D-y_%7B0%7D%5Cright%29">
 <meta property="article:published_time" content="2020-11-15T05:34:04.000Z">
-<meta property="article:modified_time" content="2022-05-18T13:01:47.594Z">
+<meta property="article:modified_time" content="2022-05-19T09:30:55.771Z">
 <meta property="article:author" content="SuSu">
 <meta property="article:tag" content="RL">
 <meta property="article:tag" content="方法论">
@@ -52,7 +52,7 @@
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2432472_9kqdqg64gbn.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1652878993946">
+  <link rel="stylesheet" href="/css/style.css?v=1652952701005">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -399,7 +399,7 @@
 <p>直接相关信息不仅对DRL算法学习很友好，在有对口reward奖励/惩罚项的前提下，对算法工作者来说也更容易设计。事实上，DRL的状态空间设计往往和reward设计同时进行，为了达到某个目的需要增加一项奖励/惩罚，并相应增加一个或多个直接相关状态信息，帮助模型识别现象与反馈之间的因果关系，这一设计理念很直观也很有效。</p>
 <h4 id="间接相关信息">间接相关信息</h4>
 <p>间接相关信息指的是reward中没有即时联动项的状态信息，其所代表的事件需要一段时间后才得到反馈。相对于直接相关信息，DRL利用它们建立决策相关性的难度更高，学习效率更差。比如下图中的游戏画面，agent要通关必须先吃钥匙，假如reward没有专门设置“吃钥匙”的奖励项，那么吃钥匙的好处要等到通关的时候才能体现出来。</p>
-<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210221220441.png" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210221220441.png" /></p>
 <p>再比如小车要学会到达终点，当前位置坐标、朝向、速度、加速度、终点坐标、周围障碍物的分布似乎都与到达终点这一目标有关，假如我们暂时没有针对这个目标做更细化的credit assignment，而只设置了到达终点奖励，那么这些信息就都属于间接相关信息，agent只有经过充分探索后才能发现某时刻这些信息的变化与最终达到终点之间的联系。</p>
 <p>间接相关信息通过某些手段可以转化为直接相关信息，从而提高DRL的学习效率。最简单的方法是对任务目标做更详细的credit assignment并增加相应的reward奖励/惩罚项，如果某状态信息恰好与之即时联动，相应状态信息就成为了直接相关信息。还以小车为例，如果在reward中增加靠近终点奖励或远离终点惩罚，那么小车的朝向（配合小车当前坐标和终点坐标）就成为了直接相关信息。更多关于reward函数设计的内容我在下一篇中再详细介绍。</p>
 <h4 id="相关信息预处理">相关信息预处理</h4>
@@ -408,8 +408,8 @@
 <p>当我们已经筛选出了所有相关信息，接下来该以何种形式使用它们呢？把他们拉成一组向量塞到神经网络里行不行？当然可以，但那样做只能得到适用于当前特定场景的policy。比如状态信息中包含了其他小车的信息，则训练出的policy只适合特定数量小车的任务，假如车数增加或减少，输入向量维度随之变化，policy就没法用了。因此，我们必须合理设计状态信息使其对环境主要因素的改变有最起码的兼容性，我把它称之为统一性考虑。具体地，这里的统一性又包含形式统一和逻辑统一。</p>
 <h4 id="形式统一">形式统一</h4>
 <p>为了保证输入向量长度恒定，我们需要找到一种统一形式把不同信息填到对应的位置。比如小车周围装了一圈测距雷达，按固定顺序输出一维距离向量，那么无论把小车放到什么地方，这些信息所代表的含义也不会变；或者采用imagelike的状态表示方式，把地图信息网格化，无论是作为二维channel或拉成一维向量，都能保持外在形式的统一。</p>
-<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210221220745.png" /></p>
-<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210221220554.png" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210221220745.png" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210221220554.png" /></p>
 <p>针对上述第二种方案，为了将信息离散化到网格点上，不可避免地会带来精度损失。但在实际应用中，只要网格尺寸合理，这样的精度损失是可以接受的。事实上，离散化操作本身会在一定程度上降低学习难度从而带来性能的提升，有paper报告在Montezuma's Revenge游戏里通过离散化agent和环境的信息，DRL模型性能不仅没有下降，反倒提升了30%多。</p>
 <h4 id="逻辑统一">逻辑统一</h4>
 <p>状态空间只做到外在形式统一是不够的。比如我们把小车当前位置 <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B0%7D%2Cy_%7B0%7D%5Cright%29" alt="[公式]" class="lazyload"> 和终点位置坐标 <img data-fancybox="gallery" data-sizes="auto" data-src="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B1%7D%2Cy_%7B1%7D%5Cright%29" alt="[公式]" class="lazyload"> 作为状态信息同时输入网络，按照DRL的过拟合天性，神经网络最终会记住这张地图每个坐标处的特征以及在这里通行的最佳路线，policy在这幅地图里测试性能会很高，但换幅地图就完全不能用了。通常情况下，我们并不希望DRL用这种方式获得高性能，而是希望它能学会应对不同地形的通用知识，即使换张地图也至少能达到“勉强能用”的地步，再通过在新地图中finetune即可快速具备实用价值。因此，更合理的方式是将两个绝对坐标合并为一个相对坐标<img data-fancybox="gallery" data-sizes="auto" data-src="https://www.zhihu.com/equation?tex=%5Cleft%28x_%7B1%7D-x_%7B0%7D%2Cy_%7B1%7D-y_%7B0%7D%5Cright%29" alt="[公式]" class="lazyload"> ，即终点位置在小车坐标系中的坐标，这样就可以使policy与具体地图“脱钩”，从而学习到更加通用的导航知识。可见，<strong>要想让网络学到我们希望它学到的知识，前提是输入正确形式的状态信息</strong>。</p>
@@ -574,7 +574,7 @@
 <!-- <script src="<= theme.cdn.jquery.js "></script> -->
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
- <script src="https://su-lemon.gitee.io/js/app.js?v=1652878993947"></script>
+ <script src="https://su-lemon.gitee.io/js/app.js?v=1652952701006"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>

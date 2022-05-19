@@ -31,25 +31,25 @@
 <meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
 <meta property="og:description" content="为了保证DRL算法能够顺利收敛，policy性能达标并具有实用价值，结果有说服力且能复现，需要算法工作者在训练前、训练中和训练后提供全方位一条龙服务。GANs刚火起来的时候，因为训练难度高，有人在GitHub上专门开了repository，总结来自学术界和工业界的最新训练经验，各种经过或未经验证的tricks被堆砌在一起，吸引了全世界AI爱好者的热烈讨论，可谓盛况空前。在玄学方面，DRL算法训练有">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225210423.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225210852.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225211559.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225211751.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225211849.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210225210423.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210225210852.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210225211559.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210225211751.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210225211849.png">
 <meta property="article:published_time" content="2021-02-25T08:25:12.000Z">
-<meta property="article:modified_time" content="2022-05-18T13:02:04.823Z">
+<meta property="article:modified_time" content="2022-05-19T09:30:58.796Z">
 <meta property="article:author" content="SuSu">
 <meta property="article:tag" content="RL">
 <meta property="article:tag" content="方法论">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225210423.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210225210423.png">
   <link rel="stylesheet" href="/css/blog.css" type="text/css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2432472_9kqdqg64gbn.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1652878993931">
+  <link rel="stylesheet" href="/css/style.css?v=1652952700994">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -378,17 +378,17 @@
 <h2 id="训练开始前">训练开始前</h2>
 <h3 id="环境可视化">环境可视化</h3>
 <p>如果条件允许，开始训练前最好先可视化一个随机环境，观察是否会出现你希望的状态（即上一篇里的主线事件）。如果靠随机选择action都能以一定概率探索到目标状态，那说明该任务难度比较低，心里就可以更有底；如果从来不会出现目标状态，说明该任务难度较高，需要在状态空间和reward函数设计时特别下功夫，从而更好地引导agent向目标状态前进。</p>
-<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225210423.png" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210225210423.png" /></p>
 <h3 id="数据预处理">数据预处理</h3>
 <p>你还可以实时打印出state和reward，看看它们是否在合理范围内取值，是否存在幅值过大的情况，如果是则需要增加必要的归一化操作。事实上，我推荐无条件进行状态空间归一化和reward rescale &amp; clipping，实践证明这两个操作无论在收敛速度还是最终性能上都会带来明显提升。前一个操作很好理解，我只介绍一下reward rescale &amp; clipping，该操作尤其适合基于episode的A3C/A2C/PPO算法，参考形式为 <span class="math inline">\(r=clip(r/(std(Return)+\epsilon ),-10,10)\)</span> ，其中 <span class="math inline">\(Return = \sum\limits_{t=0}^{T} \gamma^{t}r_{t}\)</span> ，是一段episode内reward的折扣累加和，也就是V网络拟合的对象，而V网络输出又为policy优化提供参考，使用该值的统计方差对reward进行rescale，可以反过来有效降低Return的variance，有助于V网络和policy网络进行更加无偏地学习。训练过程中通常采用Return的running std来rescale当前reward。最外层的clip操作可以滤除那些绝对值过大的reward，作用类似。</p>
 <p><strong>注意reward只能进行rescale，而不能整体平移（减去均值）</strong>。回报函数中各项reward的符号以及它们之间的相对大小唯一确定了回报函数的实际功能，各项reward的整体缩放对其没有影响，但整体平移会改变这种相对大小，也就改变了回报函数的功能。事实上，哪怕是clip操作也在一定程度上存在这种问题，但通常影响不大。</p>
 <h2 id="训练进行中">训练进行中</h2>
 <h3 id="拥抱不确定性">拥抱不确定性</h3>
 <p>终于要开始调参了！如果你做过CV项目，会发现相对来说DRL训练的不确定性更高，可复现性更差。这是因为DRL算法不仅超参数多，而且对它们非常敏感，这里贴张图给大家感受一下。</p>
-<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225210852.png" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210225210852.png" /></p>
 <p>上图是三个DRL算法（纵向）在五个Atari游戏（横向）中的得分随学习率变化的趋势。可以看到，以10倍为单位，高性能所对应的学习率区间普遍很窄，要达到最优性能真得靠地毯式搜索。其实原作者本意是想通过这张图表明他们的方法对超参数变化抵抗力较好……，况且这还只是针对学习率这一个超参数。</p>
 <p>当我们刚开始尝试用DRL算法解决一个全新问题时，性能好坏甚至都是其次，能否收敛才是最关键的。大佬OpenAI Five都有所耳闻吧？其团队成员在接受采访时承认，他们第一次将训练跑起来后因为心里实在没底，干脆全体度假去了，回来后打开屏幕发现竟然收敛了，上帝保佑！</p>
-<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225211559.png" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210225211559.png" /></p>
 <p>尽管DRL对超参数如此敏感，也没有必要过分悲观。当我们在心理上接受了这一事实，并开始潜心研究时，就会发现DRL训练还是有迹可循的，尤其是随着实际经验的积累和对算法本质理解的不断深入，将每个超参数的作用都了然于胸，那么训练出优秀policy的可能性就会大很多。接下来我以DQN，DDPG和PPO为例，介绍一下其中的主要超参数和调参技巧。</p>
 <h3 id="drl通用超参数">DRL通用超参数</h3>
 <p>有些超参数不是某个算法所特有，而是DRL普遍使用的，而且作用原理和设置依据都差不多，我放到最前面集中介绍。典型的通用超参数包括折扣因子、网络结构和学习率。</p>
@@ -399,7 +399,7 @@
 <p>总之，<strong>折扣因子的取值原则是，在算法能够收敛的前提下尽可能大</strong>。在实践中，有个经验公式 <span class="math inline">\(1/(1-\gamma)\)</span> ，可以用来估计agent做决策时往前考虑的步数。根据对特定任务的分析，合理选择 <span class="math inline">\(\gamma\)</span> 值，避免“近视”和“远视”。比如可以根据观察或统计agent到达终点所需的步数分布，选择合适的步数使得agent在该步数内的探索下有一定概率到达终点（正样本），注意这个概率越高训练难度就越小，然后利用经验公式把该步数换算成 <span class="math inline">\(\gamma\)</span> 即可。</p>
 <p><strong>3.Frame Skipping</strong></p>
 <p>上述折扣因子的选择方法并非无往不利，有时我们会面临这样的窘境：无法设置合理的γ在“近视”和“远视”间找到满意折中，常见于“细粒度”复杂任务。复杂决定了agent需要看得很远才能做出合理决策，而“细粒度”指agent决策间隔很短以至于一段较长的episode只对应较少的agent状态变化。仍以小车导航为例，0.1s的决策间隔显然满足了实时防碰撞的机动性要求，但也大大延长了episode长度，即到达终点所需步数。如果agent平均需要 <span class="math inline">\(1min\)</span> 才能到达终点，那就要求向前考虑 <span class="math inline">\(1min/0.1s=600\)</span> 步，按照经验公式计算合理的折扣因子 <span class="math inline">\(\gamma \approx 1-1/600=0.998\)</span> ，如此高的折扣因子+如此长的episode，训练难度可想而知。</p>
-<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225211751.png" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210225211751.png" /></p>
 <p>假如我们在保证足够机动性的前提下适当延长决策间隔，比如0.5s，中间4帧重复上一次决策的action不变，相当于跳了几帧达到“快进”效果，从而使episode长度大大缩短，训练难度也直线下降，即使采用较高折扣因子也能顺利收敛。通过这个例子我们也可以知道，<strong>在DRL中agent“看得远”表面上指的是向前考虑的步数多，实质上是指agent向前考虑的系统动态演化跨度大</strong>。</p>
 <h4 id="网络结构">网络结构</h4>
 <p>DRL算法中的网络结构也属于超参数，然而与CV任务不同，DRL绝不应该片面追求网络的复杂化，否则你会发现训练根本无法收敛。对于网络结构的选择，DRL有自己的规矩——<strong>契合状态，够用就好</strong>。前者针对网络类型，后者针对网络深度。</p>
@@ -423,7 +423,7 @@
 <p>DDPG也使用了目标网络（目标Q网络和目标Policy网络）稳定训练，不同的是DDPG的目标网络与主网络更新频率相同，稳定效果来自于软更新（soft-update），即 <span class="math inline">\((1-\tau)*target + \tau*main\)</span> ，<span class="math inline">\(\tau\)</span> 取很小的值（DDPG paper中建议0.001）限制每次更新的幅度。</p>
 <p>DDPG值得特别介绍的是探索噪声及其参数。由于policy网络输出确定性action，DDPG的探索依靠在输出action空间叠加噪声来实现。可选的噪声类型主要包括Gaussian噪声和DDPG paper推荐的ou噪声（Ornstein-Uhlenbeck），后者相对于前者主要是增加了噪声强度逐渐衰减的功能。这两种噪声的主要参数是噪声方差，方差越大探索力度越强。虽然论文推荐使用ou噪声，但我在实践中发现ou噪声并不一定比Gaussian噪声效果好，还是要看具体任务。</p>
 <p>后来DeepMind又提出了adaptive parameter noise，抛弃了在输出层叠加噪声的方法，转而采用在policy网络靠近输出的若干层网络参数上叠加噪声，优点是探索更充分，毕竟参数噪声的影响范围更大，而且可以根据实际情况自适应调节探索力度。类似地，我发现参数噪声在有些任务上效果不错，但在另一些任务中不如传统噪声。综上所述，关于不同噪声的优劣没有确定性结论（局限于我的个人经验），具体选择哪种噪声，还要实际试过才知道。</p>
-<p><img src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210225211849.png" /></p>
+<p><img src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210225211849.png" /></p>
 <p>此外，值得一提的是Q网络和policy网络采用了不同的学习率，且一般Q网络的学习率比policy网络大一个数量级，比如前者用 <span class="math inline">\(1e-3\)</span> ，后者用 <span class="math inline">\(1e-4\)</span> 。这样做的原因是，用于更新policy网络的梯度完全来自于Q网络，两者地位不是对等的。</p>
 <h4 id="ppo">PPO</h4>
 <p>作为on-policy方法，PPO与前两种DRL框架有很大不同，无论是算法原理还是超参数设置。PPO的特色超参数包括：采样环境数量，episode长度，entropy系数，V网络系数，GAE factor，PPO cliprange等。</p>
@@ -598,7 +598,7 @@
 <!-- <script src="<= theme.cdn.jquery.js "></script> -->
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
- <script src="https://su-lemon.gitee.io/js/app.js?v=1652878993934"></script>
+ <script src="https://su-lemon.gitee.io/js/app.js?v=1652952700996"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>

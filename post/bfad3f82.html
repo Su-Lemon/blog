@@ -31,25 +31,25 @@
 <meta property="og:site_name" content="爱吃猫的小鱼干的 Blog">
 <meta property="og:description" content="Mujoco是一个很好的仿真工具。你可能对它很熟悉，因为它强化学习领域受到众多学者的青睐，在OpenAI Gym中也有Mujoco的使用。 Mujoco提供了超快的动力学模拟，重点是接触动力学。它对于模拟机器人手臂和抓取任务特别有效，在模型预测控制和机器人模仿学习研究的文章中也颇具价值。">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407165056.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407165919.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407171822.png">
-<meta property="og:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407172745.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407165056.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407165919.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407171822.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407172745.png">
 <meta property="article:published_time" content="2021-04-07T08:13:41.000Z">
-<meta property="article:modified_time" content="2022-05-18T13:02:40.738Z">
+<meta property="article:modified_time" content="2022-05-19T09:31:02.824Z">
 <meta property="article:author" content="SuSu">
 <meta property="article:tag" content="RL">
 <meta property="article:tag" content="Tools">
 <meta property="article:tag" content="Mujoco">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407165056.png">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407165056.png">
   <link rel="stylesheet" href="/css/blog.css" type="text/css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css">
   <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css">
   
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_2432472_9kqdqg64gbn.css">
   
-  <link rel="stylesheet" href="/css/style.css?v=1652878993923">
+  <link rel="stylesheet" href="/css/style.css?v=1652952700980">
 <!-- hexo injector head_end start -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
 
@@ -390,7 +390,7 @@
 </ul>
 <p>导入你的STL模型之前，在打开文件窗口中中选择你的文件，然后点击导入旁边的选项按钮，选择模型所定义的单位。如果你导入模型却看不到它，很可能是导入过程中选择的单位不正确，模型实在是太小而无法看到。</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407165056.png"/> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407165056.png"/> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 导入时设置模型单位
 </div>
@@ -400,7 +400,7 @@
 </ul>
 <p>Mujoco使用你的STL模型中指定的单位。当使用相同的单位时，事情通常是最简单的。要修改模型导出时的单位，请到窗口 &gt; 模型信息 &gt; 单位 &gt; 长度。</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407165919.png"/> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:100%" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407165919.png"/> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 设置导出时的模型单位
 </div>
@@ -423,14 +423,14 @@
 <h3 id="将各组件导出为单独的stl">将各组件导出为单独的STL</h3>
 <p>确保你已经解锁了模型。要做到这一点，请使用 选择工具 突出显示整个模型。右击模型，并选择炸开模型（或打散）。</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407171822.png"/> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407171822.png"/> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 炸开模型
 </div>
 </center>
 <p>要得到单独的组件。例如，选择整个手臂，然后删除其余部分。选择 文件 &gt; 导出 &gt; 三维模型 &gt; STL。点击文件格式右侧的 选项 ，导出你的模型时，<strong>一定不要把你的模型保存为ASCII格式，选择二进制</strong>。重复此操作，直到将每个部件导出为自己的STL。</p>
 <center>
-<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%" src="https://gitee.com/Su-Lemon/sources/raw/master/imgs/blog/20210407172745.png"/> <br>
+<img style="border-radius: 0.3125em; box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08); zoom:80%" src="https://cdn.jsdelivr.net/gh/Su-Lemon/sources@1.1/imgs/blog/20210407172745.png"/> <br>
 <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
 导出各个组件的STL文件
 </div>
@@ -702,7 +702,7 @@
 <!-- <script src="<= theme.cdn.jquery.js "></script> -->
 <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 
- <script src="https://su-lemon.gitee.io/js/app.js?v=1652878993925"></script>
+ <script src="https://su-lemon.gitee.io/js/app.js?v=1652952700983"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js"></script>
 <script>
