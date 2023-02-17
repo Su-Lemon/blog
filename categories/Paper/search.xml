@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>【Tools-GoogleSearch】优化搜索结果</title>
+      <link href="post/d429a568.html"/>
+      <url>post/d429a568.html</url>
+      
+        <content type="html"><![CDATA[<p>相信大家在使用搜索引擎的时候，大部分情况下都是直接输入要搜索的关键词，然后在搜索结果里一个个点开查找。但除了特定信息外，搜索引擎同时也会返回大量无关的信息。有时候我们可能翻好几页也不一定能找到满意的结果，平白增加不少的工作量。</p><p>其实，有一些特殊的技巧，可以对搜索结果进行限制和筛选，缩小检索范围，让搜索结果更加准确，大大提高我们的效率。</p><a id="more"></a><h2 id="在google上进行高级搜索">在Google上进行高级搜索</h2><p>高级搜索只适用于<strong>精确限制获取某些类型的搜索结果</strong>。可以<a href="https://www.google.com/">通过访问 google.com 进行高级搜索</a>，除此之外，还可以利用<strong>Google辅助搜索命令</strong>，让你的搜索事半功倍。</p><h3 id="强制精确匹配">强制精确匹配</h3><p>当你输入某个长句或者短语进行搜索后，搜索引擎会默认显示所有分别包含各个单词的相关信息。或者只匹配到了你输入的部分字词，这就很令人糟心了。</p><p>这时候，你可以为字词或短语加上引号。例如：<code>"最高的建筑"</code>，来强制完全匹配所有字符。</p><h3 id="多条件查询-and-运算符">多条件查询 AND 运算符</h3><p>绝大部分搜索引擎都允许在搜索中使用逻辑运算符。</p><p>如果你想查询的内容需要满足多个条件，就可以用and把你要查询的条件都连在一起。例如：<code>蒋涛 and CSDN and 微博</code>。搜索引擎则会返回包含两者的搜索结果。</p><h3 id="组合搜索-or-运算符">组合搜索 OR 运算符</h3><p>与AND相反，OR可以返回你输入的多个搜索词分别相关的结果，而不仅仅是和多个搜索词都同时相关的结果。巧妙使用OR运算符，可以让你在未能确定哪个关键词对于搜索结果起决定作用时，依然可以确保搜索结果的准确性。</p><p>在各个搜索查询字词之间加上<code>OR</code>。例如：<code>马拉松 or 比赛</code>。</p><h3 id="从搜索结果中排除特定关键词">从搜索结果中排除特定关键词</h3><p>如果在进行准确搜索时没有找到自己想要的结果，你还可以对包含特定词汇的信息进行排除。</p><p>在要排除的字词前加上 <code>-</code> 。例如：<code>中国美食 -麻辣</code></p><h3 id="通配符">通配符</h3><p>星号 <code>*</code> 通配符，可以用作模糊搜索。如果我们忘记了需要搜索的词句的某一部分，就可以用 <code>*</code> 代替缺失的部分。这个技巧在查歌词、文章原文的时候非常省时省力，而不会返回太多无关结果。</p><p>用 <code>*</code> 代替不确定或遗忘的部分，例如：<code>深入Linux*架构</code> 。</p><h3 id="在某个数字时间范围内搜索">在某个数字（时间）范围内搜索</h3><p>如果你想找出某段时间内的搜索结果，需要在两个数字之间加上 <code>..</code> 。</p><p>例如：<code>姿态估计 2021..2023</code> 。</p><h3 id="搜索指定文件类型">搜索指定文件类型</h3><p>使用这个技巧，可以快速帮你找到各个格式的文件。</p><p>输入： <code>filetype:文档格式 搜索词</code> 。</p><p>例如： <code>filetype:pdf Linux</code> 。</p><h3 id="在网页标题链接和正文中搜索">在网页标题、链接和正文中搜索</h3><p>如果你需要找出和搜索词相关的所有网页标题、链接和正文，只需要按下方规则搜索即可：</p><p>把搜索范围限定在网页标题中 <code>intitle</code> ，例如：<code>intitle:优化搜索结果</code> ；</p><p>把搜索范围限定在url链接中 <code>inurl:</code> ，例如：<code>inurl:bilibili</code> ；</p><p>把搜索范围限定在正文中 <code>intext:</code> ，例如：<code>intext:强化学习</code> ；</p><h3 id="站内搜索">站内搜索</h3><p>许多网站上内容虽然丰富，但欠缺了站内搜索的入口，当我们想要查找特定网站上的某个资源的话就比较麻烦了。</p><p>实际上，在网站或网域前加上 <code>site:</code> 例如：<code>教学 site:youtube.com</code></p><h3 id="搜索相关网站">搜索相关网站</h3><p>想要知道与某个网站相关的网站还有哪些，仅需在搜索引擎中输入 <code>related:网址</code> 。</p><p>例如：<code>related:google.com</code> 。</p><h2 id="总结">总结</h2><p>尽管有些技能或许并不常用，但精准搜索和站内搜索这些技能的使用范围还是相当广泛的。更重要的是，以上提到的技巧都可以单独或<strong>搭配使用，中间用空格隔开即可</strong>。</p><p>例如，在youtube网站上搜索标题含“油猴脚本”的内容： <code>intitle:“油猴脚本” site:youtube.com</code> 。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Tools </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Tools </tag>
+            
+            <tag> Google </tag>
+            
+            <tag> Tips </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>【Paper】论文投稿Review写法</title>
       <link href="post/ebc5cbbf.html"/>
       <url>post/ebc5cbbf.html</url>
